@@ -1,0 +1,15 @@
+class Tank {
+    field int height;
+	field int width;
+	
+	field int location;
+	field int initial_location;
+	
+	constructor Tank new(int pos) {
+		
+	}
+	
+	method int collision_box_tly() {
+		return height;
+	}
+}

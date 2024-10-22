@@ -1,0 +1,7 @@
+class Main {
+	function void main(arr, target){
+		var int start, end;
+		let start = 0;
+		let end = arr.length
+	}
+}
