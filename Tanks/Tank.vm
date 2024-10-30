@@ -1,0 +1,153 @@
+function Tank.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 1
+push argument 1
+pop this 2
+push constant 0
+pop this 0
+push this 1
+push this 2
+call Graphics.drawTankGoUp 2
+pop temp 0
+push pointer 0
+return
+function Tank.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Tank.erase 0
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+call Graphics.eraseTankFirstGen 2
+pop temp 0
+push constant 0
+return
+function Tank.moveUp 0
+push argument 0
+pop pointer 0
+push this 2
+push constant 0
+gt
+not
+if-goto $_IF_FALSE0
+push pointer 0
+call Tank.erase 1
+pop temp 0
+push this 2
+push constant 4
+sub
+pop this 2
+push this 1
+push this 2
+call Graphics.drawTankGoUp 2
+pop temp 0
+goto $_IF_END0
+label $_IF_FALSE0
+label $_IF_END0
+push constant 0
+return
+function Tank.moveDown 0
+push argument 0
+pop pointer 0
+push this 2
+push constant 255
+lt
+not
+if-goto $_IF_FALSE1
+push pointer 0
+call Tank.erase 1
+pop temp 0
+push this 2
+push constant 4
+add
+pop this 2
+push this 1
+push this 2
+call Graphics.drawTankGoDown 2
+pop temp 0
+goto $_IF_END1
+label $_IF_FALSE1
+label $_IF_END1
+push constant 0
+return
+function Tank.moveLeft 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 0
+gt
+not
+if-goto $_IF_FALSE2
+push pointer 0
+call Tank.erase 1
+pop temp 0
+push this 1
+push constant 1
+sub
+pop this 1
+push this 1
+push this 2
+call Graphics.drawTankGoLeft 2
+pop temp 0
+goto $_IF_END2
+label $_IF_FALSE2
+label $_IF_END2
+push constant 0
+return
+function Tank.moveRight 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 512
+lt
+not
+if-goto $_IF_FALSE3
+push pointer 0
+call Tank.erase 1
+pop temp 0
+push this 1
+push constant 1
+add
+pop this 1
+push this 1
+push this 2
+call Graphics.drawTankGoRight 2
+pop temp 0
+goto $_IF_END3
+label $_IF_FALSE3
+label $_IF_END3
+push constant 0
+return
+function Tank.getTankCoordinates 1
+push argument 0
+pop pointer 0
+push constant 2
+call Array.new 1
+pop local 0
+push local 0
+push constant 0
+add
+push this 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+push this 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+return

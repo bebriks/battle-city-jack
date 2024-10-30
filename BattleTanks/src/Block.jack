@@ -1,0 +1,10 @@
+class Block {
+    field int height;
+	field int width;
+	
+	field int location;
+	
+	constructor Block new() {
+		do reset();
+	}
+}

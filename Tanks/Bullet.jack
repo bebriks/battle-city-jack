@@ -1,0 +1,77 @@
+class Bullet {
+    field int x, y, dir;
+
+    constructor Bullet new(int tankX, int tankY, int tankDir) {
+        let x = tankX;
+        let y = tankY;
+        let dir = tankDir;
+        return this;
+    }
+    method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+    method void erase() {
+        do Graphics.eraseBullet(x, y, dir);
+        return;
+    }
+    /* method void shoot() {
+        if(dir = 1) {
+            do Graphics.drawBulletUp(x, y);
+        }
+        if(dir = 2) {
+            do Graphics.drawBulletDown(x, y);
+        }
+        if(dir = 3) {
+            do Graphics.drawBulletLeft(x, y);
+        }
+        if(dir = 4) {
+            do Graphics.drawBulletRight(x, y);
+        }
+        return;
+    } */
+    method void shootUp() {
+        if(y > 0) {
+            do Graphics.drawBulletUp(x, y);
+            y = y - 1;
+            do erase();
+        }
+        else {
+            do Graphics.drawBoom(x, y);
+        }
+        return;
+    }
+    method void shootDown() {
+        if(y < 255) {
+            do Graphics.drawBulletDown(x, y);
+            y = y + 1;
+            do erase();
+        }
+        else {
+            do Graphics.drawBoom(x, y);
+        }
+        return;
+    }
+    method void shootLeft() {
+        if(x > 0) {
+            do Graphics.drawBulletLeft(x, y);
+            x = x - 1;
+            do erase();
+        }
+        else {
+            do Graphics.drawBoom(x, y);
+        }
+        return;
+    }
+    method void shootRight() {
+        if(x > 512) {
+            do Graphics.drawBulletRight(x, y);
+            x = x + 1;
+            do erase();
+        }
+        else {
+            do Graphics.drawBoom(x, y);
+        }
+        return;
+    }
+}
