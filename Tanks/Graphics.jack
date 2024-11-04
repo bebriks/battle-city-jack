@@ -1,6 +1,6 @@
 class Graphics{
-	field int memAddress;
-	field String lastStep;
+	static int memAddress;
+	static String lastStep;
 	function void drawTankGoUp(int x, int y) {
 		let memAddress = 16384;
         let memAddress = y*32+16384+x;
@@ -502,7 +502,6 @@ class Graphics{
 		return;
 	}
 	function void drawBrickBlock(int location) {
-		var int memAddress; 
 		let memAddress = 16384+location;
 		// column 0
 		do Memory.poke(memAddress, -1);
@@ -550,7 +549,6 @@ class Graphics{
 	}
 	
 	function void drawModuleBlock(int location) {
-		var int memAddress; 
 		let memAddress = 16384+location;
 		// column 0
 		do Memory.poke(memAddress, -1);
@@ -597,7 +595,6 @@ class Graphics{
 		return;
 	}
 	function void drawLeavesBlock(int location) {
-		var int memAddress; 
 		let memAddress = 16384+location;
 		// column 0
 		do Memory.poke(memAddress, 6535);

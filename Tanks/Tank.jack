@@ -59,8 +59,8 @@ class Tank {
 	method Array getTankCoordinates() {
 		var Array cod;
 		let cod = Array.new(2);
-		cod[0] = x;
-		cod[1] = y;
+		let cod[0] = x;
+		let cod[1] = y;
 		return cod;
 	}
 }

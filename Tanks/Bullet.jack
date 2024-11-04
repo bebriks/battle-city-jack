@@ -33,7 +33,7 @@ class Bullet {
     method void shootUp() {
         if(y > 0) {
             do Graphics.drawBulletUp(x, y);
-            y = y - 1;
+            let y = y - 1;
             do erase();
         }
         else {
@@ -44,7 +44,7 @@ class Bullet {
     method void shootDown() {
         if(y < 255) {
             do Graphics.drawBulletDown(x, y);
-            y = y + 1;
+            let y = y + 1;
             do erase();
         }
         else {
@@ -55,7 +55,7 @@ class Bullet {
     method void shootLeft() {
         if(x > 0) {
             do Graphics.drawBulletLeft(x, y);
-            x = x - 1;
+            let x = x - 1;
             do erase();
         }
         else {
@@ -66,7 +66,7 @@ class Bullet {
     method void shootRight() {
         if(x > 512) {
             do Graphics.drawBulletRight(x, y);
-            x = x + 1;
+            let x = x + 1;
             do erase();
         }
         else {
