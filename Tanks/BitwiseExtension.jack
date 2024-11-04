@@ -1,0 +1,31 @@
+class BitwiseExtension
+{
+    function int leftShift(int x, int n) {
+        var int i;
+        if (n < 0)  { do Sys.error(51); }
+        if (n > 15)  { return 0; }
+        let i = 0;
+        while (i < n) {
+             let x = x + x;
+             let i = i + 1;
+        }
+        return x;
+    }
+
+    function int rightShift (int x, int n) {
+         var int i;
+        if (n < 0)  { do Sys.error(50); }
+        if (n > 15)  { return 0; }
+        let i = 0;
+        while (i < n) {
+             let x = x / 2;
+             let i = i + 1;
+        }
+        return x;
+    }
+
+    function int takeNLowBits (int x, int n) {
+        if (n < 0)  { do Sys.error(50); }
+        return MathExtension.remainsDivision(x, MathExtension.pow(2,n));
+    }
+}

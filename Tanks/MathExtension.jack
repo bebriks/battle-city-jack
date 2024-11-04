@@ -1,0 +1,18 @@
+class MathExtension
+{
+    function int pow (int x, int y) {
+        var int i, res;
+        if (y < 0)  { do Sys.error(50); }
+        let res = 1;
+        let  i = 0;
+        while (i < y) {
+             let res = res * x;
+             let i = i + 1;
+        }
+        return res;
+    }
+
+    function int remainsDivision (int x, int y) {
+         return x - (y*(x/y));
+    }
+}
