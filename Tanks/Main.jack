@@ -1,9 +1,7 @@
 class Main {
 	function void main() {
-		var BattleCityGame game;
-		let game = BattleCityGame.new();
-		do game.run();
-		do game.dispose();
+		do GameCore.init();
+		do GameCore.run();
 		return;
 	}
 }

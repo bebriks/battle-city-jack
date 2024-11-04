@@ -1,0 +1,75 @@
+class Intro
+{
+    static Array prehistoryLines;
+    function void init() {
+        let prehistoryLines = Array.new(10);
+        let prehistoryLines[0] = "I vosstali studenti iz pepla uchebnih zadach.";
+        let prehistoryLines[1] = "I nachalas razrabotka v paradigme extremalnogo programirovania.";
+        let prehistoryLines[2] = "I dlilas' ona nedelyami.";
+        let prehistoryLines[3] = "No poslednaya strochka coda budet napisana ne v budushem.";
+        let prehistoryLines[4] = "Mi radi predstavit nashu igru pryamo seychas.";
+        return;
+    }
+    function void exec() {
+        do Intro.showPrehistory();
+        return;
+    }
+
+    function void showPrehistory () {
+        var int i, j, currentPrehistoryLineLength, cursorRectangleX, cursorRectangleY; 
+        var String currentPrehistoryLine;
+        let i = 0;
+        let cursorRectangleX = 0;
+        let cursorRectangleY = 0;
+
+        while (i < 5) {
+            let j = 0;
+            do Output.moveCursor(i, j);
+            do Intro.showCursor(cursorRectangleX, cursorRectangleY, true);
+            let currentPrehistoryLine = prehistoryLines[i];
+            let currentPrehistoryLineLength = currentPrehistoryLine.length();
+
+            while (j < currentPrehistoryLineLength) {
+                do Intro.showCursor(cursorRectangleX, cursorRectangleY, false);
+                do Output.printChar(currentPrehistoryLine.charAt(j));
+                if (Keyboard.keyPressed())  { return; }
+                let j = j + 1;
+                let cursorRectangleX = cursorRectangleX + 8;
+
+                do Intro.showCursor(cursorRectangleX, cursorRectangleY, true);
+                do Sys.wait(50);
+            }
+
+            do Intro.showCursor(cursorRectangleX, cursorRectangleY, false);
+            let cursorRectangleX = 0;
+            let cursorRectangleY = cursorRectangleY + 11;
+            let i = i + 1;
+        }
+        do Intro.blinkCursor(3, cursorRectangleX, cursorRectangleY);
+        return;
+    }
+
+    function void showCompany () {
+         do Graphics.fillScreen(1);
+         return;
+    }
+    
+    function void showCursor (int x, int y, boolean color) {
+         do Screen.setColor(color);
+         do Screen.drawRectangle(x, y, x + 7, y + 10);
+         return;
+    }
+
+    function void blinkCursor (int times, int cursorRectangleX, int cursorRectangleY) {
+        var int i;
+        let i = 0;
+        while (i < times) {
+            do Intro.showCursor(cursorRectangleX, cursorRectangleY, true);
+            do Sys.wait(500);
+            do Intro.showCursor(cursorRectangleX, cursorRectangleY, false);
+            do Sys.wait(500);
+            let i = i + 1;
+        }
+        return;
+    }
+}

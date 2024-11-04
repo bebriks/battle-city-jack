@@ -1,6 +1,14 @@
 class Graphics{
 	static int memAddress;
 	static String lastStep;
+
+	function void fillScreen (boolean color) {
+		do Screen.setColor(color);
+		do Screen.drawRectangle(0, 0, 511, 255);
+		return;
+	}
+
+
 	function void drawTankGoUp(int x, int y) {
 		let memAddress = 16384;
         let memAddress = y*32+16384+x;

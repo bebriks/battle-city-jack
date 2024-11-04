@@ -1,0 +1,14 @@
+class GameCore
+{
+    static int state;
+    function void init() {
+        let state = 0;
+        do Intro.init();
+        return;
+    }
+
+    function void run() {
+        if (state = 0)  { do Intro.exec(); let state = 1; }
+        return;
+    }
+}
