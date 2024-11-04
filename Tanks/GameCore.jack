@@ -4,6 +4,7 @@ class GameCore
     function void init() {
         let state = 0;
         do Intro.init();
+        do OutputExtension.init();
         return;
     }
 

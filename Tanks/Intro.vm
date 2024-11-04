@@ -518,7 +518,7 @@ pop that 0
 push constant 0
 return
 function Intro.exec 0
-call Intro.showPrehistory 0
+call Intro.showCompany 0
 pop temp 0
 push constant 0
 return
@@ -619,6 +619,21 @@ push constant 3
 push local 3
 push local 4
 call Intro.blinkCursor 3
+pop temp 0
+push constant 0
+return
+function Intro.showCompany 0
+push constant 0
+call Graphics.fillScreen 1
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push constant 0
+push constant 0
+push constant 16
+push constant 24
+call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return

@@ -11,7 +11,8 @@ class Intro
         return;
     }
     function void exec() {
-        do Intro.showPrehistory();
+        //do Intro.showPrehistory();
+        do Intro.showCompany();
         return;
     }
 
@@ -50,7 +51,9 @@ class Intro
     }
 
     function void showCompany () {
-         do Graphics.fillScreen(1);
+         do Graphics.fillScreen(0);
+         do Screen.setColor(1);
+         do Screen.drawRectangle(0, 0, 16, 24);
          return;
     }
     
