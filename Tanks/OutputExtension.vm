@@ -1,0 +1,39 @@
+function OutputExtension.init 0
+call SpriteManager.loadBigF 0
+pop temp 0
+push constant 0
+return
+function OutputExtension.printChar 0
+push argument 0
+push constant 70
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push static 0
+push static 1
+call SpriteManager.getBigF 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push static 0
+push constant 32
+add
+pop static 0
+push constant 0
+return
+function OutputExtension.setCursorPosition 0
+push argument 0
+pop static 0
+push argument 1
+pop static 1
+push constant 0
+return
+function OutputExtension.dispose 0
+call SpriteManager.disposeBigF 0
+pop temp 0
+push constant 0
+return

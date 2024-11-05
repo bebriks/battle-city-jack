@@ -1,0 +1,30 @@
+class Sprite {
+    field int m_height, m_width, m_wordWidth;
+    field Array m_data;
+
+    constructor Sprite new (int width, int height, Array data) {
+       let m_width = width;
+       let m_height = height;
+       let m_data = data;
+       let m_wordWidth = width / 16;
+       if (16 * m_wordWidth < width) { let m_wordWidth = m_wordWidth + 1; }
+       return this;   
+    }
+
+    method int width() { return m_width; }
+    method int wordWidth() { return m_wordWidth; }
+    method int height() { return m_height; }
+    method int data() { return m_data; }
+
+    method void dispose() {
+        var int i;
+        var Array buf;
+        let i = 0;
+        while (i < m_height) {
+             let buf = m_data[i];
+             do buf.dispose();
+             let i = i + 1;
+        }
+        return;
+    }
+}

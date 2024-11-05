@@ -1,0 +1,261 @@
+class SpriteManager{
+    static Sprite bigF;
+
+    function void loadBigF () {
+        var Array data, line;
+
+        let data = Array.new(48);
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[0] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[1] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[2] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[3] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[4] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[5] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[6] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[7] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[8] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[9] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[10] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[11] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[12] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[13] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[14] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[15] = line;
+        
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[16] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[17] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[18] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[19] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[20] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[21] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[22] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[23] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[24] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 16383;
+        let data[25] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[26] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[27] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[28] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[29] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[30] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[31] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[32] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[33] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[34] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[35] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[36] = line;
+        
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[37] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[38] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[39] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[40] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[41] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[42] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[43] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[44] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 0;
+        let data[45] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[46] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[47] = line;
+
+        let bigF = Sprite.new(32, 48, data);
+        return;
+    }
+
+    function void disposeBigF () {
+        do bigF.dispose();
+        return;
+    }
+
+    function Sprite getBigF () {
+        return bigF;
+    }
+}

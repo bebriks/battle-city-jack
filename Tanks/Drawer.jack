@@ -1,0 +1,70 @@
+class Drawer
+{
+    function void drawSprite(int x, int y, Sprite sprite, boolean isMirror) {
+        var int i, j, wordIndex, wordOffset, spriteHeight, spriteWordWidth;
+        var int memAddress, currentMemAddressBuf;
+        var int highBits, lowBits;
+        var Array spriteData, buf;
+
+        let wordIndex = x/16;
+        let wordOffset = x - (wordIndex * 16);
+        if (wordOffset = 0)  { do Drawer.simpleDraw(y, wordIndex, sprite); return; }
+
+        let spriteHeight = sprite.height();
+        let spriteWordWidth = sprite.wordWidth();
+        let memAddress = 16384 + (y * 32 + wordIndex);
+        let spriteData = sprite.data();
+
+        let i = 0;
+        while (i < spriteHeight) {
+            let buf = spriteData[i];
+            let j = 0;
+            while (j < spriteWordWidth) {
+                let lowBits = BitwiseExtension.takeNLowBits(buf[j], 16 - wordOffset);
+                let highBits = buf[j] - lowBits;
+
+                let currentMemAddressBuf = memAddress + j;
+                if (currentMemAddressBuf < 24576) { 
+                    do Memory.poke(
+                        currentMemAddressBuf, 
+                        Memory.peek(currentMemAddressBuf) | BitwiseExtension.leftShift(lowBits, wordOffset)); 
+                }
+
+                let currentMemAddressBuf = currentMemAddressBuf + 1;
+                if (currentMemAddressBuf < 24576) {
+                    do Memory.poke(
+                        currentMemAddressBuf, 
+                        Memory.peek(currentMemAddressBuf) | BitwiseExtension.rightShift(highBits, 16 - wordOffset)); 
+                }
+
+                let j = j + 1;
+            }
+            let i = i + 1;
+            let memAddress = memAddress + 32;
+            if (~(memAddress < 24576))  { return; }
+        }
+        return;
+    }
+
+    function void simpleDraw(int row, int word, Sprite sprite) {   
+        var int i, j, wordIndex, spriteHeight, spriteWordWidth, memAddress;
+        var Array spriteData, buf;
+        let spriteHeight = sprite.height();
+        let spriteWordWidth = sprite.wordWidth();
+        let memAddress = 16384 + (row * 32 + word);
+        let spriteData = sprite.data();
+
+        let i = 0;
+        while (i < spriteHeight) {
+            let buf = spriteData[i];
+            let j = 0;
+            while (j < spriteWordWidth) {
+                do Memory.poke(memAddress + j, buf[j]);
+                let j = j + 1;
+            }
+            let i = i + 1;
+            let memAddress = memAddress + 32;
+        }
+        return;
+    }    
+}

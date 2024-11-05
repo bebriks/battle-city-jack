@@ -12,7 +12,7 @@ class BitwiseExtension
         return x;
     }
 
-    function int rightShift (int x, int n) {
+    function int rightShift(int x, int n) {
          var int i;
         if (n < 0)  { do Sys.error(50); }
         if (n > 15)  { return 0; }
@@ -24,8 +24,10 @@ class BitwiseExtension
         return x;
     }
 
-    function int takeNLowBits (int x, int n) {
+    function int takeNLowBits(int x, int n) {
         if (n < 0)  { do Sys.error(50); }
+        if (n > 15)  { return x; }
+        if (x < 0)  { let x = x & 32767; }
         return MathExtension.remainsDivision(x, MathExtension.pow(2,n));
     }
 }

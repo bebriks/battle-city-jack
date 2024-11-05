@@ -3,6 +3,8 @@ push constant 0
 pop static 0
 call Intro.init 0
 pop temp 0
+call OutputExtension.init 0
+pop temp 0
 push constant 0
 return
 function GameCore.run 0

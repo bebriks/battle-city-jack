@@ -9,6 +9,15 @@ push constant 51
 call Sys.error 1
 pop temp 0
 label IF_FALSE0
+push argument 1
+push constant 15
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+return
+label IF_FALSE1
 push constant 0
 pop local 0
 label WHILE_EXP0
@@ -36,10 +45,19 @@ lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push constant 51
+push constant 50
 call Sys.error 1
 pop temp 0
 label IF_FALSE0
+push argument 1
+push constant 15
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+return
+label IF_FALSE1
 push constant 0
 pop local 0
 label WHILE_EXP0
@@ -61,6 +79,36 @@ label WHILE_END0
 push argument 0
 return
 function BitwiseExtension.takeNLowBits 0
+push argument 1
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 50
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+push constant 15
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 0
+return
+label IF_FALSE1
+push argument 0
+push constant 0
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 0
+push constant 32767
+and
+pop argument 0
+label IF_FALSE2
 push argument 0
 push constant 2
 push argument 1

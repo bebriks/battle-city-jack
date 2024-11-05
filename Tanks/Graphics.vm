@@ -10,6 +10,13 @@ call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
+function Graphics.coordinatesToMemoryAddress 1
+push argument 0
+push constant 16
+call Math.divide 2
+pop local 0
+push constant 0
+return
 function Graphics.drawTankGoUp 0
 push constant 16384
 pop static 0

@@ -8,10 +8,10 @@ class Graphics{
 		return;
 	}
 
-	function void coordinatesToMemoryAddress (int x, int y) {
+	function int coordinatesToMemoryAddress (int x, int y) {
 		var int wordInLineIndex;
 		let wordInLineIndex = x / 16;
-		return y*32 + wo
+		return 0;
 	}
 
 

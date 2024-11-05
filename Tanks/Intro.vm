@@ -622,18 +622,25 @@ call Intro.blinkCursor 3
 pop temp 0
 push constant 0
 return
-function Intro.showCompany 0
+function Intro.showCompany 1
+push constant 1
+call String.new 1
+push constant 70
+call String.appendChar 2
+pop local 0
+call OutputExtension.init 0
+pop temp 0
+push constant 52
+push constant 0
+call OutputExtension.setCursorPosition 2
+pop temp 0
 push constant 0
 call Graphics.fillScreen 1
 pop temp 0
-push constant 1
-call Screen.setColor 1
-pop temp 0
+push local 0
 push constant 0
-push constant 0
-push constant 16
-push constant 24
-call Screen.drawRectangle 4
+call String.charAt 2
+call OutputExtension.printChar 1
 pop temp 0
 push constant 0
 return

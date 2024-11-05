@@ -50,11 +50,14 @@ class Intro
         return;
     }
 
-    function void showCompany () {
-         do Graphics.fillScreen(0);
-         do Screen.setColor(1);
-         do Screen.drawRectangle(0, 0, 16, 24);
-         return;
+    function void showCompany() {
+        var String test;
+        let test = "F";
+        do OutputExtension.init();
+        do OutputExtension.setCursorPosition(52,0);
+        do Graphics.fillScreen(0);
+        do OutputExtension.printChar(test.charAt(0));
+        return;
     }
     
     function void showCursor (int x, int y, boolean color) {
@@ -63,7 +66,7 @@ class Intro
          return;
     }
 
-    function void blinkCursor (int times, int cursorRectangleX, int cursorRectangleY) {
+    function void blinkCursor(int times, int cursorRectangleX, int cursorRectangleY) {
         var int i;
         let i = 0;
         while (i < times) {
