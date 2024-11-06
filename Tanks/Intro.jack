@@ -4,7 +4,6 @@ class Intro
     static int blackScreenWaitingMS;
     function void init() {
         var TextLine textLineBuf;
-        do OutputExtension.init();
         let blackScreenWaitingMS = 750;
 
         let prehistoryLines = Array.new(10);
@@ -27,17 +26,21 @@ class Intro
         return;
     }
     function void exec() {
+        do OutputExtension.init();
         do Intro.showPrehistory();
         do Intro.showCompany();
         do Intro.showSponsors();
         do Intro.showAwards();
         do GameCore.setState(1);
+        do OutputExtension.dispose();
         return;
     }
 
     function void showPrehistory() {
         var int i, j, currentPrehistoryLineLength, cursorRectangleX, cursorRectangleY; 
         var String currentPrehistoryLine;
+        do Graphics.fillScreen(0);
+        do Screen.setColor(1);
         let i = 0;
         let cursorRectangleX = 0;
         let cursorRectangleY = 0;
@@ -52,7 +55,7 @@ class Intro
             while (j < currentPrehistoryLineLength) {
                 do Intro.showCursor(cursorRectangleX, cursorRectangleY, false);
                 do Output.printChar(currentPrehistoryLine.charAt(j));
-                if (Keyboard.keyPressed())  { return; }
+                if (KeyboardExtension.keyDown()) { return; }
                 let j = j + 1;
                 let cursorRectangleX = cursorRectangleX + 8;
 
@@ -76,12 +79,12 @@ class Intro
         var String stringBuf;
 
         do Graphics.fillScreen(1);
-        if (GameCore.interactiveWait(blackScreenWaitingMS))  { do Graphics.fillScreen(0); return; }
+        do Sys.wait(blackScreenWaitingMS);
         do Graphics.fillScreen(0);
 
         let i = 0;
         while (i < 2) {
-            if (Keyboard.keyPressed())  { return; }
+            if (KeyboardExtension.keyDown()) { return; }
             let companyNameLine = companyNameLines[i];
             let stringBuf = companyNameLine.data();
             let lengthBuf = stringBuf.length();
@@ -105,7 +108,7 @@ class Intro
             do Screen.setColor(0);
             do Screen.drawRectangle(x_start, 185, 290, 201);
             let x_start = x_start + 1;
-            if (Keyboard.keyPressed())  { return; }
+            if (KeyboardExtension.keyDown()) { return; }
             do Sys.wait(25);
         }    
 
@@ -118,9 +121,9 @@ class Intro
         var String buf;
 
         do Graphics.fillScreen(1);
-        if (GameCore.interactiveWait(blackScreenWaitingMS))  { do Graphics.fillScreen(0); return; }
-
+        do Sys.wait(blackScreenWaitingMS);
         do Graphics.fillScreen(0);
+
         do Screen.setColor(1);
         let cursorI = 13;
         let cursorJ = 21;
@@ -148,7 +151,7 @@ class Intro
     function void showAwards() {
         
         do Graphics.fillScreen(1);
-        if (GameCore.interactiveWait(blackScreenWaitingMS))  { do Graphics.fillScreen(0); return; }
+        do Sys.wait(blackScreenWaitingMS);
         do Graphics.fillScreen(0);
 
         do Output.moveCursor(11, 10);

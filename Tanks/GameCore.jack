@@ -1,26 +1,30 @@
 class GameCore
 {
     static int m_state;
+
     function void init() {
-        let m_state = 0;
+        let m_state = 2;
+        do KeyboardExtension.init();
         do Intro.init();
-        do OutputExtension.init();
+        do MainMenu.init();
         return;
     }
 
-    function void run() {
+    function void exec() {
         while (~(m_state = -1)) {
             if (m_state = 0)  { do Intro.exec(); }
+            if (m_state = 1)  { do MainMenu.exec(); }
+            if (m_state = 2)  { do Screen.drawRectangle(0, 0, 31, 31); }
         }
         return;
     }
 
-    function int interactiveWait (int ms) {
+    function boolean interactiveWait (int ms) {
         var int i;
         let i = 0;
         while (i < ms) {    
             do Sys.wait(50);
-            if (Keyboard.keyPressed())  { return Keyboard.keyPressed(); } 
+            if (KeyboardExtension.keyDown()) { return true; } 
             let i = i + 50;
         }
         return false;

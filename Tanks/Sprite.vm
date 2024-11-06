@@ -73,5 +73,8 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
+push this 3
+call Array.dispose 1
+pop temp 0
 push constant 0
 return

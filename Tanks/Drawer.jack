@@ -7,6 +7,8 @@ class Drawer
         var int currentWord, highBits, lowBits;
         var Array spriteData, buf;
 
+        let wordIndex = x/16;
+        let wordOffset = x - (wordIndex * 16);
         let spriteHeight = sprite.height();
         let spriteWordWidth = sprite.wordWidth();
         let memAddress = 16384 + (y * 32 + wordIndex);
@@ -36,9 +38,6 @@ class Drawer
             let iBoard = spriteHeight;
         }
 
-        let wordIndex = x/16;
-        let wordOffset = x - (wordIndex * 16);
-
         if (wordOffset = 0) { 
         do Drawer.simpleDraw(
             y, 
@@ -67,14 +66,14 @@ class Drawer
                 let highBits = currentWord - lowBits;
 
                 let currentMemAddressBuf = memAddress + wordCounter;
-                if (currentMemAddressBuf < 24576) { 
+                if ((currentMemAddressBuf < 24576) & (~(currentMemAddressBuf < 0))) { 
                     do Memory.poke(
                         currentMemAddressBuf, 
                         Memory.peek(currentMemAddressBuf) | BitwiseExtension.leftShift(lowBits, wordOffset)); 
                 }
 
                 let currentMemAddressBuf = currentMemAddressBuf + 1;
-                if (currentMemAddressBuf < 24576) {
+                if (currentMemAddressBuf < 24576 & (~(currentMemAddressBuf < 0))) {
                     do Memory.poke(
                         currentMemAddressBuf, 
                         Memory.peek(currentMemAddressBuf) | BitwiseExtension.rightShift(highBits, 16 - wordOffset)); 

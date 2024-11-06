@@ -1,4 +1,14 @@
 function Drawer.drawSprite 19
+push argument 0
+push constant 16
+call Math.divide 2
+pop local 2
+push argument 0
+push local 2
+push constant 16
+call Math.multiply 2
+sub
+pop local 3
 push argument 2
 call Sprite.height 1
 pop local 4
@@ -62,16 +72,6 @@ pop local 8
 push local 4
 pop local 10
 label IF_END1
-push argument 0
-push constant 16
-call Math.divide 2
-pop local 2
-push argument 0
-push local 2
-push constant 16
-call Math.multiply 2
-sub
-pop local 3
 push local 3
 push constant 0
 eq
@@ -156,6 +156,11 @@ pop local 13
 push local 13
 push constant 24576
 lt
+push local 13
+push constant 0
+lt
+not
+and
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
@@ -176,6 +181,11 @@ pop local 13
 push local 13
 push constant 24576
 lt
+push local 13
+push constant 0
+lt
+not
+and
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5

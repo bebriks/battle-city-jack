@@ -1,6 +1,7 @@
 class SpriteManager{
     static Sprite bigA, bigB, bigD, bigE, bigF, bigG, bigI, bigK, bigM;      
     static Sprite bigN, bigO, bigP, bigR, bigS, bigT, bigU, bigW, bigY;  
+    static Sprite selectTriangle;
 
     function void loadBigF() {
         var Array data, line;
@@ -519,7 +520,7 @@ class SpriteManager{
         return bigI;
     }
 
-        function void loadBigR() {
+    function void loadBigR() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -2067,7 +2068,7 @@ class SpriteManager{
         return bigA;
     }
 
-        function void loadBigM() {
+    function void loadBigM() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -2583,7 +2584,7 @@ class SpriteManager{
         return bigS;
     }
 
-        function void loadBigT() {
+    function void loadBigT() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -2841,7 +2842,7 @@ class SpriteManager{
         return bigT;
     }
 
-        function void loadBigU() {
+    function void loadBigU() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -3615,7 +3616,7 @@ class SpriteManager{
         return bigO;
     }
 
-        function void loadBigN() {
+    function void loadBigN() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -3873,7 +3874,7 @@ class SpriteManager{
         return bigN;
     }
 
-        function void loadBigB() {
+    function void loadBigB() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -4131,7 +4132,7 @@ class SpriteManager{
         return bigB;
     }
 
-        function void loadBigY() {
+    function void loadBigY() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -4387,5 +4388,87 @@ class SpriteManager{
 
     function Sprite getBigY() {
         return bigY;
+    }
+
+    function void loadSelectTriangle() {
+        var Array data, line; 
+        
+        let data = Array.new(16);
+
+        let line = Array.new(1);
+        let line[0] = 0;
+        let data[0] = line;
+
+        let line = Array.new(1);
+        let line[0] = 0;
+        let data[1] = line;
+
+        let line = Array.new(1);
+        let line[0] = 7;
+        let data[2] = line;
+
+        let line = Array.new(1);
+        let line[0] = 31;
+        let data[3] = line;
+
+        let line = Array.new(1);
+        let line[0] = 127;
+        let data[4] = line;
+
+        let line = Array.new(1);
+        let line[0] = 511;
+        let data[5] = line;
+
+        let line = Array.new(1);
+        let line[0] = 2047;
+        let data[6] = line;
+
+        let line = Array.new(1);
+        let line[0] = 4095;
+        let data[7] = line;
+
+        let line = Array.new(1);
+        let line[0] = 4095;
+        let data[8] = line;
+
+        let line = Array.new(1);
+        let line[0] = 2047;
+        let data[9] = line;
+
+        let line = Array.new(1);
+        let line[0] = 511;
+        let data[10] = line;
+
+        let line = Array.new(1);
+        let line[0] = 127;
+        let data[11] = line;
+
+        let line = Array.new(1);
+        let line[0] = 31;
+        let data[12] = line;
+
+        let line = Array.new(1);
+        let line[0] = 7;
+        let data[13] = line;
+
+        let line = Array.new(1);
+        let line[0] = 0;
+        let data[14] = line;
+
+        let line = Array.new(1);
+        let line[0] = 0;
+        let data[15] = line;    
+
+        let selectTriangle = Sprite.new(16, 16, data);
+        return;
+    }
+
+    function void disposeSelectTriangle() {
+        do selectTriangle.dispose();
+        return;
+    }
+
+    function Sprite getSelectTriangle() {
+        return selectTriangle;
     }
 }

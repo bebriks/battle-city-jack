@@ -25,6 +25,7 @@ class Sprite {
              do buf.dispose();
              let i = i + 1;
         }
+        do m_data.dispose();
         return;
     }
 }

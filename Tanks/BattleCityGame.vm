@@ -164,7 +164,7 @@ call BattleCityGame.moveBullet 1
 pop temp 0
 push constant 0
 return
-function BattleCityGame.run 2
+function BattleCityGame.exec 2
 push argument 0
 pop pointer 0
 push constant 0

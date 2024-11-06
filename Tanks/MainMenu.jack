@@ -1,0 +1,87 @@
+class MainMenu 
+{
+    static Array header, menu, statePositionsY;
+    static int state;
+
+    function void init() {
+        var TextLine buf;
+        let header = Array.new(2);
+        let buf = TextLine.new("PEW-PEW", 144, 26);
+        let header[0] = buf;
+        let buf = TextLine.new("TANKS", 176, 80);
+        let header[1] = buf;
+
+        let menu = Array.new(3);
+        let menu[0] = "start";
+        let menu[1] = "credits";
+        let menu[2] = "exit";
+
+        let statePositionsY = Array.new(3);
+        let statePositionsY[0] = 152;
+        let statePositionsY[1] = 174;
+        let statePositionsY[2] = 196;
+
+        let state = 0;
+        return;
+    }
+
+    function void exec() {
+        var int delta, key;
+
+        do Graphics.fillScreen(0);
+        do Screen.setColor(1);
+        do MainMenu.__drawMenu();
+        do SpriteManager.loadSelectTriangle();
+        do MainMenu.__updateState(delta);
+        while (true) {
+            let delta = 0;
+            let key = KeyboardExtension.keyDown();
+            if (key = 131) { let delta = -1; } // ArrowUp
+            if (key = 133) { let delta = 1; } // ArrowDown
+            if (key = 128) { do MainMenu.__processAction(); return; } // Enter
+            if (~(delta = 0)) { do MainMenu.__updateState(delta); } 
+        }
+        return;
+    }
+
+    function void __updateState(int delta) {
+        if (((state = 0) & (delta = -1)) | ((state = 2) & (delta = 1)))  { return; }
+        do Screen.setColor(0);
+        do Screen.drawRectangle(212, statePositionsY[state], 228, statePositionsY[state] + 16);
+        let state = state + delta;
+        do Screen.setColor(1);
+        do Drawer.drawSprite(212, statePositionsY[state], SpriteManager.getSelectTriangle(), false, false);
+        return;
+    }
+
+    function void __processAction() {
+        if (state = 0)  { do GameCore.setState(2); return; }
+        if (state = 1)  { do GameCore.setState(0); return; }
+        if (state = 2)  { do GameCore.setState(-1); return; }
+        return;
+    }
+
+    function void __drawMenu () {
+        var int i, menuStartY;
+        var TextLine buf;
+        do OutputExtension.init();
+        let menuStartY = 14;
+        let i = 0;
+        while (i < 2) {
+            let buf = header[i];
+            do OutputExtension.setCursorPosition(buf.x(), buf.y());
+            do OutputExtension.printString(buf.data());
+            let i = i + 1;
+        } 
+        
+        let i = 0;
+        while (i < 3) {
+            do Output.moveCursor(menuStartY, 29);
+            do Output.printString(menu[i]);
+            let i = i + 1;
+            let menuStartY = menuStartY + 2;
+        }
+        do OutputExtension.dispose();
+        return;
+    }
+}

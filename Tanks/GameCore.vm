@@ -1,13 +1,23 @@
 function GameCore.init 0
-push constant 0
+push constant 2
 pop static 0
+call KeyboardExtension.init 0
+pop temp 0
 call Intro.init 0
 pop temp 0
-call OutputExtension.init 0
+call MainMenu.init 0
 pop temp 0
 push constant 0
 return
-function GameCore.run 0
+function GameCore.exec 0
+label WHILE_EXP0
+push static 0
+push constant 1
+neg
+eq
+not
+not
+if-goto WHILE_END0
 push static 0
 push constant 0
 eq
@@ -16,9 +26,31 @@ goto IF_FALSE0
 label IF_TRUE0
 call Intro.exec 0
 pop temp 0
-push constant 1
-pop static 0
 label IF_FALSE0
+push static 0
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+call MainMenu.exec 0
+pop temp 0
+label IF_FALSE1
+push static 0
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+push constant 0
+push constant 31
+push constant 31
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE2
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return
 function GameCore.interactiveWait 1
@@ -33,11 +65,12 @@ if-goto WHILE_END0
 push constant 50
 call Sys.wait 1
 pop temp 0
-call Keyboard.keyPressed 0
+call KeyboardExtension.keyDown 0
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-call Keyboard.keyPressed 0
+push constant 0
+not
 return
 label IF_FALSE0
 push local 0
@@ -46,5 +79,10 @@ add
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+return
+function GameCore.setState 0
+push argument 0
+pop static 0
 push constant 0
 return

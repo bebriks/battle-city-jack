@@ -1,0 +1,13 @@
+class KeyboardExtension {
+    static int keyReleasedFlag;
+
+    function void init() { let keyReleasedFlag = -1; return; }
+
+    function int keyDown() {
+        var int key;
+        let key = Keyboard.keyPressed();
+        if (key = 0) { let keyReleasedFlag = -1; }
+        if (key & keyReleasedFlag) { let keyReleasedFlag = 0; return key; }
+        return 0;
+    }
+}

@@ -3,7 +3,7 @@ class OutputExtension
     static int cursorPositionX, cursorPositionY;
 
     function void init () {
-		do SpriteManager.loadBigA();
+        do SpriteManager.loadBigA();
 		do SpriteManager.loadBigB();
 		do SpriteManager.loadBigD();
 		do SpriteManager.loadBigE();
@@ -24,6 +24,8 @@ class OutputExtension
     }
 
 	function void printChar (int charCode) {
+        do Screen.setColor(1);
+		if (charCode = 45) { do Screen.drawRectangle(cursorPositionX, cursorPositionY + 20, cursorPositionX + 24, cursorPositionY + 25); } //ASCII A
 		if (charCode = 65) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigA(), false, false); } //ASCII A
 		if (charCode = 66) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigB(), false, false); } //ASCII B
 		if (charCode = 68) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigD(), false, false); } //ASCII D

@@ -1,7 +1,7 @@
 function Main.main 0
 call GameCore.init 0
 pop temp 0
-call GameCore.run 0
+call GameCore.exec 0
 pop temp 0
 push constant 0
 return

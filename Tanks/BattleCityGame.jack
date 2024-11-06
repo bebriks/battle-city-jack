@@ -71,7 +71,7 @@ class BattleCityGame {
 		do moveBullet();
 		return;
 	}
-	method void run() {
+	method void exec() {
 		var char key;
 		var boolean exit;
 		let exit = false;
