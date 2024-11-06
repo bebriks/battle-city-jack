@@ -1,15 +1,17 @@
 class GameCore
 {
-    static int state;
+    static int m_state;
     function void init() {
-        let state = 0;
+        let m_state = 0;
         do Intro.init();
         do OutputExtension.init();
         return;
     }
 
     function void run() {
-        if (state = 0)  { do Intro.exec(); let state = 1; }
+        while (~(m_state = -1)) {
+            if (m_state = 0)  { do Intro.exec(); }
+        }
         return;
     }
 
@@ -23,4 +25,6 @@ class GameCore
         }
         return false;
     }
+
+    function void setState (int state) { let m_state = state; return; }
 }

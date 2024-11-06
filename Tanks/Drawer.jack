@@ -1,29 +1,72 @@
 class Drawer
 {
-    function void drawSprite(int x, int y, Sprite sprite, boolean isMirror) {
-        var int i, j, wordIndex, wordOffset, spriteHeight, spriteWordWidth;
+    function void drawSprite(int x, int y, Sprite sprite, boolean isMirrorX, boolean isMirrorY) {
+        var int i, j, wordIndex, wordOffset, spriteHeight, spriteWordWidth, wordCounter;
+        var int jInitValue, iStep, jStep, iBoard, jBoard;
         var int memAddress, currentMemAddressBuf;
-        var int highBits, lowBits;
+        var int currentWord, highBits, lowBits;
         var Array spriteData, buf;
-
-        let wordIndex = x/16;
-        let wordOffset = x - (wordIndex * 16);
-        if (wordOffset = 0)  { do Drawer.simpleDraw(y, wordIndex, sprite); return; }
 
         let spriteHeight = sprite.height();
         let spriteWordWidth = sprite.wordWidth();
         let memAddress = 16384 + (y * 32 + wordIndex);
         let spriteData = sprite.data();
 
-        let i = 0;
-        while (i < spriteHeight) {
-            let buf = spriteData[i];
-            let j = 0;
-            while (j < spriteWordWidth) {
-                let lowBits = BitwiseExtension.takeNLowBits(buf[j], 16 - wordOffset);
-                let highBits = buf[j] - lowBits;
+        if (isMirrorX) {
+            let jInitValue = spriteWordWidth - 1;
+            let jStep = -1;
+            let jBoard = -1; 
+        }
 
-                let currentMemAddressBuf = memAddress + j;
+        else{
+            let jInitValue = 0;
+            let jStep = 1;
+            let jBoard = spriteWordWidth; 
+        }
+
+        if (isMirrorY) {
+            let i = spriteHeight - 1;
+            let iStep = -1;
+            let iBoard = -1;
+        }
+
+        else {
+            let i = 0;
+            let iStep = 1;
+            let iBoard = spriteHeight;
+        }
+
+        let wordIndex = x/16;
+        let wordOffset = x - (wordIndex * 16);
+
+        if (wordOffset = 0) { 
+        do Drawer.simpleDraw(
+            y, 
+            wordIndex, 
+            spriteHeight, 
+            spriteWordWidth,
+            spriteData,
+            i, 
+            jInitValue, 
+            iStep, 
+            jStep, 
+            iBoard, 
+            jBoard,
+            isMirrorX); 
+            return; 
+        }
+
+        while (~(i = iBoard)) {
+            let buf = spriteData[i];
+            let j = jInitValue;
+            let wordCounter = 0;
+            while (~(j = jBoard)) {
+                if (isMirrorX) { let currentWord = BitwiseExtension.reverseBits(buf[j]); }
+                else { let currentWord = buf[j]; }
+                let lowBits = BitwiseExtension.takeNLowBits(currentWord, 16 - wordOffset);
+                let highBits = currentWord - lowBits;
+
+                let currentMemAddressBuf = memAddress + wordCounter;
                 if (currentMemAddressBuf < 24576) { 
                     do Memory.poke(
                         currentMemAddressBuf, 
@@ -37,32 +80,46 @@ class Drawer
                         Memory.peek(currentMemAddressBuf) | BitwiseExtension.rightShift(highBits, 16 - wordOffset)); 
                 }
 
-                let j = j + 1;
+                let j = j + jStep;
+                let wordCounter = wordCounter + 1;
             }
-            let i = i + 1;
+            let i = i + iStep;
             let memAddress = memAddress + 32;
             if (~(memAddress < 24576))  { return; }
         }
         return;
     }
 
-    function void simpleDraw(int row, int word, Sprite sprite) {   
-        var int i, j, wordIndex, spriteHeight, spriteWordWidth, memAddress;
-        var Array spriteData, buf;
-        let spriteHeight = sprite.height();
-        let spriteWordWidth = sprite.wordWidth();
-        let memAddress = 16384 + (row * 32 + word);
-        let spriteData = sprite.data();
+    function void simpleDraw(
+        int row,
+        int word,
+        int spriteHeight,
+        int spriteWordWidth,
+        Array spriteData,
+        int iInitValue, 
+        int jInitValue, 
+        int iStep, 
+        int jStep, 
+        int iBoard, 
+        int jBoard,
+        boolean isMirrorX) {
 
-        let i = 0;
-        while (i < spriteHeight) {
+        var int i, j, wordIndex, memAddress, wordCounter, currentWord;
+        var Array buf;
+        let memAddress = 16384 + (row * 32 + word);
+        let i = iInitValue;
+        while (~(i = iBoard)) {
             let buf = spriteData[i];
-            let j = 0;
-            while (j < spriteWordWidth) {
-                do Memory.poke(memAddress + j, buf[j]);
-                let j = j + 1;
+            let j = jInitValue;
+            let wordCounter = 0;
+            while (~(j = jBoard)) {
+                if (isMirrorX) { let currentWord = BitwiseExtension.reverseBits(buf[j]); }
+                else { let currentWord = buf[j]; }
+                do Memory.poke(memAddress + wordCounter, currentWord);
+                let j = j + jStep;
+                let wordCounter = wordCounter + 1;
             }
-            let i = i + 1;
+            let i = i + iStep;
             let memAddress = memAddress + 32;
         }
         return;

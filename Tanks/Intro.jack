@@ -1,8 +1,12 @@
 class Intro
 {
-    static Array prehistoryLines, companyNameLines;
+    static Array prehistoryLines, companyNameLines, sponsors;
+    static int blackScreenWaitingMS;
     function void init() {
         var TextLine textLineBuf;
+        do OutputExtension.init();
+        let blackScreenWaitingMS = 750;
+
         let prehistoryLines = Array.new(10);
         let prehistoryLines[0] = "I vosstali studenti iz pepla uchebnih zadach.";
         let prehistoryLines[1] = "I nachalas razrabotka v paradigme extremalnogo programirovania.";
@@ -15,11 +19,19 @@ class Intro
         let companyNameLines[0] = textLineBuf;
         let textLineBuf = TextLine.new("STUDIO", 160, 122);
         let companyNameLines[1] = textLineBuf;
+
+        let sponsors = Array.new(3);
+        let sponsors[0] = "Coffee";
+        let sponsors[1] = "Naive self-confidence";
+        let sponsors[2] = "Youthful maximalism";
         return;
     }
     function void exec() {
-        //do Intro.showPrehistory();
+        do Intro.showPrehistory();
         do Intro.showCompany();
+        do Intro.showSponsors();
+        do Intro.showAwards();
+        do GameCore.setState(1);
         return;
     }
 
@@ -63,7 +75,8 @@ class Intro
         var TextLine companyNameLine;
         var String stringBuf;
 
-        do OutputExtension.init();
+        do Graphics.fillScreen(1);
+        if (GameCore.interactiveWait(blackScreenWaitingMS))  { do Graphics.fillScreen(0); return; }
         do Graphics.fillScreen(0);
 
         let i = 0;
@@ -99,11 +112,55 @@ class Intro
         if (GameCore.interactiveWait(1000))  { return; }    
         return;
     }
+
+    function void showSponsors() {
+        var int i, cursorI, cursorJ, circleY;
+        var String buf;
+
+        do Graphics.fillScreen(1);
+        if (GameCore.interactiveWait(blackScreenWaitingMS))  { do Graphics.fillScreen(0); return; }
+
+        do Graphics.fillScreen(0);
+        do Screen.setColor(1);
+        let cursorI = 13;
+        let cursorJ = 21;
+        let circleY = 148;
+        do OutputExtension.setCursorPosition(64, 87);
+        do OutputExtension.printString("SPONSORED BY");
+
+        let i = 0;
+        while (i < 3) {
+            do Screen.drawCircle(160, circleY, 3);
+            do Output.moveCursor(cursorI, cursorJ);
+            do Output.printString(sponsors[i]);
+            let cursorI = cursorI + 1;
+            let circleY = circleY + 11;
+            let i = i + 1;
+        }
+
+        do Output.moveCursor(21, 21);
+        do Output.printString("C  All rights reserved");
+        do ScreenExtension.drawHollowCircle(171, 236, 7);
+        if (GameCore.interactiveWait(5000)) { return; }
+        return;
+    }
     
+    function void showAwards() {
+        
+        do Graphics.fillScreen(1);
+        if (GameCore.interactiveWait(blackScreenWaitingMS))  { do Graphics.fillScreen(0); return; }
+        do Graphics.fillScreen(0);
+
+        do Output.moveCursor(11, 10);
+        do Output.printString("AWARD WINNER 'VAM CHTO NECHEGO DELAT?' 2024");
+        if (GameCore.interactiveWait(5000))  { return; }
+        return;
+    }
+
     function void showCursor(int x, int y, boolean color) {
-         do Screen.setColor(color);
-         do Screen.drawRectangle(x, y, x + 7, y + 10);
-         return;
+        do Screen.setColor(color);
+        do Screen.drawRectangle(x, y, x + 7, y + 10);
+        return;
     }
 
     function void blinkCursor(int times, int cursorRectangleX, int cursorRectangleY) {

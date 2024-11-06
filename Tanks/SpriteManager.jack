@@ -1,6 +1,6 @@
 class SpriteManager{
-    static Sprite bigA, bigD, bigE, bigF, bigG, bigI, bigK, bigM;      
-    static Sprite bigN, bigO, bigP, bigR, bigS, bigT, bigU, bigW;  
+    static Sprite bigA, bigB, bigD, bigE, bigF, bigG, bigI, bigK, bigM;      
+    static Sprite bigN, bigO, bigP, bigR, bigS, bigT, bigU, bigW, bigY;  
 
     function void loadBigF() {
         var Array data, line;
@@ -3613,5 +3613,779 @@ class SpriteManager{
 
     function Sprite getBigO() {
         return bigO;
+    }
+
+        function void loadBigN() {
+        var Array data, line;
+
+        let data = Array.new(48);
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 240;
+        let data[0] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31;
+        let line[1] = 240;
+        let data[1] = line;
+
+        let line = Array.new(2);
+        let line[0] = 63;
+        let line[1] = 240;
+        let data[2] = line;
+
+        let line = Array.new(2);
+        let line[0] = 63;
+        let line[1] = 240;
+        let data[3] = line;
+
+        let line = Array.new(2);
+        let line[0] = 127;
+        let line[1] = 240;
+        let data[4] = line;
+
+        let line = Array.new(2);
+        let line[0] = 127;
+        let line[1] = 240;
+        let data[5] = line;
+
+        let line = Array.new(2);
+        let line[0] = 255;
+        let line[1] = 240;
+        let data[6] = line;
+
+        let line = Array.new(2);
+        let line[0] = 255;
+        let line[1] = 240;
+        let data[7] = line;
+
+        let line = Array.new(2);
+        let line[0] = 511;
+        let line[1] = 240;
+        let data[8] = line;
+
+        let line = Array.new(2);
+        let line[0] = 495;
+        let line[1] = 240;
+        let data[9] = line;
+
+        let line = Array.new(2);
+        let line[0] = 495;
+        let line[1] = 240;
+        let data[10] = line;
+
+        let line = Array.new(2);
+         let line[0] = 975;
+        let line[1] = 240;
+        let data[11] = line;
+
+        let line = Array.new(2);
+        let line[0] = 975;
+        let line[1] = 240;
+        let data[12] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1999;
+        let line[1] = 240;
+        let data[13] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1935;
+        let line[1] = 240;
+        let data[14] = line;
+
+        let line = Array.new(2);
+        let line[0] = 3983;
+        let line[1] = 240;
+        let data[15] = line;
+        
+        let line = Array.new(2);
+        let line[0] = 3855;
+        let line[1] = 240;
+        let data[16] = line;
+
+        let line = Array.new(2);
+        let line[0] = 3855;
+        let line[1] = 240;
+        let data[17] = line;
+
+        let line = Array.new(2);
+        let line[0] = 7951;
+        let line[1] = 240;
+        let data[18] = line;
+
+        let line = Array.new(2);
+        let line[0] = 7695;
+        let line[1] = 240;
+        let data[19] = line;
+
+        let line = Array.new(2);
+        let line[0] = 7695;
+        let line[1] = 240;
+        let data[20] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15375;
+        let line[1] = 240;
+        let data[21] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15375;
+        let line[1] = 240;
+        let data[22] = line;
+
+        let line = Array.new(2);
+        let line[0] = 31759;
+        let line[1] = 240;
+        let data[23] = line;
+
+        let line = Array.new(2);
+        let line[0] = 30735;
+        let line[1] = 240;
+        let data[24] = line;
+
+        let line = Array.new(2);
+        let line[0] = -4081;
+        let line[1] = 240;
+        let data[25] = line;
+
+        let line = Array.new(2);
+        let line[0] = -4081;
+        let line[1] = 240;
+        let data[26] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8177;
+        let line[1] = 241;
+        let data[27] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8177;
+        let line[1] = 241;
+        let data[28] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8177;
+        let line[1] = 243;
+        let data[29] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16369;
+        let line[1] = 243;
+        let data[30] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16369;
+        let line[1] = 247;
+        let data[31] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32753;
+        let line[1] = 247;
+        let data[32] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32753;
+        let line[1] = 247;
+        let data[33] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 255;
+        let data[34] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 255;
+        let data[35] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 254;
+        let data[36] = line;
+        
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 254;
+        let data[37] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 254;
+        let data[38] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 252;
+        let data[39] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 252;
+        let data[40] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 248;
+        let data[41] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 248;
+        let data[42] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 248;
+        let data[43] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 240;
+        let data[44] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 240;
+        let data[45] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[46] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[47] = line;
+
+        let bigN = Sprite.new(32, 48, data);
+        return;
+    }
+
+    function void disposeBigN() {
+        do bigN.dispose();
+        return;
+    }
+
+    function Sprite getBigN() {
+        return bigN;
+    }
+
+        function void loadBigB() {
+        var Array data, line;
+
+        let data = Array.new(48);
+
+        let line = Array.new(2);
+        let line[0] = 16383;
+        let line[1] = 0;
+        let data[0] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 0;
+        let data[1] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 3;
+        let data[2] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16369;
+        let line[1] = 7;
+        let data[3] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 31;
+        let data[4] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 62;
+        let data[5] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 124;
+        let data[6] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 120;
+        let data[7] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 112;
+        let data[8] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[9] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[10] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[11] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[12] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[13] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[14] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[15] = line;
+        
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 112;
+        let data[16] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 120;
+        let data[17] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 60;
+        let data[18] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 62;
+        let data[19] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32753;
+        let line[1] = 31;
+        let data[20] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16369;
+        let line[1] = 31;
+        let data[21] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 7;
+        let data[22] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 1;
+        let data[23] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 1;
+        let data[24] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 3;
+        let data[25] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32753;
+        let line[1] = 7;
+        let data[26] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 15;
+        let data[27] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 30;
+        let data[28] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 28;
+        let data[29] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 56;
+        let data[30] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 120;
+        let data[31] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 240;
+        let data[32] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[33] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[34] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[35] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[36] = line;
+        
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 224;
+        let data[37] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 240;
+        let data[38] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 120;
+        let data[39] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 126;
+        let data[40] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32753;
+        let line[1] = 63;
+        let data[41] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8177;
+        let line[1] = 31;
+        let data[42] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 7;
+        let data[43] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = 1;
+        let data[44] = line;
+
+        let line = Array.new(2);
+        let line[0] = 16383;
+        let line[1] = 0;
+        let data[45] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[46] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[47] = line;
+
+        let bigB = Sprite.new(32, 48, data);
+        return;
+    }
+
+    function void disposeBigB() {
+        do bigB.dispose();
+        return;
+    }
+
+    function Sprite getBigB() {
+        return bigB;
+    }
+
+        function void loadBigY() {
+        var Array data, line;
+
+        let data = Array.new(48);
+
+        let line = Array.new(2);
+        let line[0] = 7;
+        let line[1] = 224;
+        let data[0] = line;
+
+        let line = Array.new(2);
+        let line[0] = 7;
+        let line[1] = 224;
+        let data[1] = line;
+
+        let line = Array.new(2);
+        let line[0] = 7;
+        let line[1] = 224;
+        let data[2] = line;
+
+        let line = Array.new(2);
+        let line[0] = 7;
+        let line[1] = 224;
+        let data[3] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 240;
+        let data[4] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 112;
+        let data[5] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15;
+        let line[1] = 112;
+        let data[6] = line;
+
+        let line = Array.new(2);
+        let line[0] = 30;
+        let line[1] = 120;
+        let data[7] = line;
+
+        let line = Array.new(2);
+        let line[0] = 30;
+        let line[1] = 56;
+        let data[8] = line;
+
+        let line = Array.new(2);
+        let line[0] = 28;
+        let line[1] = 56;
+        let data[9] = line;
+
+        let line = Array.new(2);
+        let line[0] = 60;
+        let line[1] = 60;
+        let data[10] = line;
+
+        let line = Array.new(2);
+         let line[0] = 60;
+        let line[1] = 28;
+        let data[11] = line;
+
+        let line = Array.new(2);
+        let line[0] = 56;
+        let line[1] = 28;
+        let data[12] = line;
+
+        let line = Array.new(2);
+        let line[0] = 120;
+        let line[1] = 30;
+        let data[13] = line;
+
+        let line = Array.new(2);
+        let line[0] = 112;
+        let line[1] = 14;
+        let data[14] = line;
+
+        let line = Array.new(2);
+        let line[0] = 240;
+        let line[1] = 15;
+        let data[15] = line;
+        
+        let line = Array.new(2);
+        let line[0] = -32288;
+        let line[1] = 7;
+        let data[16] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32288;
+        let line[1] = 7;
+        let data[17] = line;
+
+        let line = Array.new(2);
+        let line[0] = -6208;
+        let line[1] = 3;
+        let data[18] = line;
+
+        let line = Array.new(2);
+        let line[0] = -64;
+        let line[1] = 1;
+        let data[19] = line;
+
+        let line = Array.new(2);
+        let line[0] = -128;
+        let line[1] = 1;
+        let data[20] = line;
+
+        let line = Array.new(2);
+        let line[0] = -256;
+        let line[1] = 0;
+        let data[21] = line;
+
+        let line = Array.new(2);
+        let line[0] = 32256;
+        let line[1] = 0;
+        let data[22] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[23] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[24] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[25] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[26] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[27] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[28] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[29] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[30] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[31] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[32] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[33] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[34] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[35] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[36] = line;
+        
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[37] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[38] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[39] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[40] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[41] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[42] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[43] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[44] = line;
+
+        let line = Array.new(2);
+        let line[0] = 15360;
+        let line[1] = 0;
+        let data[45] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[46] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[47] = line;
+
+        let bigY = Sprite.new(32, 48, data);
+        return;
+    }
+
+    function void disposeBigY() {
+        do bigY.dispose();
+        return;
+    }
+
+    function Sprite getBigY() {
+        return bigY;
     }
 }

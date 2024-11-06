@@ -1,0 +1,38 @@
+class ScreenExtension
+{
+    function void drawHollowCircle (int xCenter, int yCenter, int r) {
+        var int x, y;
+
+        do ScreenExtension.__drawCaps(xCenter, yCenter, r);
+
+        let y = r - 1;
+        while (y > 0) {
+            let x = ScreenExtension.__findCircleXCoordinate(y, r);
+            do Screen.drawPixel(xCenter + x, yCenter + y);
+            do Screen.drawPixel(xCenter + x, yCenter - y);
+            do Screen.drawPixel(xCenter - x, yCenter + y);
+            do Screen.drawPixel(xCenter - x, yCenter - y);
+            let y = y - 1;
+        }
+
+        do Screen.drawPixel(xCenter + r, yCenter);
+        do Screen.drawPixel(xCenter - r, yCenter);
+        return;
+    } 
+
+    function void __drawCaps (int xCenter, int yCenter, int r) {
+        var int lineStartX;
+        let lineStartX = ScreenExtension.__findCircleXCoordinate(r - 1, r) - 1;
+        do Screen.drawLine(xCenter - lineStartX, yCenter + r, xCenter + lineStartX, yCenter + r);
+        do Screen.drawLine(xCenter - lineStartX, yCenter - r, xCenter + lineStartX, yCenter - r);
+        return;
+    }
+
+    function int __findCircleXCoordinate(int y, int r) {
+        var int xSupposed, xSquared;
+        let xSquared = (r * r) - (y * y);
+        let xSupposed =  Math.sqrt(xSquared);
+        if (xSupposed * xSupposed < xSquared)  { return xSupposed + 1; }
+        return xSupposed;
+    }    
+}
