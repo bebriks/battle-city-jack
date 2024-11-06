@@ -1,0 +1,35 @@
+function TextLine.new 0
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 2
+push pointer 0
+return
+function TextLine.data 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function TextLine.x 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function TextLine.y 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function TextLine.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call String.dispose 1
+pop temp 0
+push constant 0
+return

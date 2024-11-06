@@ -70,6 +70,17 @@ push argument 0
 push constant 2
 call Math.divide 2
 pop argument 0
+push argument 0
+push constant 0
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 0
+push constant 32767
+and
+pop argument 0
+label IF_FALSE2
 push local 0
 push constant 1
 add

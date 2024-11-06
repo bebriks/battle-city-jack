@@ -12,4 +12,15 @@ class GameCore
         if (state = 0)  { do Intro.exec(); let state = 1; }
         return;
     }
+
+    function int interactiveWait (int ms) {
+        var int i;
+        let i = 0;
+        while (i < ms) {    
+            do Sys.wait(50);
+            if (Keyboard.keyPressed())  { return Keyboard.keyPressed(); } 
+            let i = i + 50;
+        }
+        return false;
+    }
 }

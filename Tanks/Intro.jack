@@ -1,13 +1,20 @@
 class Intro
 {
-    static Array prehistoryLines;
+    static Array prehistoryLines, companyNameLines;
     function void init() {
+        var TextLine textLineBuf;
         let prehistoryLines = Array.new(10);
         let prehistoryLines[0] = "I vosstali studenti iz pepla uchebnih zadach.";
         let prehistoryLines[1] = "I nachalas razrabotka v paradigme extremalnogo programirovania.";
         let prehistoryLines[2] = "I dlilas' ona nedelyami.";
         let prehistoryLines[3] = "No poslednaya strochka coda budet napisana ne v budushem.";
         let prehistoryLines[4] = "Mi radi predstavit nashu igru pryamo seychas.";
+
+        let companyNameLines = Array.new(2);
+        let textLineBuf = TextLine.new("FIREGAMES", 112, 67);
+        let companyNameLines[0] = textLineBuf;
+        let textLineBuf = TextLine.new("STUDIO", 160, 122);
+        let companyNameLines[1] = textLineBuf;
         return;
     }
     function void exec() {
@@ -16,7 +23,7 @@ class Intro
         return;
     }
 
-    function void showPrehistory () {
+    function void showPrehistory() {
         var int i, j, currentPrehistoryLineLength, cursorRectangleX, cursorRectangleY; 
         var String currentPrehistoryLine;
         let i = 0;
@@ -51,16 +58,49 @@ class Intro
     }
 
     function void showCompany() {
-        var String test;
-        let test = "F";
+        var int i, j, lengthBuf;
+        var int x_start;
+        var TextLine companyNameLine;
+        var String stringBuf;
+
         do OutputExtension.init();
-        do OutputExtension.setCursorPosition(52,0);
         do Graphics.fillScreen(0);
-        do OutputExtension.printChar(test.charAt(0));
+
+        let i = 0;
+        while (i < 2) {
+            if (Keyboard.keyPressed())  { return; }
+            let companyNameLine = companyNameLines[i];
+            let stringBuf = companyNameLine.data();
+            let lengthBuf = stringBuf.length();
+
+            do OutputExtension.setCursorPosition(companyNameLine.x(), companyNameLine.y());
+            let j = 0;
+            while (j < lengthBuf) {
+                do OutputExtension.printChar(stringBuf.charAt(j));
+                let j = j + 1;
+            }
+            let i = i + 1;
+        }
+
+        if (GameCore.interactiveWait(750))  { return; }
+
+        let stringBuf = "PRESENT";
+        let x_start = 220;
+        while (x_start < 290) {
+            do Output.moveCursor(17, 28);
+            do Output.printString(stringBuf);
+            do Screen.setColor(0);
+            do Screen.drawRectangle(x_start, 185, 290, 201);
+            let x_start = x_start + 1;
+            if (Keyboard.keyPressed())  { return; }
+            do Sys.wait(25);
+        }    
+
+        if (GameCore.interactiveWait(1000))  { return; }    
         return;
     }
     
-    function void showCursor (int x, int y, boolean color) {
+    function void showCursor(int x, int y, boolean color) {
          do Screen.setColor(color);
          do Screen.drawRectangle(x, y, x + 7, y + 10);
          return;

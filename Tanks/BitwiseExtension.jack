@@ -19,6 +19,7 @@ class BitwiseExtension
         let i = 0;
         while (i < n) {
              let x = x / 2;
+             if (x < 0)  { let x = x & 32767; }
              let i = i + 1;
         }
         return x;

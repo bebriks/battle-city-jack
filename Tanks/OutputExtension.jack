@@ -3,12 +3,38 @@ class OutputExtension
     static int cursorPositionX, cursorPositionY;
 
     function void init () {
+		do SpriteManager.loadBigA();
+		do SpriteManager.loadBigD();
+		do SpriteManager.loadBigE();
 		do SpriteManager.loadBigF();
+		do SpriteManager.loadBigG();
+		do SpriteManager.loadBigI();
+		do SpriteManager.loadBigK();
+		do SpriteManager.loadBigM();
+		do SpriteManager.loadBigO();
+		do SpriteManager.loadBigP();
+		do SpriteManager.loadBigR();
+		do SpriteManager.loadBigS();
+		do SpriteManager.loadBigT();
+		do SpriteManager.loadBigU();
         return;
     }
 
 	function void printChar (int charCode) {
-		if (charCode = 70)  { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigF(), false); return; }
+		if (charCode = 65) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigA(), false); } //ASCII A
+		if (charCode = 68) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigD(), false); } //ASCII D
+		if (charCode = 69) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigE(), false); } //ASCII E
+		if (charCode = 70) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigF(), false); } //ASCII F
+		if (charCode = 71) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigG(), false); } //ASCII G
+		if (charCode = 73) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigI(), false); } //ASCII I
+		if (charCode = 75) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigK(), false); } //ASCII K
+		if (charCode = 77) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigM(), false); } //ASCII M
+		if (charCode = 79) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigO(), false); } //ASCII O
+		if (charCode = 80) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigP(), false); } //ASCII P
+		if (charCode = 82) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigR(), false); } //ASCII R
+		if (charCode = 83) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigS(), false); } //ASCII S
+		if (charCode = 84) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigT(), false); } //ASCII T
+		if (charCode = 85) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigU(), false); } //ASCII U
 		let cursorPositionX = cursorPositionX + 32;
 		return;
 	}
@@ -19,7 +45,20 @@ class OutputExtension
 	}
 
 	function void dispose () {
+		do SpriteManager.disposeBigA();
+		do SpriteManager.disposeBigD();
+		do SpriteManager.disposeBigE();
 		do SpriteManager.disposeBigF();
+		do SpriteManager.disposeBigG();
+		do SpriteManager.disposeBigI();
+		do SpriteManager.disposeBigK();
+		do SpriteManager.disposeBigM();
+		do SpriteManager.disposeBigO();
+		do SpriteManager.disposeBigP();
+		do SpriteManager.disposeBigR();
+		do SpriteManager.disposeBigS();
+		do SpriteManager.disposeBigT();
+		do SpriteManager.disposeBigU();
 		return;
 	}
 }

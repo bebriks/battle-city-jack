@@ -1,0 +1,21 @@
+class TextLine 
+{
+    field String m_data;
+    field int m_x, m_y;
+
+    constructor TextLine new(String data, int x, int y){
+        let m_data = data;
+        let m_x = x;
+        let m_y = y;
+        return this;
+    }
+
+    method String data() { return m_data; }
+    method int x() { return m_x; }
+    method int y() { return m_y; }
+
+    method void dispose() {
+        do m_data.dispose();
+        return;
+    }
+}

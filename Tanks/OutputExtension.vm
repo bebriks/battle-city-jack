@@ -1,24 +1,217 @@
 function OutputExtension.init 0
+call SpriteManager.loadBigA 0
+pop temp 0
+call SpriteManager.loadBigD 0
+pop temp 0
+call SpriteManager.loadBigE 0
+pop temp 0
 call SpriteManager.loadBigF 0
+pop temp 0
+call SpriteManager.loadBigG 0
+pop temp 0
+call SpriteManager.loadBigI 0
+pop temp 0
+call SpriteManager.loadBigK 0
+pop temp 0
+call SpriteManager.loadBigM 0
+pop temp 0
+call SpriteManager.loadBigO 0
+pop temp 0
+call SpriteManager.loadBigP 0
+pop temp 0
+call SpriteManager.loadBigR 0
+pop temp 0
+call SpriteManager.loadBigS 0
+pop temp 0
+call SpriteManager.loadBigT 0
+pop temp 0
+call SpriteManager.loadBigU 0
 pop temp 0
 push constant 0
 return
 function OutputExtension.printChar 0
 push argument 0
-push constant 70
+push constant 65
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push static 0
 push static 1
+call SpriteManager.getBigA 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE0
+push argument 0
+push constant 68
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push static 0
+push static 1
+call SpriteManager.getBigD 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE1
+push argument 0
+push constant 69
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push static 0
+push static 1
+call SpriteManager.getBigE 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE2
+push argument 0
+push constant 70
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push static 0
+push static 1
 call SpriteManager.getBigF 0
 push constant 0
 call Drawer.drawSprite 4
 pop temp 0
+label IF_FALSE3
+push argument 0
+push constant 71
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push static 0
+push static 1
+call SpriteManager.getBigG 0
 push constant 0
-return
-label IF_FALSE0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE4
+push argument 0
+push constant 73
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push static 0
+push static 1
+call SpriteManager.getBigI 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE5
+push argument 0
+push constant 75
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push static 0
+push static 1
+call SpriteManager.getBigK 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE6
+push argument 0
+push constant 77
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push static 0
+push static 1
+call SpriteManager.getBigM 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE7
+push argument 0
+push constant 79
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push static 0
+push static 1
+call SpriteManager.getBigO 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE8
+push argument 0
+push constant 80
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push static 0
+push static 1
+call SpriteManager.getBigP 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE9
+push argument 0
+push constant 82
+eq
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push static 0
+push static 1
+call SpriteManager.getBigR 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE10
+push argument 0
+push constant 83
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push static 0
+push static 1
+call SpriteManager.getBigS 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE11
+push argument 0
+push constant 84
+eq
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push static 0
+push static 1
+call SpriteManager.getBigT 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE12
+push argument 0
+push constant 85
+eq
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+push static 0
+push static 1
+call SpriteManager.getBigU 0
+push constant 0
+call Drawer.drawSprite 4
+pop temp 0
+label IF_FALSE13
 push static 0
 push constant 32
 add
@@ -33,7 +226,33 @@ pop static 1
 push constant 0
 return
 function OutputExtension.dispose 0
+call SpriteManager.disposeBigA 0
+pop temp 0
+call SpriteManager.disposeBigD 0
+pop temp 0
+call SpriteManager.disposeBigE 0
+pop temp 0
 call SpriteManager.disposeBigF 0
+pop temp 0
+call SpriteManager.disposeBigG 0
+pop temp 0
+call SpriteManager.disposeBigI 0
+pop temp 0
+call SpriteManager.disposeBigK 0
+pop temp 0
+call SpriteManager.disposeBigM 0
+pop temp 0
+call SpriteManager.disposeBigO 0
+pop temp 0
+call SpriteManager.disposeBigP 0
+pop temp 0
+call SpriteManager.disposeBigR 0
+pop temp 0
+call SpriteManager.disposeBigS 0
+pop temp 0
+call SpriteManager.disposeBigT 0
+pop temp 0
+call SpriteManager.disposeBigU 0
 pop temp 0
 push constant 0
 return
