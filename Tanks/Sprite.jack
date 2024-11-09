@@ -26,6 +26,7 @@ class Sprite {
              let i = i + 1;
         }
         do m_data.dispose();
+        do Memory.deAlloc(this);
         return;
     }
 }

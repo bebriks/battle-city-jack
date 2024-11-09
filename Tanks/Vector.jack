@@ -1,0 +1,43 @@
+class Vector {
+    field int m_x, m_y;
+
+    constructor Vector new(int x, int y) {
+        let m_x = x; let m_y = y;
+        return this;
+    }
+
+    method int x() { return m_x; }
+    method int y() { return m_y; }
+
+    method void setX(int x) { let m_x = x; return; }
+    method void setY(int y) { let m_y = y; return; }
+
+    method Vector add(Vector v) {
+        var Vector ans;
+        let ans = Vector.new(m_x + v.x(), m_y + v.y());
+        return ans;
+    }
+
+    method Vector sub(Vector v) {
+        var Vector ans;
+        let ans = Vector.new(m_x - v.x(), m_y - v.y());
+        return ans;
+    }
+
+    method Vector multiplyInt(int num) {
+        var Vector ans;
+        let ans = Vector.new(m_x * num, m_y * num);
+        return ans;
+    }
+
+    method Vector minus() {
+        var Vector ans;
+        let ans = Vector.new(-m_x, -m_y);
+        return ans;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}

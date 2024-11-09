@@ -10,6 +10,8 @@ pop temp 0
 push constant 0
 return
 function GameCore.exec 0
+call SpriteManager.loadTankUp 0
+pop temp 0
 label WHILE_EXP0
 push static 0
 push constant 1
@@ -42,12 +44,15 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
+push constant 12
+push constant 12
+call SpriteManager.getTankUp 0
 push constant 0
 push constant 0
-push constant 31
-push constant 31
-call Screen.drawRectangle 4
+call Drawer.drawSprite 5
 pop temp 0
+push constant 3
+pop static 0
 label IF_FALSE2
 goto WHILE_EXP0
 label WHILE_END0

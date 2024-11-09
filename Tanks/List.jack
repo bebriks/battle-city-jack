@@ -1,0 +1,68 @@
+class List{
+    field int m_size, m_capacity;
+    field Array m_data;
+
+    constructor List new() {
+        let m_size = 0;
+        let m_capacity = 2;
+        let m_data = Array.new(m_capacity);
+        return this;
+    }
+
+    method int size() { return m_size; }
+
+    method void append(int el) {
+        if (m_size = m_capacity) {
+            do reserve(m_capacity * 2);
+        }
+        let m_data[m_size] = el;
+        let m_size = m_size + 1;
+        return;
+    }
+
+    method int at(int index) { 
+        if ((index < 0) | (~(index < m_size))) { do Sys.error(100); }
+        return m_data[index];
+    }
+
+    method void reserve(int size) {
+        var int i;
+        var Array new_data;
+        if (size < m_size) { do Sys.error(101); }
+        let m_capacity = size;
+        let new_data = Array.new(m_capacity);
+        let i = 0;
+
+        while (i < m_size) {
+            let new_data[i] = m_data[i];
+            let i = i + 1;
+        }
+
+        do m_data.dispose();
+        let m_data = new_data;
+        return;
+    }
+
+    method void shrink(int size) {
+        var int i, board;
+        var Array new_data;
+        let m_capacity = size;
+        let new_data = Array.new(m_capacity);
+        let i = 0;
+        let board = Math.min(size, m_size);
+        while (i < board) {
+            let new_data[i] = m_data[i];
+            let i = i + 1;
+        }
+
+        do m_data.dispose();
+        let m_data = new_data;
+        return;   
+    }
+
+    method void dispose() {
+        do m_data.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

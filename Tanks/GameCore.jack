@@ -9,12 +9,13 @@ class GameCore
         do MainMenu.init();
         return;
     }
-
+    
     function void exec() {
+        do SpriteManager.loadTankUp();
         while (~(m_state = -1)) {
             if (m_state = 0)  { do Intro.exec(); }
             if (m_state = 1)  { do MainMenu.exec(); }
-            if (m_state = 2)  { do Screen.drawRectangle(0, 0, 31, 31); }
+            if (m_state = 2)  { do Drawer.drawSprite(12,12,SpriteManager.getTankUp(),false,false); let m_state = 3;}
         }
         return;
     }
