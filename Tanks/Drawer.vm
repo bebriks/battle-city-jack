@@ -90,7 +90,7 @@ push local 9
 push local 10
 push local 11
 push argument 3
-call Drawer.simpleDraw 12
+call Drawer.__simpleDraw 12
 pop temp 0
 push constant 0
 return
@@ -233,7 +233,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Drawer.simpleDraw 7
+function Drawer.__simpleDraw 7
 push constant 16384
 push argument 0
 push constant 32

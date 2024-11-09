@@ -7,15 +7,16 @@ class GameCore
         do KeyboardExtension.init();
         do Intro.init();
         do MainMenu.init();
+        do BattleCityGame.init();
+        do Vector.init();
         return;
     }
-    
+
     function void exec() {
-        do SpriteManager.loadTankUp();
         while (~(m_state = -1)) {
             if (m_state = 0)  { do Intro.exec(); }
             if (m_state = 1)  { do MainMenu.exec(); }
-            if (m_state = 2)  { do Drawer.drawSprite(12,12,SpriteManager.getTankUp(),false,false); let m_state = 3;}
+            if (m_state = 2)  { do BattleCityGame.exec(); }
         }
         return;
     }

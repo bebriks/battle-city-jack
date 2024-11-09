@@ -1,3 +1,28 @@
+function Vector.init 0
+push constant 0
+push constant 1
+neg
+call Vector.new 2
+pop static 0
+push constant 0
+push constant 1
+call Vector.new 2
+pop static 1
+push constant 1
+push constant 0
+call Vector.new 2
+pop static 3
+push constant 1
+neg
+push constant 0
+call Vector.new 2
+pop static 2
+push constant 0
+push constant 0
+call Vector.new 2
+pop static 4
+push constant 0
+return
 function Vector.new 0
 push constant 2
 call Memory.alloc 1
@@ -7,6 +32,21 @@ pop this 0
 push argument 1
 pop this 1
 push pointer 0
+return
+function Vector.up 0
+push static 0
+return
+function Vector.down 0
+push static 1
+return
+function Vector.right 0
+push static 3
+return
+function Vector.left 0
+push static 2
+return
+function Vector.zero 0
+push static 4
 return
 function Vector.x 0
 push argument 0
@@ -62,6 +102,19 @@ call Vector.new 2
 pop local 0
 push local 0
 return
+function Vector.eq 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call Vector.x 1
+eq
+push this 1
+push argument 1
+call Vector.y 1
+eq
+and
+return
 function Vector.multiplyInt 1
 push argument 0
 pop pointer 0
@@ -91,6 +144,29 @@ push argument 0
 pop pointer 0
 push pointer 0
 call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Vector.print 0
+push argument 0
+pop pointer 0
+push constant 40
+call Output.printChar 1
+pop temp 0
+push this 0
+call Output.printInt 1
+pop temp 0
+push constant 44
+call Output.printChar 1
+pop temp 0
+push constant 20
+call Output.printChar 1
+pop temp 0
+push this 1
+call Output.printInt 1
+pop temp 0
+push constant 41
+call Output.printChar 1
 pop temp 0
 push constant 0
 return

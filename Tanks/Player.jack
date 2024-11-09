@@ -1,0 +1,75 @@
+class Player {
+    field Vector m_position, m_currentOrientation;
+    field int m_moveSpeed;
+    field Sprite m_currentSprite;
+    field boolean m_mirrorX, m_mirrorY;
+
+    constructor Player new(Vector startPosition) {
+        let m_position = startPosition;
+        let m_moveSpeed = 1;
+        let m_currentSprite = SpriteManager.getPlayerTankUp();
+        let m_currentOrientation = Vector.up();
+        do Drawer.drawSprite(m_position.x(), m_position.y(), m_currentSprite, false, false);
+        return this;
+    }
+
+    method void update() {
+        var Vector moveDirection, oldPosition, buf;
+        let moveDirection = __processMovement();
+        if (moveDirection.eq(Vector.zero())) { return; }
+        let oldPosition = m_position;
+        let buf = moveDirection.multiplyInt(m_moveSpeed);
+        let m_position = m_position.add(buf);
+        do Output.moveCursor(0,0);
+        do m_position.print();
+        do m_position.setX(MathExtension.clamp(m_position.x(), 0, 512 - m_currentSprite.width()));
+        do m_position.setY(MathExtension.clamp(m_position.y(), 0, 256 - m_currentSprite.height()));
+        do buf.dispose();
+        let m_currentOrientation = moveDirection;
+        do __updateSprite();
+        do redraw(oldPosition);
+        do oldPosition.dispose();
+        return;
+    }
+
+    method Vector __processMovement() {
+        var int key;
+        let key = Keyboard.keyPressed();
+        if ((key = 130) | (key = 65)) { return Vector.left(); } // Arrow left or A
+        if ((key = 131) | (key = 87)) { return Vector.up(); } // Arrow up or W
+        if ((key = 132) | (key = 68)) { return Vector.right(); } // Arrow right or D
+        if ((key = 133) | (key = 83)) { return Vector.down(); } // Arrow down or S
+        return Vector.zero(); 
+    }
+
+    method void redraw(Vector oldPosition) {
+        var int oldX, oldY;
+        let oldX = oldPosition.x();
+        let oldY = oldPosition.y();
+        do Screen.setColor(0);
+        do Screen.drawRectangle(oldX, oldY, oldX + m_currentSprite.width() - 1, oldY + m_currentSprite.height() - 1);
+        do Screen.setColor(1);
+        do Drawer.drawSprite(
+            m_position.x(), 
+            m_position.y(), 
+            m_currentSprite, 
+            m_currentOrientation.eq(Vector.left()), 
+            m_currentOrientation.eq(Vector.down()));
+
+        return;
+    }
+
+    method void __updateSprite() {
+        if (m_currentOrientation.eq(Vector.up()) | m_currentOrientation.eq(Vector.down())) {
+            let m_currentSprite = SpriteManager.getPlayerTankUp(); 
+        }
+        else { let m_currentSprite = SpriteManager.getPlayerTankRight(); }
+        return;
+    }
+
+    method void dispose() {
+        do m_position.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

@@ -39,7 +39,7 @@ class Drawer
         }
 
         if (wordOffset = 0) { 
-        do Drawer.simpleDraw(
+        do Drawer.__simpleDraw(
             y, 
             wordIndex, 
             spriteHeight, 
@@ -89,7 +89,7 @@ class Drawer
         return;
     }
 
-    function void simpleDraw(
+    function void __simpleDraw(
         int row,
         int word,
         int spriteHeight,

@@ -1,15 +1,26 @@
 class Vector {
     field int m_x, m_y;
+    static Vector m_up, m_down, m_left, m_right, m_zero;
+    
+    function void init() {
+        let m_up = Vector.new(0, -1);
+        let m_down = Vector.new(0, 1);
+        let m_right = Vector.new(1, 0);
+        let m_left = Vector.new(-1, 0);
+        let m_zero = Vector.new(0, 0);
+        return;
+    }
 
     constructor Vector new(int x, int y) {
         let m_x = x; let m_y = y;
         return this;
     }
 
-    function Vector up() { return Vector.new(0, -1); }
-    function Vector down() { return Vector.new(0, 1); }
-    function Vector right() { return Vector.new(1, 0); }
-    function Vector left() { return Vector.new(-1, 0); }
+    function Vector up() { return  m_up; }
+    function Vector down() { return m_down; }
+    function Vector right() { return m_right; }
+    function Vector left() { return m_left; }
+    function Vector zero() { return m_zero; }
 
     method int x() { return m_x; }
     method int y() { return m_y; }
@@ -29,6 +40,10 @@ class Vector {
         return ans;
     }
 
+    method boolean eq(Vector v) {
+        return (m_x = v.x()) & (m_y = v.y());
+    }
+
     method Vector multiplyInt(int num) {
         var Vector ans;
         let ans = Vector.new(m_x * num, m_y * num);
@@ -43,6 +58,16 @@ class Vector {
 
     method void dispose() {
         do Memory.deAlloc(this);
+        return;
+    }
+
+    method void print() {
+        do Output.printChar(40);
+        do Output.printInt(m_x);
+        do Output.printChar(44);
+        do Output.printChar(20);
+        do Output.printInt(m_y);
+        do Output.printChar(41);
         return;
     }
 }

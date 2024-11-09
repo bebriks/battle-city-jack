@@ -40,3 +40,24 @@ call Math.divide 2
 call Math.multiply 2
 sub
 return
+function MathExtension.clamp 0
+push argument 0
+push argument 2
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 2
+return
+label IF_FALSE0
+push argument 0
+push argument 1
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+return
+label IF_FALSE1
+push argument 0
+return
