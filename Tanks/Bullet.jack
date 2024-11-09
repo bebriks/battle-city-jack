@@ -1,77 +1,76 @@
 class Bullet {
-    field int x, y, dir;
+    field Vector m_position, m_direction;
+    field int m_moveSpeed, m_width, m_height;
 
-    constructor Bullet new(int tankX, int tankY, int tankDir) {
-        let x = tankX;
-        let y = tankY;
-        let dir = tankDir;
+    constructor Bullet new(Vector position, Vector direction) {
+        var int newX, newY;
+        let m_position = position;
+        let m_direction = direction;
+        let m_moveSpeed = 1;
+
+        if (direction.eq(Vector.up()) | direction.eq(Vector.down())) {
+            let m_width = 3;
+            let m_height = 5;
+        }
+
+        else {
+            let m_width = 5;
+            let m_height = 3;
+        }
+
+        let newX = m_position.x();
+        let newY = m_position.y();
+        do Screen.setColor(1);
+        do Screen.drawRectangle(newX, newY, newX + m_width - 1, newY + m_height - 1);   
         return this;
     }
+
+    method void update() {
+        var Vector oldPosition, buf;
+        var boolean destroyFlag;
+        let oldPosition = m_position;
+        let buf = m_direction.multiplyInt(m_moveSpeed);
+        let m_position = m_position.add(buf);
+
+        let destroyFlag = 
+            (m_position.x() < 0) |
+            (m_position.x() > (511 - m_width)) | 
+            (m_position.y() < 0) | 
+            (m_position.y() > (255 - m_height));
+
+        do buf.dispose();
+        do m_position.setX(MathExtension.clamp(m_position.x(), 0, 511 - m_width));
+        do m_position.setY(MathExtension.clamp(m_position.y(), 0, 255 - m_height));
+        do redraw(oldPosition);
+        do Sys.wait(15);
+        do oldPosition.dispose();
+        if (destroyFlag) { do BattleCityGame.destroyBullet(this); }
+        return;
+    }
+
+    method void redraw(Vector oldPosition) {
+        var int oldX, oldY, newX, newY;
+        let oldX = oldPosition.x();
+        let oldY = oldPosition.y();
+        let newX = m_position.x();
+        let newY = m_position.y();
+        do Screen.setColor(0);
+        do Screen.drawRectangle(oldX, oldY, oldX + m_width - 1, oldY + m_height - 1);
+        do Screen.setColor(1);
+        do Screen.drawRectangle(newX, newY, newX + m_width - 1, newY + m_height - 1);
+        return;
+    }
+
     method void dispose() {
-		do Memory.deAlloc(this);
-		return;
-	}
-    method void erase() {
-        do Graphics.eraseBullet(x, y, dir);
-        return;
-    }
-    /* method void shoot() {
-        if(dir = 1) {
-            do Graphics.drawBulletUp(x, y);
-        }
-        if(dir = 2) {
-            do Graphics.drawBulletDown(x, y);
-        }
-        if(dir = 3) {
-            do Graphics.drawBulletLeft(x, y);
-        }
-        if(dir = 4) {
-            do Graphics.drawBulletRight(x, y);
-        }
-        return;
-    } */
-    method void shootUp() {
-        if(y > 0) {
-            do Graphics.drawBulletUp(x, y);
-            let y = y - 1;
-            do erase();
-        }
-        else {
-            do Graphics.drawBoom(x, y);
-        }
-        return;
-    }
-    method void shootDown() {
-        if(y < 255) {
-            do Graphics.drawBulletDown(x, y);
-            let y = y + 1;
-            do erase();
-        }
-        else {
-            do Graphics.drawBoom(x, y);
-        }
-        return;
-    }
-    method void shootLeft() {
-        if(x > 0) {
-            do Graphics.drawBulletLeft(x, y);
-            let x = x - 1;
-            do erase();
-        }
-        else {
-            do Graphics.drawBoom(x, y);
-        }
-        return;
-    }
-    method void shootRight() {
-        if(x > 512) {
-            do Graphics.drawBulletRight(x, y);
-            let x = x + 1;
-            do erase();
-        }
-        else {
-            do Graphics.drawBoom(x, y);
-        }
+        var int x, y;
+        let x = m_position.x();
+        let y = m_position.y();
+        do Screen.setColor(0);
+        do Screen.drawRectangle(x, y, x + m_width, y + m_height);
+        do Screen.setColor(1);
+        do m_position.dispose();
+        do m_direction.dispose();
+        do Memory.deAlloc(this);
         return;
     }
 }

@@ -70,4 +70,8 @@ class Vector {
         do Output.printChar(41);
         return;
     }
+
+    method Vector clone() {
+        return Vector.new(m_x, m_y);
+    }
 }

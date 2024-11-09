@@ -1,5 +1,5 @@
 function GameCore.init 0
-push constant 2
+push constant 0
 pop static 0
 call KeyboardExtension.init 0
 pop temp 0
@@ -51,6 +51,8 @@ pop temp 0
 label IF_FALSE2
 goto WHILE_EXP0
 label WHILE_END0
+call Screen.clearScreen 0
+pop temp 0
 push constant 0
 return
 function GameCore.interactiveWait 1

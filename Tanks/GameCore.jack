@@ -3,7 +3,7 @@ class GameCore
     static int m_state;
 
     function void init() {
-        let m_state = 2;
+        let m_state = 0;
         do KeyboardExtension.init();
         do Intro.init();
         do MainMenu.init();
@@ -18,6 +18,7 @@ class GameCore
             if (m_state = 1)  { do MainMenu.exec(); }
             if (m_state = 2)  { do BattleCityGame.exec(); }
         }
+        do Screen.clearScreen();
         return;
     }
 

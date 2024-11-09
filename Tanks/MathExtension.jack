@@ -1,6 +1,6 @@
 class MathExtension
 {
-    function int pow (int x, int y) {
+    function int pow(int x, int y) {
         var int i, res;
         if (y < 0)  { do Sys.error(50); }
         let res = 1;
@@ -12,7 +12,7 @@ class MathExtension
         return res;
     }
 
-    function int remainsDivision (int x, int y) {
+    function int remainsDivision(int x, int y) {
         return x - (y*(x/y));
     }
 

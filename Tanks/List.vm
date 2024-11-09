@@ -16,7 +16,7 @@ push argument 0
 pop pointer 0
 push this 0
 return
-function List.append 0
+function List.add 0
 push argument 0
 pop pointer 0
 push this 0
@@ -46,6 +46,58 @@ add
 pop this 0
 push constant 0
 return
+function List.removeAt 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+lt
+push argument 1
+push this 0
+lt
+not
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 100
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+label WHILE_EXP0
+push argument 1
+push this 0
+push constant 1
+sub
+lt
+not
+if-goto WHILE_END0
+push argument 1
+push this 2
+add
+push argument 1
+push constant 1
+add
+push this 2
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push argument 1
+push constant 1
+add
+pop argument 1
+goto WHILE_EXP0
+label WHILE_END0
+push this 0
+push constant 1
+sub
+pop this 0
+push constant 0
+return
 function List.at 0
 push argument 0
 pop pointer 0
@@ -69,6 +121,34 @@ push this 2
 add
 pop pointer 1
 push that 0
+return
+function List.setAt 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+lt
+push argument 1
+push this 0
+lt
+not
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 100
+call Sys.error 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+push this 2
+add
+push argument 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
 return
 function List.reserve 2
 push argument 0
@@ -165,6 +245,39 @@ pop temp 0
 push local 2
 pop this 2
 push constant 0
+return
+function List.indexOf 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 0
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 2
+add
+pop pointer 1
+push that 0
+push argument 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+return
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 1
+neg
 return
 function List.dispose 0
 push argument 0

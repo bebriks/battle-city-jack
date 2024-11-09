@@ -10,4 +10,12 @@ class KeyboardExtension {
         if (key & keyReleasedFlag) { let keyReleasedFlag = 0; return key; }
         return 0;
     }
+
+    function int exactKeyDown(int keyCode) {
+        var int key;
+        let key = Keyboard.keyPressed();
+        if (key = 0) { let keyReleasedFlag = -1; }
+        if ((key = keyCode) & keyReleasedFlag) { let keyReleasedFlag = 0; return true; }
+        return 0;
+    }
 }

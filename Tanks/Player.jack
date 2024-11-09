@@ -15,15 +15,16 @@ class Player {
 
     method void update() {
         var Vector moveDirection, oldPosition, buf;
+        if (Keyboard.keyPressed() = 32) { do __shoot(); }
         let moveDirection = __processMovement();
         if (moveDirection.eq(Vector.zero())) { return; }
         let oldPosition = m_position;
         let buf = moveDirection.multiplyInt(m_moveSpeed);
         let m_position = m_position.add(buf);
-        do Output.moveCursor(0,0);
-        do m_position.print();
         do m_position.setX(MathExtension.clamp(m_position.x(), 0, 512 - m_currentSprite.width()));
         do m_position.setY(MathExtension.clamp(m_position.y(), 0, 256 - m_currentSprite.height()));
+        do Output.moveCursor(0,0);
+        do m_position.print();
         do buf.dispose();
         let m_currentOrientation = moveDirection;
         do __updateSprite();
@@ -56,6 +57,16 @@ class Player {
             m_currentOrientation.eq(Vector.left()), 
             m_currentOrientation.eq(Vector.down()));
 
+        return;
+    }
+
+    method void __shoot() {
+        var Vector bulletPosition;
+        if (m_currentOrientation = Vector.up()) { let bulletPosition = Vector.new(m_position.x() + 15, m_position.y() - 3); }
+        if (m_currentOrientation = Vector.right()) { let bulletPosition = Vector.new(m_position.x() + 30, m_position.y() + 15); }
+        if (m_currentOrientation = Vector.down()) { let bulletPosition = Vector.new(m_position.x() + 15, m_position.y() + 30); }
+        if (m_currentOrientation = Vector.left()) { let bulletPosition = Vector.new(m_position.x() - 3, m_position.y() + 15); }
+        do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone());
         return;
     }
 

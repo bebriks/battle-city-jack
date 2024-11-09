@@ -24,18 +24,28 @@ return
 function Player.update 3
 push argument 0
 pop pointer 0
+call Keyboard.keyPressed 0
+push constant 32
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Player.__shoot 1
+pop temp 0
+label IF_FALSE0
 push pointer 0
 call Player.__processMovement 1
 pop local 0
 push local 0
 call Vector.zero 0
 call Vector.eq 2
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push constant 0
 return
-label IF_FALSE0
+label IF_FALSE1
 push this 0
 pop local 1
 push local 0
@@ -46,13 +56,6 @@ push this 0
 push local 2
 call Vector.add 2
 pop this 0
-push constant 0
-push constant 0
-call Output.moveCursor 2
-pop temp 0
-push this 0
-call Vector.print 1
-pop temp 0
 push this 0
 push this 0
 call Vector.x 1
@@ -74,6 +77,13 @@ call Sprite.height 1
 sub
 call MathExtension.clamp 3
 call Vector.setY 2
+pop temp 0
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push this 0
+call Vector.print 1
 pop temp 0
 push local 2
 call Vector.dispose 1
@@ -194,6 +204,84 @@ push this 1
 call Vector.down 0
 call Vector.eq 2
 call Drawer.drawSprite 5
+pop temp 0
+push constant 0
+return
+function Player.__shoot 1
+push argument 0
+pop pointer 0
+push this 1
+call Vector.up 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+call Vector.x 1
+push constant 15
+add
+push this 0
+call Vector.y 1
+push constant 3
+sub
+call Vector.new 2
+pop local 0
+label IF_FALSE0
+push this 1
+call Vector.right 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+call Vector.x 1
+push constant 30
+add
+push this 0
+call Vector.y 1
+push constant 15
+add
+call Vector.new 2
+pop local 0
+label IF_FALSE1
+push this 1
+call Vector.down 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 0
+call Vector.x 1
+push constant 15
+add
+push this 0
+call Vector.y 1
+push constant 30
+add
+call Vector.new 2
+pop local 0
+label IF_FALSE2
+push this 1
+call Vector.left 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 0
+call Vector.x 1
+push constant 3
+sub
+push this 0
+call Vector.y 1
+push constant 15
+add
+call Vector.new 2
+pop local 0
+label IF_FALSE3
+push local 0
+push this 1
+call Vector.clone 1
+call BattleCityGame.createBullet 2
 pop temp 0
 push constant 0
 return

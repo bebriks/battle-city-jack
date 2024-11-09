@@ -2,6 +2,7 @@ class BattleCityGame {
 	static Player player;
     static Vector playerStartPosition;
     static List bullets;
+    static int globalIndex;
 
     function void init() {
         do SpriteManager.loadPlayerTankUp();
@@ -11,17 +12,35 @@ class BattleCityGame {
         return;
     }
 
-	function void createBullet(Vector position) {
+	function void createBullet(Vector position, Vector direction) {
+        do bullets.add(Bullet.new(position, direction));
+        return;
+    }
+
+    function void destroyBullet(Bullet bullet) {
+        var int bulletIndex;
+        let bulletIndex = bullets.indexOf(bullet);
+        if (bulletIndex = -1) { return; }
+        do bullets.removeAt(bulletIndex);
+        let globalIndex = globalIndex - 1;
+        do bullet.dispose();
         return;
     }
 
 	function void exec() {
+        var Bullet bulletBuf;
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
         let player = Player.new(playerStartPosition);
         while (true) {
             if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
             do player.update();
+            let globalIndex = 0;
+            while (globalIndex < bullets.size()) {
+                let bulletBuf = bullets.at(globalIndex);
+                do bulletBuf.update();
+                let globalIndex = globalIndex + 1;
+            }
         }
 
 		return;

@@ -3,6 +3,8 @@ call SpriteManager.loadPlayerTankUp 0
 pop temp 0
 call SpriteManager.loadPlayerTankRight 0
 pop temp 0
+call List.new 0
+pop static 2
 push constant 240
 push constant 224
 call Vector.new 2
@@ -10,9 +12,43 @@ pop static 1
 push constant 0
 return
 function BattleCityGame.createBullet 0
+push static 2
+push argument 0
+push argument 1
+call Bullet.new 2
+call List.add 2
+pop temp 0
 push constant 0
 return
-function BattleCityGame.exec 0
+function BattleCityGame.destroyBullet 1
+push static 2
+push argument 0
+call List.indexOf 2
+pop local 0
+push local 0
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push static 2
+push local 0
+call List.removeAt 2
+pop temp 0
+push static 3
+push constant 1
+sub
+pop static 3
+push argument 0
+call Bullet.dispose 1
+pop temp 0
+push constant 0
+return
+function BattleCityGame.exec 1
 push constant 0
 call Graphics.fillScreen 1
 pop temp 0
@@ -44,6 +80,28 @@ label IF_FALSE0
 push static 0
 call Player.update 1
 pop temp 0
+push constant 0
+pop static 3
+label WHILE_EXP1
+push static 3
+push static 2
+call List.size 1
+lt
+not
+if-goto WHILE_END1
+push static 2
+push static 3
+call List.at 2
+pop local 0
+push local 0
+call Bullet.update 1
+pop temp 0
+push static 3
+push constant 1
+add
+pop static 3
+goto WHILE_EXP1
+label WHILE_END1
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0
