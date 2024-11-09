@@ -6,6 +6,11 @@ class Vector {
         return this;
     }
 
+    function Vector up() { return Vector.new(0, -1); }
+    function Vector down() { return Vector.new(0, 1); }
+    function Vector right() { return Vector.new(1, 0); }
+    function Vector left() { return Vector.new(-1, 0); }
+
     method int x() { return m_x; }
     method int y() { return m_y; }
 
