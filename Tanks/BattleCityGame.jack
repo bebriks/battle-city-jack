@@ -31,7 +31,7 @@ class BattleCityGame {
         var Bullet bulletBuf;
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
-        let player = Player.new(playerStartPosition);
+        let player = Player.new(playerStartPosition.clone());
         while (true) {
             if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
             do player.update();
@@ -47,7 +47,13 @@ class BattleCityGame {
 	}
 
     function void __clearResources() {
+        var Bullet bulletBuf;
         do player.dispose();
+        while (~(bullets.size() = 0)) {
+            let bulletBuf = bullets.at(0);
+            do bulletBuf.dispose();
+            do bullets.removeAt(0);
+        }
         return;
     }
 }

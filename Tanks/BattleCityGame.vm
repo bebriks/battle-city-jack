@@ -56,6 +56,7 @@ push constant 1
 call Screen.setColor 1
 pop temp 0
 push static 1
+call Vector.clone 1
 call Player.new 1
 pop static 0
 label WHILE_EXP0
@@ -106,9 +107,30 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function BattleCityGame.__clearResources 0
+function BattleCityGame.__clearResources 1
 push static 0
 call Player.dispose 1
 pop temp 0
+label WHILE_EXP0
+push static 2
+call List.size 1
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push static 2
+push constant 0
+call List.at 2
+pop local 0
+push local 0
+call Bullet.dispose 1
+pop temp 0
+push static 2
+push constant 0
+call List.removeAt 2
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return
