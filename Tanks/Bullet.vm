@@ -118,7 +118,7 @@ push pointer 0
 push local 0
 call Bullet.redraw 2
 pop temp 0
-push constant 15
+push constant 3
 call Sys.wait 1
 pop temp 0
 push local 0

@@ -3,7 +3,7 @@ class GameCore
     static int m_state;
 
     function void init() {
-        let m_state = 0;
+        let m_state = 2;
         do KeyboardExtension.init();
         do Intro.init();
         do MainMenu.init();

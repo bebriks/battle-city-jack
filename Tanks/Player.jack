@@ -1,21 +1,25 @@
 class Player {
     field Vector m_position, m_currentOrientation;
-    field int m_moveSpeed;
+    field int m_moveSpeed, m_reloadTime;
     field Sprite m_currentSprite;
     field boolean m_mirrorX, m_mirrorY;
+    field Timer m_reloadTimer;
 
     constructor Player new(Vector startPosition) {
         let m_position = startPosition;
         let m_moveSpeed = 1;
+        let m_reloadTime = 20;
         let m_currentSprite = SpriteManager.getPlayerTankUp();
         let m_currentOrientation = Vector.up();
+        let m_reloadTimer = Timer.new();
         do Drawer.drawSprite(m_position.x(), m_position.y(), m_currentSprite, false, false);
         return this;
     }
 
     method void update() {
         var Vector moveDirection, oldPosition, buf;
-        if (Keyboard.keyPressed() = 32) { do __shoot(); }
+        do m_reloadTimer.update();
+        if ((Keyboard.keyPressed() = 32) & m_reloadTimer.timeOut()) { do __shoot(); do m_reloadTimer.start(m_reloadTime); }
         let moveDirection = __processMovement();
         if (moveDirection.eq(Vector.zero())) { return; }
         let oldPosition = m_position;
@@ -24,7 +28,7 @@ class Player {
         do m_position.setX(MathExtension.clamp(m_position.x(), 0, 512 - m_currentSprite.width()));
         do m_position.setY(MathExtension.clamp(m_position.y(), 0, 256 - m_currentSprite.height()));
         do Output.moveCursor(0,0);
-        do m_position.print();
+        do buf.print();
         do buf.dispose();
         let m_currentOrientation = moveDirection;
         do __updateSprite();
@@ -80,6 +84,7 @@ class Player {
 
     method void dispose() {
         do m_position.dispose();
+        do m_reloadTimer.dispose();
         do Memory.deAlloc(this);
         return;
     }

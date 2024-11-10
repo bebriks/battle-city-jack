@@ -1,5 +1,5 @@
 function GameCore.init 0
-push constant 0
+push constant 2
 pop static 0
 call KeyboardExtension.init 0
 pop temp 0

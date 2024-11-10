@@ -42,7 +42,7 @@ class Bullet {
         do m_position.setX(MathExtension.clamp(m_position.x(), 0, 511 - m_width));
         do m_position.setY(MathExtension.clamp(m_position.y(), 0, 255 - m_height));
         do redraw(oldPosition);
-        do Sys.wait(15);
+        do Sys.wait(3);
         do oldPosition.dispose();
         if (destroyFlag) { do BattleCityGame.destroyBullet(this); }
         return;

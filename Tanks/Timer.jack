@@ -1,0 +1,34 @@
+class Timer{
+    field int m_currentTime, m_targetTime;
+    field boolean m_isTimeout;
+
+    constructor Timer new() {
+        let m_currentTime = 0;
+        let m_targetTime = 0;
+        let m_isTimeout = true;
+        return this;
+    }
+
+    method void update() {
+        if (m_isTimeout) { return; }
+        let m_currentTime = m_currentTime + 1;
+        if (m_currentTime = m_targetTime) { let m_isTimeout = true; }
+        return;
+    }
+
+    method void start(int time){
+        if (time < 0) { do Sys.error(110); }
+        let m_isTimeout = false;
+        let m_currentTime = 0;
+        let m_targetTime = time;
+        return;
+    }
+
+    method boolean timeOut() { return m_isTimeout; }
+    method boolean currentTime() { return m_currentTime; }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
