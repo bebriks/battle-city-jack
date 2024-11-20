@@ -1,0 +1,50 @@
+class CollisionManager {
+    field List m_colliders;
+
+    constructor CollisionManager new() {
+        let m_colliders = List.new();
+        return this;
+    }
+
+    method void update() {
+        var int i, j;
+        var Collider a, b;
+        var CollisionInfo collisionA;
+        do resetColliders();
+        while (i < m_colliders.size()) {
+            let j = i;
+            while (j < m_colliders.size()) {
+                let a = colliders.at(i);
+                let b = colliders.at(j);
+                if (a.intersects(b)) {
+                    let collisionA = a.addCollision(b);
+                    do b.linkCollision(collisionA);
+                }
+            }
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void addCollider(Collider collider) {
+        do m_colliders.add(collider);
+        return;
+    }
+
+    method void resetColliders() {
+        var int i;
+        var int e;
+        while (i < m_colliders.size()) {
+            let e = m_colliders.at(i);
+            do e.reset();
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void dispose() {
+        do m_colliders.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+}

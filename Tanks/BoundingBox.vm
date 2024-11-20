@@ -1,0 +1,144 @@
+function BoundingBox.new 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push argument 1
+pop this 1
+push argument 2
+pop this 2
+push argument 3
+pop this 3
+push pointer 0
+return
+function BoundingBox.copy 0
+push constant 4
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+call BoundingBox.x 1
+pop this 0
+push argument 0
+call BoundingBox.y 1
+pop this 1
+push argument 0
+call BoundingBox.width 1
+pop this 2
+push argument 0
+call BoundingBox.height 1
+pop this 3
+push pointer 0
+return
+function BoundingBox.x 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function BoundingBox.y 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function BoundingBox.width 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function BoundingBox.height 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function BoundingBox.setX 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push constant 0
+return
+function BoundingBox.setY 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 1
+push constant 0
+return
+function BoundingBox.setWidth 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 2
+push constant 0
+return
+function BoundingBox.setHeight 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 3
+push constant 0
+return
+function BoundingBox.position 0
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Vector.new 2
+return
+function BoundingBox.intersects 8
+push argument 0
+pop pointer 0
+push argument 1
+call BoundingBox.x 1
+push argument 1
+call BoundingBox.width 1
+add
+pop local 4
+push this 0
+push this 2
+add
+pop local 5
+push argument 1
+call BoundingBox.y 1
+push argument 1
+call BoundingBox.height 1
+add
+pop local 6
+push this 1
+push this 3
+add
+pop local 7
+push this 0
+push local 4
+lt
+pop local 0
+push local 5
+push argument 1
+call BoundingBox.x 1
+gt
+pop local 1
+push this 1
+push local 6
+lt
+pop local 3
+push local 7
+push argument 1
+call BoundingBox.y 1
+gt
+pop local 2
+push local 0
+push local 1
+and
+push local 3
+and
+push local 2
+and
+return
+function BoundingBox.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

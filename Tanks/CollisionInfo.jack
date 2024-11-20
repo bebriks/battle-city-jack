@@ -1,0 +1,44 @@
+class CollisionInfo {
+    field Collider m_colliderA, m_colliderB;
+    field CollisionInfo m_linked;
+
+    constructor CollisionInfo new(Collider colliderA, Collider colliderB) {
+        let m_colliderA = colliderA;
+        let m_colliderB = colliderB;
+        let m_linked = this;
+        return this;
+    }
+
+    constructor CollisionInfo link(CollisionInfo other)
+    {
+        let m_colliderA = other.B();
+        let m_colliderB = other.A();
+        let m_linked = other;
+        do other.setLink(this);
+        return this;
+    }
+    
+    method void setLink(CollisionInfo other) { let m_linked = other; return; }
+
+    method void unlink() {
+        let m_colliderB = m_colliderA;
+        let m_linked = this;
+        return;
+    }
+
+    method boolean valid() { 
+        return ~(this = m_linked) & ~(m_colliderA = m_colliderB); 
+    }
+
+    method Collider A() { return m_colliderA; }
+    method Collider B() { return m_colliderB; }
+
+    method void dispose() {
+        if (~(m_linked = this))
+        {
+            do m_linked.unlink();
+        }
+        do Memory.deAlloc(this);
+        return;
+    }
+}
