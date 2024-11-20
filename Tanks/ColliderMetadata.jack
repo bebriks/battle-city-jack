@@ -1,0 +1,14 @@
+class ColliderMetadata {
+    field int m_itemId, m_typeId;
+
+    constructor ColliderMetadata new(int itemId, int typeId) {
+        let m_itemId = itemId;
+        let m_typeId = typeId;
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
