@@ -1,0 +1,51 @@
+class BoundingBox {
+    field int m_x, m_y, m_width, m_height;
+
+    constructor BoundingBox new(int x, int y, int width, int height) {
+        let m_x = x;
+        let m_y = y;
+        let m_width = width;
+        let m_height = height;
+        return this;
+    }
+
+    constructor BoundingBox copy(BoundingBox other) {
+        let m_x = other.x();
+        let m_y = other.y();
+        let m_width = other.width();
+        let m_height = other.height();
+        return this;
+    }
+
+    method int x() { return m_x; }
+    method int y() { return m_y; }
+    method int width() { return m_width; }
+    method int height() { return m_height; }
+    method void setX(int value) { let m_x = value; return; }
+    method void setY(int value) { let m_y = value; return; }
+    method void setWidth(int value) { let m_width = value; return; }
+    method void setHeight(int value) { let m_height = value; return; }
+    method Vector position() { return Vector.new(m_x, m_y); }
+
+    method boolean intersects(BoundingBox other) {
+        var boolean leftRule, rightRule, bottomRule, topRule;
+        var int otherRight, thisRight, otherBottom, thisBottom;
+
+        let otherRight = other.x() + other.width();
+        let thisRight = m_x + m_width;
+        let otherBottom = other.y() + other.height();
+        let thisBottom = m_y + m_height;
+
+        let leftRule = m_x < otherRight;
+        let rightRule = thisRight > other.x();
+        let topRule = m_y < otherBottom;
+        let bottomRule = thisBottom > other.y();
+
+        return leftRule & rightRule & topRule & bottomRule;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+}
