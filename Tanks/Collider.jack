@@ -28,14 +28,15 @@ class Collider {
     }
 
     method void reset() {
+        var int i;
+        var CollisionInfo collision;
         if (m_collisions.size() = 0)
         {
             return;
         }
-        var int i;
-        var CollisionInfo collision;
         while (i < m_collisions.size()) {
-             m_collisions[i].dispose();
+             let collision = m_collisions[i];
+             do collision.dispose();
              let i = i + 1;
         }
         do m_collisions.clear();

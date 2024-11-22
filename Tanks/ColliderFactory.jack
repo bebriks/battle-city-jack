@@ -1,25 +1,18 @@
 class ColliderFactory {
-    field CollisionManager m_manager;
-    field int m_counter;
+    static int m_counter;
 
-    constructor ColliderFactory new(CollisionManager manager) {
-        let m_manager = manager;
+    function void init() {
         let m_counter = 0;
-        return this;
+        return;
     }
 
-    method Collider create(BoundingBox box, int type) {
+    function Collider create(BoundingBox box, int type) {
         var ColliderMetadata meta;
         var Collider item;
         let meta = ColliderMetadata.new(m_counter, type);
         let m_counter = m_counter + 1;
         let item = Collider.new(box, meta);
-        do m_manager.addCollider(item);
+        do CollisionManager.addCollider(item);
         return item;
-    }
-
-    method void dispose() {
-        do Memory.deAlloc(this);
-        return;
     }
 }
