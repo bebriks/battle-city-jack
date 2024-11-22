@@ -1,12 +1,12 @@
 class CollisionManager {
-    field List m_colliders;
+    static field List m_colliders;
 
-    constructor CollisionManager new() {
+    function void init() {
         let m_colliders = List.new();
-        return this;
+        return;
     }
 
-    method void update() {
+    function void update() {
         var int i, j;
         var Collider a, b;
         var CollisionInfo collisionA;
@@ -26,12 +26,12 @@ class CollisionManager {
         return;
     }
 
-    method void addCollider(Collider collider) {
+    function void addCollider(Collider collider) {
         do m_colliders.add(collider);
         return;
     }
 
-    method void resetColliders() {
+    function void resetColliders() {
         var int i;
         var int e;
         while (i < m_colliders.size()) {
@@ -39,12 +39,6 @@ class CollisionManager {
             do e.reset();
             let i = i + 1;
         }
-        return;
-    }
-
-    method void dispose() {
-        do m_colliders.dispose();
-        do Memory.deAlloc(this);
         return;
     }
 }
