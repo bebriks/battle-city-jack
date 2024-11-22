@@ -11,6 +11,10 @@ call BattleCityGame.init 0
 pop temp 0
 call Vector.init 0
 pop temp 0
+call CollisionManager.init 0
+pop temp 0
+call CollisionFactory.init 0
+pop temp 0
 push constant 0
 return
 function GameCore.exec 0
