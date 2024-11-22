@@ -123,6 +123,43 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
+function Collider.move 0
+push argument 0
+pop pointer 0
+push this 0
+push this 0
+call BoundingBox.x 1
+push argument 1
+add
+call BoundingBox.setX 2
+pop temp 0
+push this 0
+push this 0
+call BoundingBox.y 1
+push argument 2
+add
+call BoundingBox.setY 2
+pop temp 0
+push constant 0
+return
+function Collider.moveVec 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+call Vector.x 1
+push argument 1
+call Vector.y 1
+call Collider.move 3
+pop temp 0
+push constant 0
+return
+function Collider.tryMove 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+return
 function Collider.dispose 2
 push argument 0
 pop pointer 0

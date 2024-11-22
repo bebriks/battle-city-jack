@@ -61,6 +61,21 @@ class Collider {
         return false;
     }
 
+    method void move(int x, int y) {
+        do m_box.setX(m_box.x() + x);
+        do m_box.setY(m_box.y() + y);
+        return;
+    }
+
+    method void moveVec(Vector delta) {
+        do move(delta.x(), delta.y());
+        return;
+    }
+
+    method boolean tryMove(Vector delta, Array surfaceTypes) {
+        return true;
+    }
+
     method void dispose() {
         var int i;
         var CollisionInfo collision;
