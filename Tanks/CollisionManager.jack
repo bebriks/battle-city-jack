@@ -1,5 +1,5 @@
 class CollisionManager {
-    static field List m_colliders;
+    static List m_colliders;
 
     function void init() {
         let m_colliders = List.new();
@@ -10,7 +10,7 @@ class CollisionManager {
         var int i, j;
         var Collider a, b;
         var CollisionInfo collisionA;
-        do resetColliders();
+        do CollisionManager.resetColliders();
         while (i < m_colliders.size()) {
             let j = i;
             while (j < m_colliders.size()) {

@@ -44,12 +44,43 @@ call List.add 2
 pop temp 0
 push constant 0
 return
-function Collider.reset 0
+function Collider.reset 2
 push argument 0
 pop pointer 0
 push this 2
+call List.size 1
 push constant 0
-call List.shrink 2
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+label WHILE_EXP0
+push local 0
+push this 2
+call List.size 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push this 2
+add
+pop pointer 1
+push that 0
+pop local 1
+push local 1
+call CollisionInfo.dispose 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push this 2
+call List.clear 1
 pop temp 0
 push constant 0
 return
