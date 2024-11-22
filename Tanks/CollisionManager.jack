@@ -8,37 +8,35 @@ class CollisionManager {
 
     function void update() {
         var int i, j;
-        var Collider a, b;
-        var CollisionInfo collisionA;
-        do CollisionManager.resetColliders();
+        var Collider collider;
+
         while (i < m_colliders.size()) {
             let j = i;
-            while (j < m_colliders.size()) {
-                let a = colliders.at(i);
-                let b = colliders.at(j);
-                if (a.intersects(b)) {
-                    let collisionA = a.addCollision(b);
-                    do b.linkCollision(collisionA);
-                }
-            }
+            let collider = colliders.at(i);
+            do CollisionManager.__checkCollision(collider, j);
             let i = i + 1;
+        }
+        return;
+    }
+
+    function void __checkCollision(Collider collider, int start) {
+        var Collider other;
+        var int j;
+        var CollisionInfo collisionA;
+        let j = start;
+        do a.reset();
+        while (j < m_colliders.size()) {
+            let other = colliders.at(j);
+            if (collider.intersects(other)) {
+                let collisionA = a.addCollision(other);
+                do other.linkCollision(collisionA);
+            }
         }
         return;
     }
 
     function void addCollider(Collider collider) {
         do m_colliders.add(collider);
-        return;
-    }
-
-    function void resetColliders() {
-        var int i;
-        var int e;
-        while (i < m_colliders.size()) {
-            let e = m_colliders.at(i);
-            do e.reset();
-            let i = i + 1;
-        }
         return;
     }
 }
