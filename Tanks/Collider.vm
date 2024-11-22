@@ -177,7 +177,7 @@ call Collider.move 3
 pop temp 0
 push constant 0
 return
-function Collider.tryMove 0
+function Collider.tryMoveX 0
 push argument 0
 pop pointer 0
 push constant 0

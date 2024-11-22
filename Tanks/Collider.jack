@@ -77,7 +77,7 @@ class Collider {
         return;
     }
 
-    method boolean tryMove(Vector delta, Array surfaceTypes) {
+    method boolean tryMoveX(int delta, Array surfaceTypes) {
         return true;
     }
 

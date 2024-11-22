@@ -9,6 +9,8 @@ class GameCore
         do MainMenu.init();
         do BattleCityGame.init();
         do Vector.init();
+        do CollisionManager.init();
+        do CollisionFactory.init();
         return;
     }
 
