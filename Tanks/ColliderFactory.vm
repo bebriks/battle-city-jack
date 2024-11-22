@@ -6,7 +6,8 @@ return
 function ColliderFactory.create 2
 push static 0
 push argument 1
-call ColliderMetadata.new 2
+push argument 2
+call ColliderMetadata.new 3
 pop local 0
 push static 0
 push constant 1

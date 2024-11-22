@@ -1,14 +1,32 @@
 class ColliderMetadata {
     field int m_itemId, m_typeId;
+    field Array m_targetTypes;
 
-    constructor ColliderMetadata new(int itemId, int typeId) {
+    constructor ColliderMetadata new(int itemId, int typeId, Array targetTypes) {
         let m_itemId = itemId;
         let m_typeId = typeId;
+        let m_targetTypes = targetTypes;
         return this;
+    }
+
+    method int type() { return m_typeId; }
+    method int id() { return m_itemId; }
+
+    method boolean isTargetType(int type) {
+        var int i;
+        let i = 0;
+        while (i < m_targetTypes.size()) {
+            if (type = m_targetTypes[i]) {
+                return true;
+            }
+            let i = i + 1;
+        }
+        return false;
     }
 
     method void dispose() {
         do Memory.deAlloc(this);
+        do targetTypes.dispose();
         return;
     }
 }

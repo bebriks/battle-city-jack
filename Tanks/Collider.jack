@@ -9,9 +9,14 @@ class Collider {
         return this;
     }
 
+    method int type() { return m_metadata.type(); }
+    method int id() { return m_metadata.id(); }
     method BoundingBox box() { return m_box; }
 
     method boolean intersects(Collider other) {
+        if (~(m_metadata.isTargetType(other.type()))) {
+            return false;
+        }
         return m_box.intersects(other.box());
     }
 

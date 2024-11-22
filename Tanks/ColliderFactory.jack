@@ -6,10 +6,10 @@ class ColliderFactory {
         return;
     }
 
-    function Collider create(BoundingBox box, int type) {
+    function Collider create(BoundingBox box, int type, Array targetTypes) {
         var ColliderMetadata meta;
         var Collider item;
-        let meta = ColliderMetadata.new(m_counter, type);
+        let meta = ColliderMetadata.new(m_counter, type, targetTypes);
         let m_counter = m_counter + 1;
         let item = Collider.new(box, meta);
         do CollisionManager.addCollider(item);
