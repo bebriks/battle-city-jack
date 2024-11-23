@@ -9,6 +9,7 @@ class Collider {
         return this;
     }
 
+    method List collisions() { return m_collisions; }
     method int type() { return m_metadata.type(); }
     method int id() { return m_metadata.id(); }
     method BoundingBox box() { return m_box; }
@@ -69,6 +70,7 @@ class Collider {
     method void move(int x, int y) {
         do m_box.setX(m_box.x() + x);
         do m_box.setY(m_box.y() + y);
+        do CollisionManager.updateCollider(this);
         return;
     }
 
@@ -77,8 +79,16 @@ class Collider {
         return;
     }
 
-    method boolean tryMoveX(int delta, Array surfaceTypes) {
-        return true;
+    method void setPosition(int x, int y) {
+        do m_box.setX(x);
+        do m_box.setY(y);
+        do CollisionManager.updateCollider(this);
+        return;
+    }
+
+    method void setPositionVec(Vector newPosition) {
+        do setPosition(newPosition.x(), newPosition.y());
+        return;
     }
 
     method void dispose() {

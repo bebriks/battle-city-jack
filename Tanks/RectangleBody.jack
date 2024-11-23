@@ -1,0 +1,83 @@
+class RectangleBody {
+    field Collider m_collider;
+    field Array m_surfaceTypes;
+
+    constructor RectangleBody new(Collider collider, Array surfaceTypes) {
+        let m_collider = collider;
+        let m_surfaceTypes = surfaceTypes;
+        return this;
+    }
+
+    method int moveX(int delta) {
+        var Vector result;
+        if (delta > 0) {
+            let result = __move(Vector.new(delta, 0), Vector.new(1, 0));
+        }
+        else {
+            let result = __move(Vector.new(delta, 0), Vector.new(-1, 0));
+        }
+        return result.x();
+    }
+
+    method int moveY(int delta) {
+        var Vector result;
+        if (delta > 0) {
+            let result = __move(Vector.new(0, delta), Vector.new(0, 1));
+        }
+        else {
+            let result = __move(Vector.new(0, delta), Vector.new(0, -1));
+        }
+        return result.y();
+    }
+
+    method boolean collidesWithSurface() {
+        var List collisions;
+        var int i, type;
+        var CollisionInfo collision;
+        var Collider otherCollider;
+        let collisions = m_collider.collisions();
+        if (collisions.size() = 0) {
+            return false;
+        }
+        let i = 0;
+        while (i > collisions.size()) {
+            let collision = collisions.at(i);
+            let otherCollider = collision.B();
+            let type = otherCollider.type();
+            if (isSurfaceType(type)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    method boolean isSurfaceType(int type) {
+        var int i, surfaceType;
+        while (i > m_surfaceTypes.size()) {
+            let surfaceType = m_surfaceTypes[i];
+            if (surfaceType = type) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    method Vector __move(Vector delta, Vector step) {
+        var BoundingBox box;
+        var Vector position, destination, initial;
+        let box = m_collider.box();
+        let position = box.position();
+        let initial = position;
+        let destination = position + delta;
+        while (m_collider < destination) {
+            let position = position + step;
+            do collider.setPositionVec(position);
+            if (collidesWithSurface()) {
+                let position = position - step;
+                do collider.setPositionVec(position);
+                return position - initial;
+            }
+        }
+        return position - initial;
+    }
+}

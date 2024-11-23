@@ -8,6 +8,11 @@ push argument 1
 pop this 1
 push pointer 0
 return
+function Collider.collisions 0
+push argument 0
+pop pointer 0
+push this 2
+return
 function Collider.type 0
 push argument 0
 pop pointer 0
@@ -163,6 +168,9 @@ push argument 2
 add
 call BoundingBox.setY 2
 pop temp 0
+push pointer 0
+call CollisionManager.updateCollider 1
+pop temp 0
 push constant 0
 return
 function Collider.moveVec 0
@@ -177,11 +185,33 @@ call Collider.move 3
 pop temp 0
 push constant 0
 return
-function Collider.tryMoveX 0
+function Collider.setPosition 0
 push argument 0
 pop pointer 0
+push this 0
+push argument 1
+call BoundingBox.setX 2
+pop temp 0
+push this 0
+push argument 2
+call BoundingBox.setY 2
+pop temp 0
+push pointer 0
+call CollisionManager.updateCollider 1
+pop temp 0
 push constant 0
-not
+return
+function Collider.setPositionVec 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+call Vector.x 1
+push argument 1
+call Vector.y 1
+call Collider.setPosition 3
+pop temp 0
+push constant 0
 return
 function Collider.dispose 2
 push argument 0

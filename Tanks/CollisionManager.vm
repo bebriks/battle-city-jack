@@ -28,10 +28,18 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
+function CollisionManager.updateCollider 0
+push argument 0
+push constant 0
+call CollisionManager.__checkCollision 2
+pop temp 0
+push constant 0
+return
 function CollisionManager.__checkCollision 3
 push argument 1
 pop local 1
-call a.reset 0
+push argument 0
+call Collider.reset 1
 pop temp 0
 label WHILE_EXP0
 push local 1
@@ -49,8 +57,9 @@ call Collider.intersects 2
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push argument 0
 push local 0
-call a.addCollision 1
+call Collider.addCollision 2
 pop local 2
 push local 0
 push local 2
