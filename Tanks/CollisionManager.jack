@@ -19,16 +19,21 @@ class CollisionManager {
         return;
     }
 
+    function void updateCollider(Collider collider) {
+        do CollisionManager.__checkCollision(collider, 0);
+        return;
+    }
+
     function void __checkCollision(Collider collider, int start) {
         var Collider other;
         var int j;
         var CollisionInfo collisionA;
         let j = start;
-        do a.reset();
+        do collider.reset();
         while (j < m_colliders.size()) {
             let other = colliders.at(j);
             if (collider.intersects(other)) {
-                let collisionA = a.addCollision(other);
+                let collisionA = collider.addCollision(other);
                 do other.linkCollision(collisionA);
             }
         }
