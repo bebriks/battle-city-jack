@@ -10,7 +10,7 @@ class GameCore
         do BattleCityGame.init();
         do Vector.init();
         do CollisionManager.init();
-        do CollisionFactory.init();
+        do ColliderFactory.init();
         return;
     }
 

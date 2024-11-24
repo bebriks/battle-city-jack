@@ -6,7 +6,21 @@ push argument 0
 pop this 0
 push argument 1
 pop this 1
+call List.new 0
+pop this 2
 push pointer 0
+return
+function Collider.x 0
+push argument 0
+pop pointer 0
+push this 0
+call BoundingBox.x 1
+return
+function Collider.y 0
+push argument 0
+pop pointer 0
+push this 0
+call BoundingBox.y 1
 return
 function Collider.collisions 0
 push argument 0
@@ -198,18 +212,6 @@ call BoundingBox.setY 2
 pop temp 0
 push pointer 0
 call CollisionManager.updateCollider 1
-pop temp 0
-push constant 0
-return
-function Collider.setPositionVec 0
-push argument 0
-pop pointer 0
-push pointer 0
-push argument 1
-call Vector.x 1
-push argument 1
-call Vector.y 1
-call Collider.setPosition 3
 pop temp 0
 push constant 0
 return

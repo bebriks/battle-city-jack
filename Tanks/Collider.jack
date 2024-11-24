@@ -6,9 +6,12 @@ class Collider {
     constructor Collider new(BoundingBox box, ColliderMetadata data) {
         let m_box = box;
         let m_metadata = data;
+        let m_collisions = List.new();
         return this;
     }
 
+    method int x() { return m_box.x(); }
+    method int y() { return m_box.y(); }
     method List collisions() { return m_collisions; }
     method int type() { return m_metadata.type(); }
     method int id() { return m_metadata.id(); }
@@ -83,11 +86,6 @@ class Collider {
         do m_box.setX(x);
         do m_box.setY(y);
         do CollisionManager.updateCollider(this);
-        return;
-    }
-
-    method void setPositionVec(Vector newPosition) {
-        do setPosition(newPosition.x(), newPosition.y());
         return;
     }
 

@@ -8,6 +8,18 @@ push argument 1
 pop this 1
 push pointer 0
 return
+function RectangleBody.x 0
+push argument 0
+pop pointer 0
+push this 0
+call Collider.x 1
+return
+function RectangleBody.y 0
+push argument 0
+pop pointer 0
+push this 0
+call Collider.y 1
+return
 function RectangleBody.moveX 1
 push argument 0
 pop pointer 0
@@ -131,15 +143,13 @@ pop pointer 0
 label WHILE_EXP0
 push local 0
 push this 1
-call Array.size 1
+call List.size 1
 gt
 not
 if-goto WHILE_END0
-push local 0
 push this 1
-add
-pop pointer 1
-push that 0
+push local 0
+call List.at 2
 pop local 1
 push local 1
 push argument 1
@@ -155,33 +165,47 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function RectangleBody.__move 4
+function RectangleBody.__move 5
 push argument 0
 pop pointer 0
 push this 0
 call Collider.box 1
 pop local 0
 push local 0
-call BoundingBox.position 1
+call BoundingBox.x 1
+push local 0
+call BoundingBox.y 1
+call Vector.new 2
 pop local 1
 push local 1
+call Vector.clone 1
 pop local 3
 push local 1
 push argument 1
-add
+call Vector.add 2
 pop local 2
 label WHILE_EXP0
-push this 0
+push local 1
 push local 2
-lt
+call Vector.eq 2
+not
 not
 if-goto WHILE_END0
 push local 1
-push argument 2
-add
-pop local 1
+pop local 4
 push local 1
-call collider.setPositionVec 1
+push argument 2
+call Vector.add 2
+pop local 1
+push local 4
+call Vector.dispose 1
+pop temp 0
+push this 0
+push local 1
+call Vector.x 1
+push local 1
+call Vector.y 1
+call Collider.setPosition 3
 pop temp 0
 push pointer 0
 call RectangleBody.collidesWithSurface 1
@@ -189,11 +213,20 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push local 1
-push argument 2
-sub
-pop local 1
+pop local 4
 push local 1
-call collider.setPositionVec 1
+push argument 2
+call Vector.sub 2
+pop local 1
+push local 4
+call Vector.dispose 1
+pop temp 0
+push this 0
+push local 1
+call Vector.x 1
+push local 1
+call Vector.y 1
+call Collider.setPosition 3
 pop temp 0
 push local 1
 push local 3
@@ -202,7 +235,22 @@ return
 label IF_FALSE0
 goto WHILE_EXP0
 label WHILE_END0
+push local 2
+call Vector.dispose 1
+pop temp 0
+push local 3
+call Vector.dispose 1
+pop temp 0
+push local 1
+call Vector.dispose 1
+pop temp 0
+push argument 1
+call Vector.dispose 1
+pop temp 0
+push argument 2
+call Vector.dispose 1
+pop temp 0
 push local 1
 push local 3
-sub
+call Vector.sub 2
 return

@@ -1,8 +1,8 @@
 class ColliderMetadata {
     field int m_itemId, m_typeId;
-    field Array m_targetTypes;
+    field List m_targetTypes;
 
-    constructor ColliderMetadata new(int itemId, int typeId, Array targetTypes) {
+    constructor ColliderMetadata new(int itemId, int typeId, List targetTypes) {
         let m_itemId = itemId;
         let m_typeId = typeId;
         let m_targetTypes = targetTypes;
@@ -16,7 +16,7 @@ class ColliderMetadata {
         var int i;
         let i = 0;
         while (i < m_targetTypes.size()) {
-            if (type = m_targetTypes[i]) {
+            if (type = m_targetTypes.at(i)) {
                 return true;
             }
             let i = i + 1;

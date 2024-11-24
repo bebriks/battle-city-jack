@@ -4,59 +4,70 @@ class Player {
     field Sprite m_currentSprite;
     field boolean m_mirrorX, m_mirrorY;
     field Timer m_reloadTimer;
+    field RectangleBody m_body;
 
     constructor Player new(Vector startPosition) {
+        var BoundingBox box;
+        var List surfaceTypes;
+        var Collider collider;
+        let box = BoundingBox.new(startPosition.x(), startPosition.y(), 33, 33);
+        let surfaceTypes = List.new();
+        do surfaceTypes.add(2);
+        let collider = ColliderFactory.create(box, 0, surfaceTypes);
+        let m_body = RectangleBody.new(collider, surfaceTypes);
         let m_position = startPosition;
         let m_moveSpeed = 1;
         let m_reloadTime = 20;
         let m_currentSprite = SpriteManager.getPlayerTankUp();
         let m_currentOrientation = Vector.up();
         let m_reloadTimer = Timer.new();
-        do Drawer.drawSprite(m_position.x(), m_position.y(), m_currentSprite, false, false);
+        do Drawer.drawSprite(getX(), getY(), m_currentSprite, false, false);
         return this;
     }
 
     method void update() {
-        var Vector moveDirection, oldPosition, buf;
+        var int oldX, oldY;
+        var boolean hasMoved;
+
+        let oldX = m_body.x();
+        let oldY = m_body.y();
+
         do m_reloadTimer.update();
         if ((Keyboard.keyPressed() = 32) & m_reloadTimer.timeOut()) { do __shoot(); do m_reloadTimer.start(m_reloadTime); }
-        let moveDirection = __processMovement();
-        if (moveDirection.eq(Vector.zero())) { return; }
-        let oldPosition = m_position;
-        let buf = moveDirection.multiplyInt(m_moveSpeed);
-        let m_position = m_position.add(buf);
-        do m_position.setX(MathExtension.clamp(m_position.x(), 0, 512 - m_currentSprite.width()));
-        do m_position.setY(MathExtension.clamp(m_position.y(), 0, 256 - m_currentSprite.height()));
-        do Output.moveCursor(0,0);
-        do buf.print();
-        do buf.dispose();
-        let m_currentOrientation = moveDirection;
+        let hasMoved = __processMovement();
+        if (~hasMoved) { return; }
         do __updateSprite();
-        do redraw(oldPosition);
-        do oldPosition.dispose();
+
+        do redraw(oldX, oldY);
+
         return;
     }
 
-    method Vector __processMovement() {
-        var int key;
-        let key = Keyboard.keyPressed();
-        if ((key = 130) | (key = 65)) { return Vector.left(); } // Arrow left or A
-        if ((key = 131) | (key = 87)) { return Vector.up(); } // Arrow up or W
-        if ((key = 132) | (key = 68)) { return Vector.right(); } // Arrow right or D
-        if ((key = 133) | (key = 83)) { return Vector.down(); } // Arrow down or S
-        return Vector.zero(); 
+    method int getX() {
+        return m_body.x();
     }
 
-    method void redraw(Vector oldPosition) {
-        var int oldX, oldY;
-        let oldX = oldPosition.x();
-        let oldY = oldPosition.y();
+    method int getY() {
+        return m_body.y();
+    }
+
+    method boolean __processMovement() {
+        var int key;
+        let key = Keyboard.keyPressed();
+        if ((key = 130) | (key = 65)) { do m_body.moveX(-m_moveSpeed); let m_currentOrientation = Vector.left(); return true; } // Arrow left or A
+        if ((key = 131) | (key = 87)) { do m_body.moveY(-m_moveSpeed); let m_currentOrientation = Vector.up(); return true; } // Arrow up or W
+        if ((key = 132) | (key = 68)) { do m_body.moveX(m_moveSpeed); let m_currentOrientation = Vector.right(); return true; } // Arrow right or D
+        if ((key = 133) | (key = 83)) { do m_body.moveY(m_moveSpeed); let m_currentOrientation = Vector.down(); return true; } // Arrow down or S
+        return false;
+    }
+
+    method void redraw(int oldX, int oldY) {
         do Screen.setColor(0);
         do Screen.drawRectangle(oldX, oldY, oldX + m_currentSprite.width() - 1, oldY + m_currentSprite.height() - 1);
         do Screen.setColor(1);
         do Drawer.drawSprite(
-            m_position.x(), 
-            m_position.y(), 
+            getX(), 
+            getY(), 
             m_currentSprite, 
             m_currentOrientation.eq(Vector.left()), 
             m_currentOrientation.eq(Vector.down()));
@@ -66,10 +77,10 @@ class Player {
 
     method void __shoot() {
         var Vector bulletPosition;
-        if (m_currentOrientation = Vector.up()) { let bulletPosition = Vector.new(m_position.x() + 15, m_position.y() - 3); }
-        if (m_currentOrientation = Vector.right()) { let bulletPosition = Vector.new(m_position.x() + 30, m_position.y() + 15); }
-        if (m_currentOrientation = Vector.down()) { let bulletPosition = Vector.new(m_position.x() + 15, m_position.y() + 30); }
-        if (m_currentOrientation = Vector.left()) { let bulletPosition = Vector.new(m_position.x() - 3, m_position.y() + 15); }
+        if (m_currentOrientation = Vector.up()) { let bulletPosition = Vector.new(getX() + 15, getY() - 3); }
+        if (m_currentOrientation = Vector.right()) { let bulletPosition = Vector.new(getX() + 30, getY() + 15); }
+        if (m_currentOrientation = Vector.down()) { let bulletPosition = Vector.new(getX() + 15, getY() + 30); }
+        if (m_currentOrientation = Vector.left()) { let bulletPosition = Vector.new(getX() - 3, getY() + 15); }
         do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone());
         return;
     }

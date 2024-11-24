@@ -65,7 +65,6 @@ class Vector {
         do Output.printChar(40);
         do Output.printInt(m_x);
         do Output.printChar(44);
-        do Output.printChar(20);
         do Output.printInt(m_y);
         do Output.printChar(41);
         return;

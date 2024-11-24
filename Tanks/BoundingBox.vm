@@ -78,13 +78,6 @@ push argument 1
 pop this 3
 push constant 0
 return
-function BoundingBox.position 0
-push argument 0
-pop pointer 0
-push this 0
-push this 1
-call Vector.new 2
-return
 function BoundingBox.intersects 8
 push argument 0
 pop pointer 0
