@@ -1,11 +1,19 @@
 class RectangleBody {
     field Collider m_collider;
-    field Array m_surfaceTypes;
+    field List m_surfaceTypes;
 
-    constructor RectangleBody new(Collider collider, Array surfaceTypes) {
+    constructor RectangleBody new(Collider collider, List surfaceTypes) {
         let m_collider = collider;
         let m_surfaceTypes = surfaceTypes;
         return this;
+    }
+
+    method int x() {
+        return m_collider.x();
+    }
+
+    method int y() {
+        return m_collider.y();
     }
 
     method int moveX(int delta) {
@@ -54,7 +62,7 @@ class RectangleBody {
     method boolean isSurfaceType(int type) {
         var int i, surfaceType;
         while (i > m_surfaceTypes.size()) {
-            let surfaceType = m_surfaceTypes[i];
+            let surfaceType = m_surfaceTypes.at(i);
             if (surfaceType = type) {
                 return true;
             }
@@ -64,20 +72,29 @@ class RectangleBody {
 
     method Vector __move(Vector delta, Vector step) {
         var BoundingBox box;
-        var Vector position, destination, initial;
+        var Vector position, destination, initial, buf;
         let box = m_collider.box();
-        let position = box.position();
-        let initial = position;
-        let destination = position + delta;
-        while (m_collider < destination) {
-            let position = position + step;
-            do collider.setPositionVec(position);
+        let position = Vector.new(box.x(), box.y());
+        let initial = position.clone();
+        let destination = position.add(delta);
+        while (~(position.eq(destination))) {
+            let buf = position;
+            let position = position.add(step);
+            do buf.dispose();
+            do m_collider.setPosition(position.x(), position.y());
             if (collidesWithSurface()) {
-                let position = position - step;
-                do collider.setPositionVec(position);
+                let buf = position;
+                let position = position.sub(step);
+                do buf.dispose();
+                do m_collider.setPosition(position.x(), position.y());
                 return position - initial;
             }
         }
-        return position - initial;
+        do destination.dispose();
+        do initial.dispose();
+        do position.dispose();
+        do delta.dispose();
+        do step.dispose();
+        return position.sub(initial);
     }
 }

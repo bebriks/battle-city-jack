@@ -28,16 +28,14 @@ pop local 0
 label WHILE_EXP0
 push local 0
 push this 2
-call Array.size 1
+call List.size 1
 lt
 not
 if-goto WHILE_END0
 push argument 1
-push local 0
 push this 2
-add
-pop pointer 1
-push that 0
+push local 0
+call List.at 2
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0

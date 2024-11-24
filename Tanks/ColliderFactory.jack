@@ -6,7 +6,7 @@ class ColliderFactory {
         return;
     }
 
-    function Collider create(BoundingBox box, int type, Array targetTypes) {
+    function Collider create(BoundingBox box, int type, List targetTypes) {
         var ColliderMetadata meta;
         var Collider item;
         let meta = ColliderMetadata.new(m_counter, type, targetTypes);

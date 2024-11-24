@@ -25,7 +25,6 @@ class BoundingBox {
     method void setY(int value) { let m_y = value; return; }
     method void setWidth(int value) { let m_width = value; return; }
     method void setHeight(int value) { let m_height = value; return; }
-    method Vector position() { return Vector.new(m_x, m_y); }
 
     method boolean intersects(BoundingBox other) {
         var boolean leftRule, rightRule, bottomRule, topRule;

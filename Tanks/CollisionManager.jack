@@ -31,11 +31,12 @@ class CollisionManager {
         let j = start;
         do collider.reset();
         while (j < m_colliders.size()) {
-            let other = colliders.at(j);
+            let other = m_colliders.at(j);
             if (collider.intersects(other)) {
                 let collisionA = collider.addCollision(other);
                 do other.linkCollision(collisionA);
             }
+            let j = j + 1;
         }
         return;
     }

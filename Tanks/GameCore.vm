@@ -13,7 +13,7 @@ call Vector.init 0
 pop temp 0
 call CollisionManager.init 0
 pop temp 0
-call CollisionFactory.init 0
+call ColliderFactory.init 0
 pop temp 0
 push constant 0
 return
