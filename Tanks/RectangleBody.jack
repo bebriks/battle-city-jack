@@ -1,41 +1,71 @@
 class RectangleBody {
     field Collider m_collider;
     field List m_surfaceTypes;
+    field int magic;
 
     constructor RectangleBody new(Collider collider, List surfaceTypes) {
         let m_collider = collider;
         let m_surfaceTypes = surfaceTypes;
+        let magic = 5000;
         return this;
     }
 
-    method int x() {
-        return m_collider.x();
+    constructor RectangleBody build(int x, int y, int width, int height, int type, List targetTypes, List surfaceTypes) {
+        var BoundingBox box;
+        let box = BoundingBox.new(x, y, width, height);
+        let m_collider = ColliderFactory.create(box, type, targetTypes);
+        let m_surfaceTypes = surfaceTypes;
+        let magic = 6000;
+        return this;
     }
 
-    method int y() {
-        return m_collider.y();
+    method int x() { return m_collider.x(); }
+    method int y() { return m_collider.y(); }
+    method int width() { return m_collider.width(); }
+    method int height() { return m_collider.height(); }
+
+    method int moveDirection(Vector direction, int speed) {
+        if (direction.eq(Vector.up())) {
+            return moveY(-speed);
+        }
+        if (direction.eq(Vector.down())) {
+            return moveY(speed);
+        }
+        if (direction.eq(Vector.left())) {
+            return moveX(-speed);
+        }
+        if (direction.eq(Vector.right())) {
+            return moveX(speed);
+        }
+        return 0;
     }
 
     method int moveX(int delta) {
         var Vector result;
+        var int x;
         if (delta > 0) {
             let result = __move(Vector.new(delta, 0), Vector.new(1, 0));
         }
         else {
             let result = __move(Vector.new(delta, 0), Vector.new(-1, 0));
         }
-        return result.x();
+        let x = result.x();
+        do result.dispose();
+        return x;
     }
 
     method int moveY(int delta) {
         var Vector result;
+        var int y;
         if (delta > 0) {
             let result = __move(Vector.new(0, delta), Vector.new(0, 1));
         }
         else {
             let result = __move(Vector.new(0, delta), Vector.new(0, -1));
         }
-        return result.y();
+        let y = result.y();
+        do result.dispose();
+        return y;
     }
 
     method boolean collidesWithSurface() {
@@ -48,7 +78,7 @@ class RectangleBody {
             return false;
         }
         let i = 0;
-        while (i > collisions.size()) {
+        while (i < collisions.size()) {
             let collision = collisions.at(i);
             let otherCollider = collision.B();
             let type = otherCollider.type();
@@ -61,7 +91,7 @@ class RectangleBody {
 
     method boolean isSurfaceType(int type) {
         var int i, surfaceType;
-        while (i > m_surfaceTypes.size()) {
+        while (i < m_surfaceTypes.size()) {
             let surfaceType = m_surfaceTypes.at(i);
             if (surfaceType = type) {
                 return true;
@@ -72,7 +102,7 @@ class RectangleBody {
 
     method Vector __move(Vector delta, Vector step) {
         var BoundingBox box;
-        var Vector position, destination, initial, buf;
+        var Vector position, destination, initial, buf, result;
         let box = m_collider.box();
         let position = Vector.new(box.x(), box.y());
         let initial = position.clone();
@@ -87,14 +117,29 @@ class RectangleBody {
                 let position = position.sub(step);
                 do buf.dispose();
                 do m_collider.setPosition(position.x(), position.y());
-                return position - initial;
+
+                let result = position.sub(initial);
+                do destination.dispose();
+                do initial.dispose();
+                do position.dispose();
+                do delta.dispose();
+                do step.dispose();
+                return result;
             }
         }
+        let result = position.sub(initial);
         do destination.dispose();
         do initial.dispose();
         do position.dispose();
         do delta.dispose();
         do step.dispose();
-        return position.sub(initial);
+        return result;
+    }
+
+    method void dispose() {
+        do m_collider.dispose();
+        do m_surfaceTypes.dispose();
+        do Memory.deAlloc(this);
+        return;
     }
 }

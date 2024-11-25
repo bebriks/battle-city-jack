@@ -1,11 +1,13 @@
 class CollisionInfo {
     field Collider m_colliderA, m_colliderB;
     field CollisionInfo m_linked;
+    field int magic;
 
     constructor CollisionInfo new(Collider colliderA, Collider colliderB) {
         let m_colliderA = colliderA;
         let m_colliderB = colliderB;
         let m_linked = this;
+        let magic = 2000;
         return this;
     }
 
@@ -15,6 +17,7 @@ class CollisionInfo {
         let m_colliderB = other.A();
         let m_linked = other;
         do other.setLink(this);
+        let magic = 3000;
         return this;
     }
     

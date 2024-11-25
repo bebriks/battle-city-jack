@@ -1,75 +1,86 @@
 class Bullet {
-    field Vector m_position, m_direction;
-    field int m_moveSpeed, m_width, m_height;
+    field Vector m_direction;
+    field int m_moveSpeed; 
+    field RectangleBody m_body;
+    field int magic;
 
     constructor Bullet new(Vector position, Vector direction) {
-        var int newX, newY;
-        let m_position = position;
+        var int newX, newY, width, height;
         let m_direction = direction;
         let m_moveSpeed = 1;
 
         if (direction.eq(Vector.up()) | direction.eq(Vector.down())) {
-            let m_width = 3;
-            let m_height = 5;
+            let width = 3;
+            let height = 5;
         }
 
         else {
-            let m_width = 5;
-            let m_height = 3;
+            let width = 5;
+            let height = 3;
         }
 
-        let newX = m_position.x();
-        let newY = m_position.y();
+        let m_body = RectangleBody.build(position.x(), position.y(), width, height, 1, List.oneElement(2), List.oneElement(2));
+
+        let newX = position.x();
+        let newY = position.y();
         do Screen.setColor(1);
-        do Screen.drawRectangle(newX, newY, newX + m_width - 1, newY + m_height - 1);   
+        do Screen.drawRectangle(newX, newY, newX + width - 1, newY + height - 1);   
+        let magic = 7000;
+        do position.dispose();
         return this;
     }
 
+    method int getX() {
+        return m_body.x();
+    }
+
+    method int getY() {
+        return m_body.y();
+    }
+
     method void update() {
-        var Vector oldPosition, buf;
+        var int oldX, oldY, newX, newY, delta;
         var boolean destroyFlag;
-        let oldPosition = m_position;
-        let buf = m_direction.multiplyInt(m_moveSpeed);
-        let m_position = m_position.add(buf);
+        let oldX = getX();
+        let oldY = getY();
+
+        let delta = m_body.moveDirection(m_direction, m_moveSpeed);
+
+        let newX = getX();
+        let newY = getY();
 
         let destroyFlag = 
-            (m_position.x() < 0) |
-            (m_position.x() > (511 - m_width)) | 
-            (m_position.y() < 0) | 
-            (m_position.y() > (255 - m_height));
+            (newX < 0) |
+            (newX > (511 - m_body.width())) | 
+            (newY < 0) | 
+            (newY > (255 - m_body.height())) |
+            (delta = 0);
 
-        do buf.dispose();
-        do m_position.setX(MathExtension.clamp(m_position.x(), 0, 511 - m_width));
-        do m_position.setY(MathExtension.clamp(m_position.y(), 0, 255 - m_height));
-        do redraw(oldPosition);
-        do Sys.wait(3);
-        do oldPosition.dispose();
+        do redraw(oldX, oldY);
         if (destroyFlag) { do BattleCityGame.destroyBullet(this); }
         return;
     }
 
-    method void redraw(Vector oldPosition) {
-        var int oldX, oldY, newX, newY;
-        let oldX = oldPosition.x();
-        let oldY = oldPosition.y();
-        let newX = m_position.x();
-        let newY = m_position.y();
+    method void redraw(int oldX, int oldY) {
+        var int newX, newY;
+        let newX = getX();
+        let newY = getY();
         do Screen.setColor(0);
-        do Screen.drawRectangle(oldX, oldY, oldX + m_width - 1, oldY + m_height - 1);
+        do Screen.drawRectangle(oldX, oldY, oldX + m_body.width() - 1, oldY + m_body.height() - 1);
         do Screen.setColor(1);
-        do Screen.drawRectangle(newX, newY, newX + m_width - 1, newY + m_height - 1);
+        do Screen.drawRectangle(newX, newY, newX + m_body.width() - 1, newY + m_body.height() - 1);
         return;
     }
 
     method void dispose() {
         var int x, y;
-        let x = m_position.x();
-        let y = m_position.y();
+        let x = getX();
+        let y = getY();
         do Screen.setColor(0);
-        do Screen.drawRectangle(x, y, x + m_width, y + m_height);
+        do Screen.drawRectangle(x, y, x + m_body.width(), y + m_body.height());
         do Screen.setColor(1);
-        do m_position.dispose();
         do m_direction.dispose();
+        do m_body.dispose();
         do Memory.deAlloc(this);
         return;
     }

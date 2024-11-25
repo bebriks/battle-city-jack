@@ -1,11 +1,13 @@
 class BoundingBox {
     field int m_x, m_y, m_width, m_height;
+    field int magic;
 
     constructor BoundingBox new(int x, int y, int width, int height) {
         let m_x = x;
         let m_y = y;
         let m_width = width;
         let m_height = height;
+        let magic = 4000;
         return this;
     }
 

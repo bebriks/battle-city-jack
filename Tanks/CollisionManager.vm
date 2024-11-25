@@ -13,8 +13,9 @@ not
 if-goto WHILE_END0
 push local 0
 pop local 1
+push static 0
 push local 0
-call colliders.at 1
+call List.at 2
 pop local 2
 push local 2
 push local 1
@@ -80,5 +81,37 @@ push static 0
 push argument 0
 call List.add 2
 pop temp 0
+push static 0
+call List.size 1
+push constant 1
+sub
+return
+function CollisionManager.removeCollider 2
+push static 0
+push argument 0
+call List.removeAt 2
+pop temp 0
+push argument 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push static 0
+call List.size 1
+lt
+not
+if-goto WHILE_END0
+push static 0
+push local 0
+call List.at 2
+pop local 1
+push local 1
+call Collider.moveSlot 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return

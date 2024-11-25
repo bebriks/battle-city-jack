@@ -1,13 +1,11 @@
-function Bullet.new 2
-push constant 5
+function Bullet.new 4
+push constant 4
 call Memory.alloc 1
 pop pointer 0
-push argument 0
-pop this 0
 push argument 1
-pop this 1
+pop this 0
 push constant 1
-pop this 2
+pop this 1
 push argument 1
 call Vector.up 0
 call Vector.eq 2
@@ -19,20 +17,33 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 3
-pop this 3
+pop local 2
 push constant 5
-pop this 4
+pop local 3
 goto IF_END0
 label IF_FALSE0
 push constant 5
-pop this 3
+pop local 2
 push constant 3
-pop this 4
+pop local 3
 label IF_END0
-push this 0
+push argument 0
+call Vector.x 1
+push argument 0
+call Vector.y 1
+push local 2
+push local 3
+push constant 1
+push constant 2
+call List.oneElement 1
+push constant 2
+call List.oneElement 1
+call RectangleBody.build 7
+pop this 2
+push argument 0
 call Vector.x 1
 pop local 0
-push this 0
+push argument 0
 call Vector.y 1
 pop local 1
 push constant 1
@@ -41,90 +52,88 @@ pop temp 0
 push local 0
 push local 1
 push local 0
-push this 3
+push local 2
 add
 push constant 1
 sub
 push local 1
-push this 4
+push local 3
 add
 push constant 1
 sub
 call Screen.drawRectangle 4
 pop temp 0
+push constant 7000
+pop this 3
+push argument 0
+call Vector.dispose 1
+pop temp 0
 push pointer 0
 return
-function Bullet.update 3
+function Bullet.getX 0
 push argument 0
 pop pointer 0
-push this 0
-pop local 0
-push this 1
 push this 2
-call Vector.multiplyInt 2
+call RectangleBody.x 1
+return
+function Bullet.getY 0
+push argument 0
+pop pointer 0
+push this 2
+call RectangleBody.y 1
+return
+function Bullet.update 6
+push argument 0
+pop pointer 0
+push pointer 0
+call Bullet.getX 1
+pop local 0
+push pointer 0
+call Bullet.getY 1
 pop local 1
+push this 2
 push this 0
-push local 1
-call Vector.add 2
-pop this 0
-push this 0
-call Vector.x 1
-push constant 0
-lt
-push this 0
-call Vector.x 1
-push constant 511
-push this 3
-sub
-gt
-or
-push this 0
-call Vector.y 1
-push constant 0
-lt
-or
-push this 0
-call Vector.y 1
-push constant 255
-push this 4
-sub
-gt
-or
+push this 1
+call RectangleBody.moveDirection 3
+pop local 4
+push pointer 0
+call Bullet.getX 1
 pop local 2
-push local 1
-call Vector.dispose 1
-pop temp 0
-push this 0
-push this 0
-call Vector.x 1
+push pointer 0
+call Bullet.getY 1
+pop local 3
+push local 2
 push constant 0
+lt
+push local 2
 push constant 511
-push this 3
+push this 2
+call RectangleBody.width 1
 sub
-call MathExtension.clamp 3
-call Vector.setX 2
-pop temp 0
-push this 0
-push this 0
-call Vector.y 1
+gt
+or
+push local 3
 push constant 0
+lt
+or
+push local 3
 push constant 255
-push this 4
+push this 2
+call RectangleBody.height 1
 sub
-call MathExtension.clamp 3
-call Vector.setY 2
-pop temp 0
+gt
+or
+push local 4
+push constant 0
+eq
+or
+pop local 5
 push pointer 0
 push local 0
-call Bullet.redraw 2
+push local 1
+call Bullet.redraw 3
 pop temp 0
-push constant 3
-call Sys.wait 1
-pop temp 0
-push local 0
-call Vector.dispose 1
-pop temp 0
-push local 2
+push local 5
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -134,33 +143,29 @@ pop temp 0
 label IF_FALSE0
 push constant 0
 return
-function Bullet.redraw 4
+function Bullet.redraw 2
 push argument 0
 pop pointer 0
-push argument 1
-call Vector.x 1
+push pointer 0
+call Bullet.getX 1
 pop local 0
-push argument 1
-call Vector.y 1
+push pointer 0
+call Bullet.getY 1
 pop local 1
-push this 0
-call Vector.x 1
-pop local 2
-push this 0
-call Vector.y 1
-pop local 3
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push local 0
-push local 1
-push local 0
-push this 3
+push argument 1
+push argument 2
+push argument 1
+push this 2
+call RectangleBody.width 1
 add
 push constant 1
 sub
-push local 1
-push this 4
+push argument 2
+push this 2
+call RectangleBody.height 1
 add
 push constant 1
 sub
@@ -169,15 +174,17 @@ pop temp 0
 push constant 1
 call Screen.setColor 1
 pop temp 0
-push local 2
-push local 3
-push local 2
-push this 3
+push local 0
+push local 1
+push local 0
+push this 2
+call RectangleBody.width 1
 add
 push constant 1
 sub
-push local 3
-push this 4
+push local 1
+push this 2
+call RectangleBody.height 1
 add
 push constant 1
 sub
@@ -188,11 +195,11 @@ return
 function Bullet.dispose 2
 push argument 0
 pop pointer 0
-push this 0
-call Vector.x 1
+push pointer 0
+call Bullet.getX 1
 pop local 0
-push this 0
-call Vector.y 1
+push pointer 0
+call Bullet.getY 1
 pop local 1
 push constant 0
 call Screen.setColor 1
@@ -200,10 +207,12 @@ pop temp 0
 push local 0
 push local 1
 push local 0
-push this 3
+push this 2
+call RectangleBody.width 1
 add
 push local 1
-push this 4
+push this 2
+call RectangleBody.height 1
 add
 call Screen.drawRectangle 4
 pop temp 0
@@ -213,8 +222,8 @@ pop temp 0
 push this 0
 call Vector.dispose 1
 pop temp 0
-push this 1
-call Vector.dispose 1
+push this 2
+call RectangleBody.dispose 1
 pop temp 0
 push pointer 0
 call Memory.deAlloc 1

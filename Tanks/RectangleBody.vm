@@ -1,11 +1,34 @@
 function RectangleBody.new 0
-push constant 2
+push constant 3
 call Memory.alloc 1
 pop pointer 0
 push argument 0
 pop this 0
 push argument 1
 pop this 1
+push constant 5000
+pop this 2
+push pointer 0
+return
+function RectangleBody.build 1
+push constant 3
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+push argument 1
+push argument 2
+push argument 3
+call BoundingBox.new 4
+pop local 0
+push local 0
+push argument 4
+push argument 5
+call ColliderFactory.create 3
+pop this 0
+push argument 6
+pop this 1
+push constant 6000
+pop this 2
 push pointer 0
 return
 function RectangleBody.x 0
@@ -20,7 +43,70 @@ pop pointer 0
 push this 0
 call Collider.y 1
 return
-function RectangleBody.moveX 1
+function RectangleBody.width 0
+push argument 0
+pop pointer 0
+push this 0
+call Collider.width 1
+return
+function RectangleBody.height 0
+push argument 0
+pop pointer 0
+push this 0
+call Collider.height 1
+return
+function RectangleBody.moveDirection 0
+push argument 0
+pop pointer 0
+push argument 1
+call Vector.up 0
+call Vector.eq 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push argument 2
+neg
+call RectangleBody.moveY 2
+return
+label IF_FALSE0
+push argument 1
+call Vector.down 0
+call Vector.eq 2
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push argument 2
+call RectangleBody.moveY 2
+return
+label IF_FALSE1
+push argument 1
+call Vector.left 0
+call Vector.eq 2
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push argument 2
+neg
+call RectangleBody.moveX 2
+return
+label IF_FALSE2
+push argument 1
+call Vector.right 0
+call Vector.eq 2
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+push argument 2
+call RectangleBody.moveX 2
+return
+label IF_FALSE3
+push constant 0
+return
+function RectangleBody.moveX 2
 push argument 0
 pop pointer 0
 push argument 1
@@ -53,8 +139,13 @@ pop local 0
 label IF_END0
 push local 0
 call Vector.x 1
+pop local 1
+push local 0
+call Vector.dispose 1
+pop temp 0
+push local 1
 return
-function RectangleBody.moveY 1
+function RectangleBody.moveY 2
 push argument 0
 pop pointer 0
 push argument 1
@@ -87,6 +178,11 @@ pop local 0
 label IF_END0
 push local 0
 call Vector.y 1
+pop local 1
+push local 0
+call Vector.dispose 1
+pop temp 0
+push local 1
 return
 function RectangleBody.collidesWithSurface 5
 push argument 0
@@ -110,7 +206,7 @@ label WHILE_EXP0
 push local 1
 push local 0
 call List.size 1
-gt
+lt
 not
 if-goto WHILE_END0
 push local 0
@@ -144,7 +240,7 @@ label WHILE_EXP0
 push local 0
 push this 1
 call List.size 1
-gt
+lt
 not
 if-goto WHILE_END0
 push this 1
@@ -165,7 +261,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function RectangleBody.__move 5
+function RectangleBody.__move 6
 push argument 0
 pop pointer 0
 push this 0
@@ -230,11 +326,8 @@ call Collider.setPosition 3
 pop temp 0
 push local 1
 push local 3
-sub
-return
-label IF_FALSE0
-goto WHILE_EXP0
-label WHILE_END0
+call Vector.sub 2
+pop local 5
 push local 2
 call Vector.dispose 1
 pop temp 0
@@ -250,7 +343,43 @@ pop temp 0
 push argument 2
 call Vector.dispose 1
 pop temp 0
+push local 5
+return
+label IF_FALSE0
+goto WHILE_EXP0
+label WHILE_END0
 push local 1
 push local 3
 call Vector.sub 2
+pop local 5
+push local 2
+call Vector.dispose 1
+pop temp 0
+push local 3
+call Vector.dispose 1
+pop temp 0
+push local 1
+call Vector.dispose 1
+pop temp 0
+push argument 1
+call Vector.dispose 1
+pop temp 0
+push argument 2
+call Vector.dispose 1
+pop temp 0
+push local 5
+return
+function RectangleBody.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Collider.dispose 1
+pop temp 0
+push this 1
+call List.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
 return

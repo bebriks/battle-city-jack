@@ -1,6 +1,7 @@
 class Vector {
     field int m_x, m_y;
     static Vector m_up, m_down, m_left, m_right, m_zero;
+    field int magic;
     
     function void init() {
         let m_up = Vector.new(0, -1);
@@ -13,6 +14,7 @@ class Vector {
 
     constructor Vector new(int x, int y) {
         let m_x = x; let m_y = y;
+        let magic = 8000;
         return this;
     }
 

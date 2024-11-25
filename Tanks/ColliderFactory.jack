@@ -9,10 +9,12 @@ class ColliderFactory {
     function Collider create(BoundingBox box, int type, List targetTypes) {
         var ColliderMetadata meta;
         var Collider item;
+        var int slot;
         let meta = ColliderMetadata.new(m_counter, type, targetTypes);
         let m_counter = m_counter + 1;
         let item = Collider.new(box, meta);
-        do CollisionManager.addCollider(item);
+        let slot = CollisionManager.addCollider(item);
+        do item.setSlot(slot);
         return item;
     }
 }

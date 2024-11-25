@@ -6,7 +6,7 @@ pop temp 0
 call List.new 0
 pop static 2
 push constant 240
-push constant 224
+push constant 140
 call Vector.new 2
 pop static 1
 push constant 0
@@ -48,12 +48,70 @@ call Bullet.dispose 1
 pop temp 0
 push constant 0
 return
+function BattleCityGame.placeWall 0
+push argument 0
+push argument 1
+push argument 2
+push argument 3
+call BoundingBox.new 4
+push constant 2
+call List.new 0
+call ColliderFactory.create 3
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push argument 0
+push argument 1
+push argument 0
+push argument 2
+add
+push argument 1
+push argument 3
+add
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 0
+return
 function BattleCityGame.exec 1
 push constant 0
 call Graphics.fillScreen 1
 pop temp 0
 push constant 1
 call Screen.setColor 1
+pop temp 0
+push constant 20
+push constant 20
+push constant 440
+push constant 20
+call BattleCityGame.placeWall 4
+pop temp 0
+push constant 20
+push constant 20
+push constant 20
+push constant 200
+call BattleCityGame.placeWall 4
+pop temp 0
+push constant 460
+push constant 20
+push constant 20
+push constant 220
+call BattleCityGame.placeWall 4
+pop temp 0
+push constant 20
+push constant 220
+push constant 440
+push constant 20
+call BattleCityGame.placeWall 4
+pop temp 0
+push constant 100
+push constant 80
+push constant 40
+push constant 20
+call BattleCityGame.placeWall 4
 pop temp 0
 push static 1
 call Vector.clone 1
@@ -78,6 +136,8 @@ pop temp 0
 push constant 0
 return
 label IF_FALSE0
+call CollisionManager.update 0
+pop temp 0
 push static 0
 call Player.update 1
 pop temp 0
