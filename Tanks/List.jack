@@ -9,6 +9,33 @@ class List{
         return this;
     }
 
+    constructor List oneElement(int element) {
+        let m_size = 1;
+        let m_capacity = 2;
+        let m_data = Array.new(m_capacity);
+        let m_data[0] = element;
+        return this;
+    }
+
+    constructor List twoElements(int a, int b) {
+        let m_size = 2;
+        let m_capacity = 2;
+        let m_data = Array.new(m_capacity);
+        let m_data[0] = a;
+        let m_data[1] = b;
+        return this;
+    }
+
+    constructor List threeElements(int a, int b, int c) {
+        let m_size = 3;
+        let m_capacity = 4;
+        let m_data = Array.new(m_capacity);
+        let m_data[0] = a;
+        let m_data[1] = b;
+        let m_data[2] = c;
+        return this;
+    }
+
     method int size() { return m_size; }
 
     method void add(int el) {

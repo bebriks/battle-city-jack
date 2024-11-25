@@ -3,7 +3,7 @@ push constant 0
 pop static 0
 push constant 0
 return
-function ColliderFactory.create 2
+function ColliderFactory.create 3
 push static 0
 push argument 1
 push argument 2
@@ -19,6 +19,10 @@ call Collider.new 2
 pop local 1
 push local 1
 call CollisionManager.addCollider 1
+pop local 2
+push local 1
+push local 2
+call Collider.setSlot 2
 pop temp 0
 push local 1
 return

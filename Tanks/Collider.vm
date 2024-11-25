@@ -1,13 +1,17 @@
 function Collider.new 0
-push constant 3
+push constant 5
 call Memory.alloc 1
 pop pointer 0
+push constant 1000
+pop this 4
 push argument 0
 pop this 0
 push argument 1
 pop this 1
 call List.new 0
 pop this 2
+push constant 0
+pop this 3
 push pointer 0
 return
 function Collider.x 0
@@ -21,6 +25,18 @@ push argument 0
 pop pointer 0
 push this 0
 call BoundingBox.y 1
+return
+function Collider.width 0
+push argument 0
+pop pointer 0
+push this 0
+call BoundingBox.width 1
+return
+function Collider.height 0
+push argument 0
+pop pointer 0
+push this 0
+call BoundingBox.height 1
 return
 function Collider.collisions 0
 push argument 0
@@ -43,6 +59,22 @@ function Collider.box 0
 push argument 0
 pop pointer 0
 push this 0
+return
+function Collider.setSlot 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 3
+push constant 0
+return
+function Collider.moveSlot 0
+push argument 0
+pop pointer 0
+push this 3
+push constant 1
+sub
+pop this 3
+push constant 0
 return
 function Collider.intersects 0
 push argument 0
@@ -106,11 +138,9 @@ call List.size 1
 lt
 not
 if-goto WHILE_END0
-push local 0
 push this 2
-add
-pop pointer 1
-push that 0
+push local 0
+call List.at 2
 pop local 1
 push local 1
 call CollisionInfo.dispose 1
@@ -215,30 +245,12 @@ call CollisionManager.updateCollider 1
 pop temp 0
 push constant 0
 return
-function Collider.dispose 2
+function Collider.dispose 0
 push argument 0
 pop pointer 0
-push constant 0
-pop local 0
-label WHILE_EXP0
-push local 0
-push this 2
-call List.size 1
-lt
-not
-if-goto WHILE_END0
-push local 0
-call m_data.at 1
-pop local 1
-push local 1
-call CollisionInfo.dispose 1
+push pointer 0
+call Collider.reset 1
 pop temp 0
-push local 0
-push constant 1
-add
-pop local 0
-goto WHILE_EXP0
-label WHILE_END0
 push this 2
 call List.dispose 1
 pop temp 0
@@ -247,6 +259,9 @@ call BoundingBox.dispose 1
 pop temp 0
 push this 1
 call ColliderMetadata.dispose 1
+pop temp 0
+push this 3
+call CollisionManager.removeCollider 1
 pop temp 0
 push pointer 0
 call Memory.deAlloc 1

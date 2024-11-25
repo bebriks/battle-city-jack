@@ -8,7 +8,7 @@ class BattleCityGame {
         do SpriteManager.loadPlayerTankUp();
         do SpriteManager.loadPlayerTankRight();
         let bullets = List.new();
-        let playerStartPosition = Vector.new(240, 224);
+        let playerStartPosition = Vector.new(240, 140);
         return;
     }
 
@@ -27,13 +27,31 @@ class BattleCityGame {
         return;
     }
 
+    function void placeWall(int x, int y, int width, int height) {
+        do ColliderFactory.create(BoundingBox.new(x, y, width, height), 2, List.new());
+        //TODO: отрисовка спрайта
+        do Screen.setColor(1);
+        do Screen.drawRectangle(x, y, x + width, y + height);
+        do Screen.setColor(0);
+        return;
+    }
+
 	function void exec() {
         var Bullet bulletBuf;
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
+
+        do BattleCityGame.placeWall(20, 20, 440, 20);
+        do BattleCityGame.placeWall(20, 20, 20, 200);
+        do BattleCityGame.placeWall(460, 20, 20, 220);
+        do BattleCityGame.placeWall(20, 220, 440, 20);
+        do BattleCityGame.placeWall(100, 80, 40, 20);
+
         let player = Player.new(playerStartPosition.clone());
         while (true) {
             if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
+
+            do CollisionManager.update();
             do player.update();
             let globalIndex = 0;
             while (globalIndex < bullets.size()) {

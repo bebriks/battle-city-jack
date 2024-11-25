@@ -2,20 +2,29 @@ class Collider {
     field BoundingBox m_box;
     field ColliderMetadata m_metadata;
     field List m_collisions;
+    field int m_slot;
+    field int magic;
 
     constructor Collider new(BoundingBox box, ColliderMetadata data) {
+        let magic = 1000;
         let m_box = box;
         let m_metadata = data;
         let m_collisions = List.new();
+        let m_slot = 0;
         return this;
     }
 
     method int x() { return m_box.x(); }
     method int y() { return m_box.y(); }
+    method int width() { return m_box.width(); }
+    method int height() { return m_box.height(); }
     method List collisions() { return m_collisions; }
     method int type() { return m_metadata.type(); }
     method int id() { return m_metadata.id(); }
     method BoundingBox box() { return m_box; }
+
+    method void setSlot(int value) { let m_slot = value; return; }
+    method void moveSlot() { let m_slot = m_slot - 1; return; }
 
     method boolean intersects(Collider other) {
         if (~(m_metadata.isTargetType(other.type()))) {
@@ -44,7 +53,7 @@ class Collider {
             return;
         }
         while (i < m_collisions.size()) {
-             let collision = m_collisions[i];
+             let collision = m_collisions.at(i);
              do collision.dispose();
              let i = i + 1;
         }
@@ -90,17 +99,11 @@ class Collider {
     }
 
     method void dispose() {
-        var int i;
-        var CollisionInfo collision;
-        let i = 0;
-        while (i < m_collisions.size()) {
-             let collision = m_data.at(i);
-             do collision.dispose();
-             let i = i + 1;
-        }
+        do reset();
         do m_collisions.dispose();
         do m_box.dispose();
         do m_metadata.dispose();
+        do CollisionManager.removeCollider(m_slot);
         do Memory.deAlloc(this);
         return;
     }

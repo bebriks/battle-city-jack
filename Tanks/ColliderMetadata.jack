@@ -1,11 +1,13 @@
 class ColliderMetadata {
     field int m_itemId, m_typeId;
     field List m_targetTypes;
+    field int magic;
 
     constructor ColliderMetadata new(int itemId, int typeId, List targetTypes) {
         let m_itemId = itemId;
         let m_typeId = typeId;
         let m_targetTypes = targetTypes;
+        let magic = 72;
         return this;
     }
 
@@ -25,8 +27,8 @@ class ColliderMetadata {
     }
 
     method void dispose() {
+        do m_targetTypes.dispose();
         do Memory.deAlloc(this);
-        do targetTypes.dispose();
         return;
     }
 }

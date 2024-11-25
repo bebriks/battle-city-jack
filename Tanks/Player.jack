@@ -7,14 +7,7 @@ class Player {
     field RectangleBody m_body;
 
     constructor Player new(Vector startPosition) {
-        var BoundingBox box;
-        var List surfaceTypes;
-        var Collider collider;
-        let box = BoundingBox.new(startPosition.x(), startPosition.y(), 33, 33);
-        let surfaceTypes = List.new();
-        do surfaceTypes.add(2);
-        let collider = ColliderFactory.create(box, 0, surfaceTypes);
-        let m_body = RectangleBody.new(collider, surfaceTypes);
+        let m_body = RectangleBody.build(startPosition.x(), startPosition.y(), 33, 33, 0, List.oneElement(2), List.oneElement(2));
         let m_position = startPosition;
         let m_moveSpeed = 1;
         let m_reloadTime = 20;

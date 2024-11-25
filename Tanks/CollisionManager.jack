@@ -12,7 +12,7 @@ class CollisionManager {
 
         while (i < m_colliders.size()) {
             let j = i;
-            let collider = colliders.at(i);
+            let collider = m_colliders.at(i);
             do CollisionManager.__checkCollision(collider, j);
             let i = i + 1;
         }
@@ -41,8 +41,22 @@ class CollisionManager {
         return;
     }
 
-    function void addCollider(Collider collider) {
+    function int addCollider(Collider collider) {
         do m_colliders.add(collider);
+        return m_colliders.size() - 1;
+    }
+
+    function void removeCollider(int slot) {
+        var int i;
+        var Collider collider;
+        do m_colliders.removeAt(slot);
+        let i = slot;
+        while (i < m_colliders.size()) {
+            let collider = m_colliders.at(i);
+            do collider.moveSlot();
+            let i = i + 1;
+        }
+
         return;
     }
 }
