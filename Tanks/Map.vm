@@ -1,0 +1,183 @@
+function Map.init 0
+call SpriteManager.loadBrickWall 0
+pop temp 0
+call SpriteManager.getBrickWall 0
+pop static 0
+push constant 0
+return
+function Map.initBordersXUp 2
+push constant 0
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 0
+push constant 500
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push constant 32
+push constant 32
+call BoundingBox.new 4
+push constant 2
+call List.new 0
+call ColliderFactory.create 3
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push local 0
+push local 1
+push static 0
+push constant 0
+push constant 0
+call Drawer.drawSprite 5
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 0
+push constant 32
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Map.initBordersXDown 2
+push constant 0
+pop local 0
+push constant 224
+pop local 1
+label WHILE_EXP0
+push local 0
+push constant 500
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push constant 32
+push constant 32
+call BoundingBox.new 4
+push constant 2
+call List.new 0
+call ColliderFactory.create 3
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push local 0
+push local 1
+push static 0
+push constant 0
+push constant 0
+call Drawer.drawSprite 5
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 0
+push constant 32
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Map.initBordersYLeft 2
+push constant 0
+pop local 0
+push constant 32
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 224
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push constant 32
+push constant 32
+call BoundingBox.new 4
+push constant 2
+call List.new 0
+call ColliderFactory.create 3
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push local 0
+push local 1
+push static 0
+push constant 0
+push constant 0
+call Drawer.drawSprite 5
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 1
+push constant 32
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Map.initBordersYRight 2
+push constant 480
+pop local 0
+push constant 32
+pop local 1
+label WHILE_EXP0
+push local 1
+push constant 224
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push constant 32
+push constant 32
+call BoundingBox.new 4
+push constant 2
+call List.new 0
+call ColliderFactory.create 3
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push local 0
+push local 1
+push static 0
+push constant 0
+push constant 0
+call Drawer.drawSprite 5
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 1
+push constant 32
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Map.mapDraw 0
+push constant 0
+return
+function Map.placeBrickWall 0
+push constant 0
+return
+function Map.placeFullWall 0
+push constant 0
+return
+function Map.placeLeavesWall 0
+push constant 0
+return

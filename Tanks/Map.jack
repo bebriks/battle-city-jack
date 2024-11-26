@@ -1,0 +1,82 @@
+class Map {
+    static Sprite brickWall;
+
+    function void init() {
+        do SpriteManager.loadBrickWall();
+        let brickWall = SpriteManager.getBrickWall();
+        return;
+    }
+
+    function void initBordersXUp() {
+        var int x, y;
+        let x = 0;
+        let y = 0;
+        while(x < 500) {
+            do ColliderFactory.create(BoundingBox.new(x, y, 32, 32), 2, List.new());
+            do Screen.setColor(1);
+            do Drawer.drawSprite(x, y, brickWall, false, false);
+            do Screen.setColor(0);
+            let x = x + 32;
+        }
+        return;
+    }
+    function void initBordersXDown() {
+        var int x, y;
+        let x = 0;
+        let y = 224;
+        while(x < 500) {
+            do ColliderFactory.create(BoundingBox.new(x, y, 32, 32), 2, List.new());
+            do Screen.setColor(1);
+            do Drawer.drawSprite(x, y, brickWall, false, false);
+            do Screen.setColor(0);
+            let x = x + 32;
+        }
+        return;
+    }
+    function void initBordersYLeft() {
+        var int x, y;
+        let x = 0;
+        let y = 32;
+        while(y < 224) {
+            do ColliderFactory.create(BoundingBox.new(x, y, 32, 32), 2, List.new());
+            do Screen.setColor(1);
+            do Drawer.drawSprite(x, y, brickWall, false, false);
+            do Screen.setColor(0);
+            let y = y + 32;
+        }
+        return;
+    }
+    function void initBordersYRight() {
+        var int x, y;
+        let x = 480;
+        let y = 32;
+        while(y < 224) {
+            do ColliderFactory.create(BoundingBox.new(x, y, 32, 32), 2, List.new());
+            do Screen.setColor(1);
+            do Drawer.drawSprite(x, y, brickWall, false, false);
+            do Screen.setColor(0);
+            let y = y + 32;
+        }
+        return;
+    }
+
+    function void mapDraw() {
+        //do Map.initBordersXUp();
+        //do Map.initBordersXDown();
+        //do Map.initBordersYLeft();
+        //do Map.initBordersYRight();
+        return;
+    }
+
+    function void placeBrickWall() {
+        return;
+    }
+
+    function void placeFullWall() {
+        return;
+    }
+
+    function void placeLeavesWall() {
+        return;
+    }
+}

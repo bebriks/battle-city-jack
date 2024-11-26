@@ -7,7 +7,7 @@ class Bullet {
     constructor Bullet new(Vector position, Vector direction) {
         var int newX, newY, width, height;
         let m_direction = direction;
-        let m_moveSpeed = 1;
+        let m_moveSpeed = 6;
 
         if (direction.eq(Vector.up()) | direction.eq(Vector.down())) {
             let width = 3;

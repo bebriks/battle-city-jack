@@ -29,8 +29,11 @@ class BattleCityGame {
 
 	function void exec() {
         var Bullet bulletBuf;
+
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
+
+        do Map.mapDraw();
 
         let player = Player.new(playerStartPosition.clone());
         while (true) {

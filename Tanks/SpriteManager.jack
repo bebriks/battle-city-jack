@@ -1,7 +1,7 @@
 class SpriteManager{
     static Sprite bigA, bigB, bigD, bigE, bigF, bigG, bigI, bigK, bigM;      
     static Sprite bigN, bigO, bigP, bigR, bigS, bigT, bigU, bigW, bigY;  
-    static Sprite selectTriangle, playerTankUp, playerTankRight;
+    static Sprite selectTriangle, playerTankUp, playerTankRight, brickWall;
 
     function void loadBigF() {
         var Array data, line;
@@ -4826,5 +4826,183 @@ class SpriteManager{
 
     function Sprite getPlayerTankRight() {
         return playerTankRight;
+    }
+
+    function void loadBrickWall() {
+        var Array data, line; 
+        
+        let data = Array.new(32);
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = -1;
+        let data[0] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1;
+        let line[1] = ~32767;
+        let data[1] = line;
+
+        let line = Array.new(2);
+        let line[0] = -4099;
+        let line[1] = -16641;
+        let data[2] = line;
+
+        let line = Array.new(2);
+        let line[0] = -4099;
+        let line[1] = -16641;
+        let data[3] = line;
+
+        let line = Array.new(2);
+        let line[0] = -4099;
+        let line[1] = -16641;
+        let data[4] = line;
+
+        let line = Array.new(2);
+        let line[0] = -4099;
+        let line[1] = -16641;
+        let data[5] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1;
+        let line[1] = ~32767;
+        let data[6] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16389;
+        let data[7] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16389;
+        let data[8] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16389;
+        let data[9] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16389;
+        let data[10] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16389;
+        let data[11] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1;
+        let line[1] = ~32767;
+        let data[12] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[13] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[14] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[15] = line;  
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[16] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[17] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1;
+        let line[1] = ~32767;
+        let data[18] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16393;
+        let data[19] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16393;
+        let data[20] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16393;
+        let data[21] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16393;
+        let data[22] = line;
+
+        let line = Array.new(2);
+        let line[0] = -259;
+        let line[1] = -16393;
+        let data[23] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1;
+        let line[1] = ~32767;
+        let data[24] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[25] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[26] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[27] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[28] = line;
+
+        let line = Array.new(2);
+        let line[0] = -2051;
+        let line[1] = -16449;
+        let data[29] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1;
+        let line[1] = ~32767;
+        let data[30] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1;
+        let line[1] = -1;
+        let data[31] = line;
+
+        let brickWall = Sprite.new(32, 32, data);
+        return;
+    }
+
+    function void disposeBrickWall() {
+        do brickWall.dispose();
+        return;
+    }
+
+    function Sprite getBrickWall() {
+        return brickWall;
     }
 }

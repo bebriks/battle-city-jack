@@ -17,7 +17,7 @@ call RectangleBody.build 7
 pop this 8
 push argument 0
 pop this 0
-push constant 1
+push constant 6
 pop this 2
 push constant 20
 pop this 3

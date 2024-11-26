@@ -9,7 +9,7 @@ class Player {
     constructor Player new(Vector startPosition) {
         let m_body = RectangleBody.build(startPosition.x(), startPosition.y(), 33, 33, 0, List.oneElement(2), List.oneElement(2));
         let m_position = startPosition;
-        let m_moveSpeed = 1;
+        let m_moveSpeed = 6;
         let m_reloadTime = 20;
         let m_currentSprite = SpriteManager.getPlayerTankUp();
         let m_currentOrientation = Vector.up();
