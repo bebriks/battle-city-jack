@@ -14,6 +14,7 @@ class GameCore
         do CollisionManager.init();
         do ColliderFactory.init();
         do WinScreen.init();
+        do GameOver.init();
         return;
     }
 
@@ -23,6 +24,7 @@ class GameCore
             if (m_state = 1)  { do MainMenu.exec(); }
             if (m_state = 2)  { do BattleCityGame.exec(); }
             if (m_state = 3)  { do WinScreen.exec(); }
+            if (m_state = 4)  { do GameOver.exec(); }
         }
         do Screen.clearScreen();
         return;
