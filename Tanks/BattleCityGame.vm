@@ -5,8 +5,8 @@ call SpriteManager.loadPlayerTankRight 0
 pop temp 0
 call List.new 0
 pop static 2
-push constant 240
-push constant 140
+push constant 32
+push constant 32
 call Vector.new 2
 pop static 1
 push constant 0
@@ -16,7 +16,8 @@ push static 2
 push argument 0
 push argument 1
 push argument 2
-call Bullet.new 3
+push argument 3
+call Bullet.new 4
 call List.add 2
 pop temp 0
 push constant 0
@@ -84,6 +85,8 @@ pop temp 0
 push constant 1
 call Screen.setColor 1
 pop temp 0
+call Map.mapDraw 0
+pop temp 0
 push static 1
 call Vector.clone 1
 call Player.new 1
@@ -115,9 +118,6 @@ return
 label IF_FALSE0
 call CollisionManager.update 0
 pop temp 0
-push static 0
-call Player.update 1
-pop temp 0
 push constant 0
 pop static 4
 label WHILE_EXP1
@@ -140,6 +140,9 @@ add
 pop static 4
 goto WHILE_EXP1
 label WHILE_END1
+push static 0
+call Player.update 1
+pop temp 0
 push constant 0
 pop static 4
 label WHILE_EXP2
@@ -191,5 +194,26 @@ call List.removeAt 2
 pop temp 0
 goto WHILE_EXP0
 label WHILE_END0
+push constant 0
+return
+function BattleCityGame.drawBoom 2
+push argument 0
+call Bullet.getX 1
+pop local 0
+push argument 0
+call Bullet.getY 1
+pop local 1
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push local 0
+push local 1
+push constant 50
+push constant 50
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
 push constant 0
 return

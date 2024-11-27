@@ -111,6 +111,16 @@ return
 label IF_FALSE3
 push constant 0
 return
+function RectangleBody.setPosition 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+call Collider.setPosition 3
+pop temp 0
+push constant 0
+return
 function RectangleBody.moveX 2
 push argument 0
 pop pointer 0

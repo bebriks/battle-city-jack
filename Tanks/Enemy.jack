@@ -1,20 +1,23 @@
 class Enemy {
     field int m_currentAction;
     field Vector m_currentOrientation;
-    field int m_moveSpeed, m_reloadTime;
+    field int m_moveSpeed, m_reloadTime, m_actionDuration;
     field Sprite m_currentSprite;
     field boolean m_mirrorX, m_mirrorY;
     field Timer m_reloadTimer;
     field RectangleBody m_body;
+    field Timer m_actionTimer;
 
     constructor Enemy new(Vector startPosition) {
         let m_body = RectangleBody.build(startPosition.x(), startPosition.y(), 30, 30, 3, List.threeElements(2, 1, 0), List.twoElements(2, 0));
         let m_moveSpeed = 1;
-        let m_reloadTime = 20;
+        let m_reloadTime = 100;
+        let m_actionDuration = 40;
         let m_currentSprite = SpriteManager.getPlayerTankUp();
         let m_currentAction = 3;
         let m_currentOrientation = Vector.up();
         let m_reloadTimer = Timer.new();
+        let m_actionTimer = Timer.new();
         do Drawer.drawSprite(getX(), getY(), m_currentSprite, false, false);
         return this;
     }
@@ -37,7 +40,9 @@ class Enemy {
         let oldY = m_body.y();
 
         do m_reloadTimer.update();
-        if ((m_currentAction = 0) & m_reloadTimer.timeOut()) { do __shoot(); do m_reloadTimer.start(m_reloadTime); }
+        if ((m_currentAction > 5) & m_reloadTimer.timeOut()) { do __shoot(); do m_reloadTimer.start(m_reloadTime); }
+        do m_actionTimer.update();
+        if (m_actionTimer.timeOut()) { do __changeAction(); do m_actionTimer.start(m_actionDuration); }
         let hasMoved = __processMovement();
 
         let collider = m_body.collider();
@@ -60,6 +65,11 @@ class Enemy {
 
     method int getY() {
         return m_body.y();
+    }
+
+    method void __changeAction() {
+        let m_currentAction = LCGRandom.randRange(0, 10);
+        return;
     }
 
     method boolean __processMovement() {
@@ -92,7 +102,7 @@ class Enemy {
         if (m_currentOrientation = Vector.right()) { let bulletPosition = Vector.new(getX() + 30, getY() + 15); }
         if (m_currentOrientation = Vector.down()) { let bulletPosition = Vector.new(getX() + 15, getY() + 30); }
         if (m_currentOrientation = Vector.left()) { let bulletPosition = Vector.new(getX() - 3, getY() + 15); }
-        do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone(), 0);
+        do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone(), 0, 4);
         return;
     }
 
@@ -106,6 +116,7 @@ class Enemy {
 
     method void dispose() {
         do m_reloadTimer.dispose();
+        do m_actionTimer.dispose();
         do m_body.dispose();
         do Screen.setColor(0);
         do Screen.drawRectangle(getX(), getY(), getX() + 33, getY() + 33);

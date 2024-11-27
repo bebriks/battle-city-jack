@@ -1,13 +1,15 @@
 function Player.new 0
-push constant 8
+push constant 9
 call Memory.alloc 1
 pop pointer 0
+push argument 0
+pop this 8
 push argument 0
 call Vector.x 1
 push argument 0
 call Vector.y 1
-push constant 33
-push constant 33
+push constant 30
+push constant 30
 push constant 0
 push constant 2
 push constant 3
@@ -38,7 +40,7 @@ call Drawer.drawSprite 5
 pop temp 0
 push pointer 0
 return
-function Player.update 3
+function Player.update 4
 push argument 0
 pop pointer 0
 push this 7
@@ -70,16 +72,54 @@ label IF_FALSE0
 push pointer 0
 call Player.__processMovement 1
 pop local 2
-push local 2
-not
+push this 7
+call RectangleBody.collider 1
+pop local 3
+push local 3
+push constant 4
+call Collider.collidesWith 2
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
+push pointer 0
+call Player.__respawn 1
+pop temp 0
 push constant 0
 return
 label IF_FALSE1
+push local 2
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+return
+label IF_FALSE2
 push pointer 0
 call Player.__updateSprite 1
+pop temp 0
+push pointer 0
+push local 0
+push local 1
+call Player.redraw 3
+pop temp 0
+push constant 0
+return
+function Player.__respawn 2
+push argument 0
+pop pointer 0
+push pointer 0
+call Player.getX 1
+pop local 0
+push pointer 0
+call Player.getY 1
+pop local 1
+push this 7
+push this 8
+call Vector.x 1
+push this 8
+call Vector.y 1
+call RectangleBody.setPosition 3
 pop temp 0
 push pointer 0
 push local 0
@@ -304,7 +344,8 @@ push local 0
 push this 0
 call Vector.clone 1
 push constant 3
-call BattleCityGame.createBullet 3
+push constant 1
+call BattleCityGame.createBullet 4
 pop temp 0
 push constant 0
 return
@@ -358,6 +399,9 @@ call Screen.drawRectangle 4
 pop temp 0
 push constant 1
 call Screen.setColor 1
+pop temp 0
+push this 8
+call Vector.dispose 1
 pop temp 0
 push pointer 0
 call Memory.deAlloc 1
