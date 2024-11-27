@@ -117,6 +117,9 @@ class Enemy {
     }
 
     method void dispose() {
+        do Screen.setColor(0);
+        do Screen.drawRectangle(getX(), getY(), getX() + 33, getY() + 33);
+        do Screen.setColor(1);
         do Drawer.drawSprite(
             getX(), 
             getY(), 
