@@ -1,9 +1,11 @@
 class SpriteManager{
     static Sprite bigA, bigB, bigD, bigE, bigF, bigG, bigI, bigK, bigM;      
     static Sprite bigN, bigO, bigP, bigR, bigS, bigT, bigU, bigW, bigY;  
-    static Sprite selectTriangle, playerTankUp, playerTankRight, brickBlock, fullWall, leavesWall, boom, base;
+    static Sprite selectTriangle, playerTankUp, playerTankRight;
+    static Sprite enemyTankUp, enemyTankRight;
+    static Sprite brickBlock, fullWall, leavesWall, boom, base;
 
-    function void loadBigF() {
+/*  function void loadBigF() {
         var Array data, line;
 
         let data = Array.new(48);
@@ -246,7 +248,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigF = Sprite.new(32, 48, data);
         return;
@@ -267,7 +269,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = -1;
         let line[1] = 255;
         let data[0] = line;
@@ -505,7 +507,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigI = Sprite.new(32, 48, data);
         return;
@@ -525,7 +527,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = 16383;
         let line[1] = 0;
         let data[0] = line;
@@ -765,7 +767,7 @@ class SpriteManager{
         let line[1] = 0;
         let data[47] = line;
 
-        let bigR = Sprite.new(32, 48, data);
+        let bigR = Sprite.new(32, 48, data); 
         return;
     }
 
@@ -1041,7 +1043,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = 15;
         let line[1] = 240;
         let data[0] = line;
@@ -1279,7 +1281,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigK = Sprite.new(32, 48, data);
         return;
@@ -1299,7 +1301,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = -1;
         let line[1] = 255;
         let data[0] = line;
@@ -1537,7 +1539,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigE = Sprite.new(32, 48, data);
         return;
@@ -1557,7 +1559,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = -128;
         let line[1] = 7;
         let data[0] = line;
@@ -1795,7 +1797,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigG = Sprite.new(32, 48, data);
         return;
@@ -1815,7 +1817,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = 15360;
         let line[1] = 0;
         let data[0] = line;
@@ -2053,7 +2055,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigA = Sprite.new(32, 48, data);
         return;
@@ -2073,7 +2075,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = -32576;
         let line[1] = 1;
         let data[0] = line;
@@ -2311,7 +2313,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigM = Sprite.new(32, 48, data);
         return;
@@ -2331,7 +2333,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = -64;
         let line[1] = 1;
         let data[0] = line;
@@ -2569,7 +2571,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigS = Sprite.new(32, 48, data);
         return;
@@ -2589,7 +2591,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /*let line = Array.new(2);
         let line[0] = -1;
         let line[1] = 255;
         let data[0] = line;
@@ -2827,7 +2829,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigT = Sprite.new(32, 48, data);
         return;
@@ -2847,7 +2849,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = 15;
         let line[1] = 240;
         let data[0] = line;
@@ -3085,7 +3087,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigU = Sprite.new(32, 48, data);
         return;
@@ -3105,7 +3107,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = 16383;
         let line[1] = 0;
         let data[0] = line;
@@ -3343,7 +3345,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigD = Sprite.new(32, 48, data);
         return;
@@ -3363,7 +3365,7 @@ class SpriteManager{
 
         let data = Array.new(48);
 
-        let line = Array.new(2);
+        /* let line = Array.new(2);
         let line[0] = 31744;
         let line[1] = 0;
         let data[0] = line;
@@ -3601,7 +3603,7 @@ class SpriteManager{
         let line = Array.new(2);
         let line[0] = 0;
         let line[1] = 0;
-        let data[47] = line;
+        let data[47] = line; 
 
         let bigO = Sprite.new(32, 48, data);
         return;
@@ -4389,6 +4391,7 @@ class SpriteManager{
     function Sprite getBigY() {
         return bigY;
     }
+    */
 
     function void loadSelectTriangle() {
         var Array data, line; 
@@ -4828,6 +4831,362 @@ class SpriteManager{
         return playerTankRight;
     }
 
+    function void loadEnemyTankUp() {
+        var Array data, line; 
+        
+        let data = Array.new(32);
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[0] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[1] = line;
+
+        let line = Array.new(2);
+        let line[0] = 16384;
+        let line[1] = 2;
+        let data[2] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16384;
+        let line[1] = 3;
+        let data[3] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16384;
+        let line[1] = 3;
+        let data[4] = line;
+
+        let line = Array.new(2);
+        let line[0] = ~32767;
+        let line[1] = 1;
+        let data[5] = line;
+
+        let line = Array.new(2);
+        let line[0] = ~32767;
+        let line[1] = 1;
+        let data[6] = line;
+
+        let line = Array.new(2);
+        let line[0] = -1024;
+        let line[1] = 63;
+        let data[7] = line;
+
+        let line = Array.new(2);
+        let line[0] = -30980;
+        let line[1] = 16255;
+        let data[8] = line;
+
+        let line = Array.new(2);
+        let line[0] = -31868;
+        let line[1] = 8641;
+        let data[9] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32260;
+        let line[1] = 16257;
+        let data[10] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32516;
+        let line[1] = 16129;
+        let data[11] = line;
+
+        let line = Array.new(2);
+        let line[0] = -32636;
+        let line[1] = 8449;
+        let data[12] = line;
+
+        let line = Array.new(2);
+        let line[0] = -7940;
+        let line[1] = 16135;
+        let data[13] = line;
+
+        let line = Array.new(2);
+        let line[0] = 12540;
+        let line[1] = 16140;
+        let data[14] = line;
+
+        let line = Array.new(2);
+        let line[0] = 6276;
+        let line[1] = 8472;
+        let data[15] = line;  
+
+        let line = Array.new(2);
+        let line[0] = 3324;
+        let line[1] = 16176;
+        let data[16] = line;
+
+        let line = Array.new(2);
+        let line[0] = 3324;
+        let line[1] = 16176;
+        let data[17] = line;
+
+        let line = Array.new(2);
+        let line[0] = 6276;
+        let line[1] = 8472;
+        let data[18] = line;
+
+        let line = Array.new(2);
+        let line[0] = 12540;
+        let line[1] = 16140;
+        let data[19] = line;
+
+        let line = Array.new(2);
+        let line[0] = -7940;
+        let line[1] = 16135;
+        let data[20] = line;
+
+        let line = Array.new(2);
+        let line[0] = 132;
+        let line[1] = 8448;
+        let data[21] = line;
+
+        let line = Array.new(2);
+        let line[0] = 252;
+        let line[1] = 16128;
+        let data[22] = line;
+
+        let line = Array.new(2);
+        let line[0] = 252;
+        let line[1] = 16128;
+        let data[23] = line;
+
+        let line = Array.new(2);
+        let line[0] = 132;
+        let line[1] = 8448;
+        let data[24] = line;
+
+        let line = Array.new(2);
+        let line[0] = 508;
+        let line[1] = 16256;
+        let data[25] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1020;
+        let line[1] = 16320;
+        let data[26] = line;
+
+        let line = Array.new(2);
+        let line[0] = 1668;
+        let line[1] = 8544;
+        let data[27] = line;
+
+        let line = Array.new(2);
+        let line[0] = -772;
+        let line[1] = 16191;
+        let data[28] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[29] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[30] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[31] = line;
+
+        let enemyTankUp = Sprite.new(32, 32, data);
+        return;
+    }
+
+    function void disposeEnemyTankUp() {
+        do enemyTankUp.dispose();
+        return;
+    }
+
+    function Sprite getEnemyTankUp() {
+        return enemyTankUp;
+    }
+
+    function void loadEnemyTankRight() {
+        var Array data, line; 
+        
+        let data = Array.new(32);
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[0] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[1] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8;
+        let line[1] = 255;
+        let data[2] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[3] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[4] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[5] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[6] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8;
+        let line[1] = 255;
+        let data[7] = line;
+
+        let line = Array.new(2);
+        let line[0] = 96;
+        let line[1] = 96;
+        let data[8] = line;
+
+        let line = Array.new(2);
+        let line[0] = 48;
+        let line[1] = 192;
+        let data[9] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16360;
+        let line[1] = 384;
+        let data[10] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8184;
+        let line[1] = 257;
+        let data[11] = line;
+
+        let line = Array.new(2);
+        let line[0] = 12296;
+        let line[1] = 259;
+        let data[12] = line;
+
+        let line = Array.new(2);
+        let line[0] = 6152;
+        let line[1] = 262;
+        let data[13] = line;
+
+        let line = Array.new(2);
+        let line[0] = 2056;
+        let line[1] = 14596;
+        let data[14] = line;
+
+        let line = Array.new(2);
+        let line[0] = 2056;
+        let line[1] = 8188;
+        let data[15] = line;  
+
+        let line = Array.new(2);
+        let line[0] = 2056;
+        let line[1] = 8188;
+        let data[16] = line;
+
+        let line = Array.new(2);
+        let line[0] = 2056;
+        let line[1] = 14596;
+        let data[17] = line;
+
+        let line = Array.new(2);
+        let line[0] = 6152;
+        let line[1] = 262;
+        let data[18] = line;
+
+        let line = Array.new(2);
+        let line[0] = 12296;
+        let line[1] = 259;
+        let data[19] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8184;
+        let line[1] = 257;
+        let data[20] = line;
+
+        let line = Array.new(2);
+        let line[0] = -16360;
+        let line[1] = 384;
+        let data[21] = line;
+
+        let line = Array.new(2);
+        let line[0] = 48;
+        let line[1] = 192;
+        let data[22] = line;
+
+        let line = Array.new(2);
+        let line[0] = 96;
+        let line[1] = 96;
+        let data[23] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8;
+        let line[1] = 255;
+        let data[24] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[25] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[26] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[27] = line;
+
+        let line = Array.new(2);
+        let line[0] = -9368;
+        let line[1] = 182;
+        let data[28] = line;
+
+        let line = Array.new(2);
+        let line[0] = -8;
+        let line[1] = 255;
+        let data[29] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[30] = line;
+
+        let line = Array.new(2);
+        let line[0] = 0;
+        let line[1] = 0;
+        let data[31] = line;
+
+        let enemyTankRight = Sprite.new(32, 32, data);
+        return;
+    }
+
+    function void disposeEnemyTankRight() {
+        do enemyTankRight.dispose();
+        return;
+    }
+
+    function Sprite getEnemyTankRight() {
+        return enemyTankRight;
+    }
+
     function void loadBrickBlock() {
         var Array data, line; 
         
@@ -5184,7 +5543,7 @@ class SpriteManager{
         return fullWall;
     }
 
-    /* function void loadLeavesWall() {
+    function void loadLeavesWall() {
         var Array data, line; 
         
         let data = Array.new(32);
@@ -5360,7 +5719,7 @@ class SpriteManager{
 
     function Sprite getLeavesWall() {
         return leavesWall;
-    } */
+    } 
 
     function void loadBase() {
         var Array data, line; 
@@ -5539,8 +5898,8 @@ class SpriteManager{
     function Sprite getBase() {
         return base;
     }
-    
-    /* function void loadBoom() {
+
+     function void loadBoom() {
         var Array data, line; 
         
         let data = Array.new(32);
@@ -5716,5 +6075,5 @@ class SpriteManager{
 
     function Sprite getBoom() {
         return boom;
-    } */
+    } 
 }
