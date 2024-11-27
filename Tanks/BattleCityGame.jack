@@ -16,8 +16,8 @@ class BattleCityGame {
         return;
     }
 
-	function void createBullet(Vector position, Vector direction, int target) {
-        do bullets.add(Bullet.new(position, direction, target));
+	function void createBullet(Vector position, Vector direction, int target, int type) {
+        do bullets.add(Bullet.new(position, direction, target, type));
         return;
     }
 
@@ -58,13 +58,13 @@ class BattleCityGame {
             if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
 
             do CollisionManager.update();
-            do player.update();
             let globalIndex = 0;
             while (globalIndex < bullets.size()) {
                 let bulletBuf = bullets.at(globalIndex);
                 do bulletBuf.update();
                 let globalIndex = globalIndex + 1;
             }
+            do player.update();
             let globalIndex = 0;
             while (globalIndex < enemies.size()) {
                 let enemyBuf = enemies.at(globalIndex);

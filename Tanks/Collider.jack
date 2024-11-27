@@ -115,7 +115,6 @@ class Collider {
     }
 
     method void dispose() {
-        do Output.printInt(0);
         do reset();
         do m_collisions.dispose();
         do m_box.dispose();

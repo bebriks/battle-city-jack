@@ -1,5 +1,5 @@
 function Enemy.new 0
-push constant 9
+push constant 11
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -17,24 +17,28 @@ push constant 2
 push constant 0
 call List.twoElements 2
 call RectangleBody.build 7
-pop this 8
+pop this 9
 push constant 1
 pop this 2
-push constant 20
+push constant 100
 pop this 3
-call SpriteManager.getPlayerTankUp 0
+push constant 40
 pop this 4
+call SpriteManager.getPlayerTankUp 0
+pop this 5
 push constant 3
 pop this 0
 call Vector.up 0
 pop this 1
 call Timer.new 0
-pop this 7
+pop this 8
+call Timer.new 0
+pop this 10
 push pointer 0
 call Enemy.getX 1
 push pointer 0
 call Enemy.getY 1
-push this 4
+push this 5
 push constant 0
 push constant 0
 call Drawer.drawSprite 5
@@ -56,19 +60,19 @@ return
 function Enemy.update 4
 push argument 0
 pop pointer 0
-push this 8
+push this 9
 call RectangleBody.x 1
 pop local 0
-push this 8
+push this 9
 call RectangleBody.y 1
 pop local 1
-push this 7
+push this 8
 call Timer.update 1
 pop temp 0
 push this 0
-push constant 0
-eq
-push this 7
+push constant 5
+gt
+push this 8
 call Timer.timeOut 1
 and
 if-goto IF_TRUE0
@@ -77,37 +81,53 @@ label IF_TRUE0
 push pointer 0
 call Enemy.__shoot 1
 pop temp 0
-push this 7
+push this 8
 push this 3
 call Timer.start 2
 pop temp 0
 label IF_FALSE0
+push this 10
+call Timer.update 1
+pop temp 0
+push this 10
+call Timer.timeOut 1
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Enemy.__changeAction 1
+pop temp 0
+push this 10
+push this 4
+call Timer.start 2
+pop temp 0
+label IF_FALSE1
 push pointer 0
 call Enemy.__processMovement 1
 pop local 2
-push this 8
+push this 9
 call RectangleBody.collider 1
 pop local 3
 push local 3
 push constant 1
 call Collider.collidesWith 2
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
 push pointer 0
 call BattleCityGame.destroyEnemy 1
 pop temp 0
 push constant 0
 return
-label IF_FALSE1
+label IF_FALSE2
 push local 2
 not
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
 push constant 0
 return
-label IF_FALSE2
+label IF_FALSE3
 push pointer 0
 call Enemy.__updateSprite 1
 pop temp 0
@@ -121,14 +141,23 @@ return
 function Enemy.getX 0
 push argument 0
 pop pointer 0
-push this 8
+push this 9
 call RectangleBody.x 1
 return
 function Enemy.getY 0
 push argument 0
 pop pointer 0
-push this 8
+push this 9
 call RectangleBody.y 1
+return
+function Enemy.__changeAction 0
+push argument 0
+pop pointer 0
+push constant 0
+push constant 10
+call LCGRandom.randRange 2
+pop this 0
+push constant 0
 return
 function Enemy.__processMovement 1
 push argument 0
@@ -141,7 +170,7 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push this 8
+push this 9
 push this 2
 neg
 call RectangleBody.moveX 2
@@ -158,7 +187,7 @@ eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push this 8
+push this 9
 push this 2
 neg
 call RectangleBody.moveY 2
@@ -175,7 +204,7 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push this 8
+push this 9
 push this 2
 call RectangleBody.moveX 2
 pop temp 0
@@ -191,7 +220,7 @@ eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push this 8
+push this 9
 push this 2
 call RectangleBody.moveY 2
 pop temp 0
@@ -212,13 +241,13 @@ pop temp 0
 push argument 1
 push argument 2
 push argument 1
-push this 4
+push this 5
 call Sprite.width 1
 add
 push constant 1
 sub
 push argument 2
-push this 4
+push this 5
 call Sprite.height 1
 add
 push constant 1
@@ -232,7 +261,7 @@ push pointer 0
 call Enemy.getX 1
 push pointer 0
 call Enemy.getY 1
-push this 4
+push this 5
 push this 1
 call Vector.left 0
 call Vector.eq 2
@@ -318,7 +347,8 @@ push local 0
 push this 1
 call Vector.clone 1
 push constant 0
-call BattleCityGame.createBullet 3
+push constant 4
+call BattleCityGame.createBullet 4
 pop temp 0
 push constant 0
 return
@@ -336,21 +366,24 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 call SpriteManager.getPlayerTankUp 0
-pop this 4
+pop this 5
 goto IF_END0
 label IF_FALSE0
 call SpriteManager.getPlayerTankRight 0
-pop this 4
+pop this 5
 label IF_END0
 push constant 0
 return
 function Enemy.dispose 0
 push argument 0
 pop pointer 0
-push this 7
+push this 8
 call Timer.dispose 1
 pop temp 0
-push this 8
+push this 10
+call Timer.dispose 1
+pop temp 0
+push this 9
 call RectangleBody.dispose 1
 pop temp 0
 push constant 0

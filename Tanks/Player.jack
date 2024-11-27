@@ -5,8 +5,10 @@ class Player {
     field boolean m_mirrorX, m_mirrorY;
     field Timer m_reloadTimer;
     field RectangleBody m_body;
+    field Vector m_startPosition;
 
     constructor Player new(Vector startPosition) {
+        let m_startPosition = startPosition;
         let m_body = RectangleBody.build(startPosition.x(), startPosition.y(), 30, 30, 0, List.twoElements(2, 3), List.twoElements(2, 3));
         let m_moveSpeed = 1;
         let m_reloadTime = 20;
@@ -20,6 +22,7 @@ class Player {
     method void update() {
         var int oldX, oldY;
         var boolean hasMoved;
+        var Collider collider;
 
         let oldX = m_body.x();
         let oldY = m_body.y();
@@ -27,11 +30,27 @@ class Player {
         do m_reloadTimer.update();
         if ((Keyboard.keyPressed() = 32) & m_reloadTimer.timeOut()) { do __shoot(); do m_reloadTimer.start(m_reloadTime); }
         let hasMoved = __processMovement();
+
+        let collider = m_body.collider();
+        if (collider.collidesWith(4)) {
+            do __respawn();
+            return;
+        }
+
         if (~hasMoved) { return; }
         do __updateSprite();
 
         do redraw(oldX, oldY);
 
+        return;
+    }
+
+    method void __respawn() {
+        var int oldX, oldY;
+        let oldX = getX();
+        let oldY = getY();
+        do m_body.setPosition(m_startPosition.x(), m_startPosition.y());
+        do redraw(oldX, oldY);
         return;
     }
 
@@ -73,7 +92,7 @@ class Player {
         if (m_currentOrientation = Vector.right()) { let bulletPosition = Vector.new(getX() + 30, getY() + 15); }
         if (m_currentOrientation = Vector.down()) { let bulletPosition = Vector.new(getX() + 15, getY() + 30); }
         if (m_currentOrientation = Vector.left()) { let bulletPosition = Vector.new(getX() - 3, getY() + 15); }
-        do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone(), 3);
+        do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone(), 3, 1);
         return;
     }
 
@@ -91,6 +110,7 @@ class Player {
         do Screen.setColor(0);
         do Screen.drawRectangle(getX(), getY(), getX() + 33, getY() + 33);
         do Screen.setColor(1);
+        do m_startPosition.dispose();
         do Memory.deAlloc(this);
         return;
     }

@@ -41,6 +41,11 @@ class RectangleBody {
         return 0;
     }
 
+    method void setPosition(int x, int y) {
+        do m_collider.setPosition(x, y);
+        return;
+    }
+
     method int moveX(int delta) {
         var Vector result;
         var int x;
