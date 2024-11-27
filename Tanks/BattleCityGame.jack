@@ -2,6 +2,7 @@ class BattleCityGame {
 	static Player player;
     static Vector playerStartPosition;
     static List bullets;
+    static List enemies;
     static int globalIndex;
 
     function void init() {
@@ -12,8 +13,8 @@ class BattleCityGame {
         return;
     }
 
-	function void createBullet(Vector position, Vector direction) {
-        do bullets.add(Bullet.new(position, direction));
+	function void createBullet(Vector position, Vector direction, int target) {
+        do bullets.add(Bullet.new(position, direction, target));
         return;
     }
 
@@ -27,12 +28,27 @@ class BattleCityGame {
         return;
     }
 
+    function void destroyEnemy(Enemy enemy) {
+        var int index;
+        let index = enemies.indexOf(enemy);
+        if (index = -1) { return; }
+        do enemies.removeAt(index);
+        let globalIndex = globalIndex - 1;
+        do enemy.dispose();
+        return;
+    }
+
+
 	function void exec() {
         var Bullet bulletBuf;
+        var Enemy enemyBuf;
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
 
         let player = Player.new(playerStartPosition.clone());
+        let enemies = List.oneElement(Enemy.new(Vector.new(280, 140)));
+
+
         while (true) {
             if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
 
@@ -42,6 +58,12 @@ class BattleCityGame {
             while (globalIndex < bullets.size()) {
                 let bulletBuf = bullets.at(globalIndex);
                 do bulletBuf.update();
+                let globalIndex = globalIndex + 1;
+            }
+            let globalIndex = 0;
+            while (globalIndex < enemies.size()) {
+                let enemyBuf = enemies.at(globalIndex);
+                do enemyBuf.update();
                 let globalIndex = globalIndex + 1;
             }
         }

@@ -1,11 +1,15 @@
 function Bullet.new 4
-push constant 4
+push constant 6
 call Memory.alloc 1
 pop pointer 0
 push argument 1
-pop this 0
-push constant 1
 pop this 1
+push constant 1
+pop this 2
+push constant 0
+pop this 5
+push argument 2
+pop this 0
 push argument 1
 call Vector.up 0
 call Vector.eq 2
@@ -35,11 +39,12 @@ push local 2
 push local 3
 push constant 1
 push constant 2
-call List.oneElement 1
+push this 0
+call List.twoElements 2
 push constant 2
 call List.oneElement 1
 call RectangleBody.build 7
-pop this 2
+pop this 3
 push argument 0
 call Vector.x 1
 pop local 0
@@ -64,7 +69,7 @@ sub
 call Screen.drawRectangle 4
 pop temp 0
 push constant 7000
-pop this 3
+pop this 4
 push argument 0
 call Vector.dispose 1
 pop temp 0
@@ -73,16 +78,16 @@ return
 function Bullet.getX 0
 push argument 0
 pop pointer 0
-push this 2
+push this 3
 call RectangleBody.x 1
 return
 function Bullet.getY 0
 push argument 0
 pop pointer 0
-push this 2
+push this 3
 call RectangleBody.y 1
 return
-function Bullet.update 6
+function Bullet.update 7
 push argument 0
 pop pointer 0
 push pointer 0
@@ -91,9 +96,9 @@ pop local 0
 push pointer 0
 call Bullet.getY 1
 pop local 1
-push this 2
-push this 0
+push this 3
 push this 1
+push this 2
 call RectangleBody.moveDirection 3
 pop local 4
 push pointer 0
@@ -102,12 +107,15 @@ pop local 2
 push pointer 0
 call Bullet.getY 1
 pop local 3
+push this 3
+call RectangleBody.collider 1
+pop local 6
 push local 2
 push constant 0
 lt
 push local 2
 push constant 511
-push this 2
+push this 3
 call RectangleBody.width 1
 sub
 gt
@@ -118,7 +126,7 @@ lt
 or
 push local 3
 push constant 255
-push this 2
+push this 3
 call RectangleBody.height 1
 sub
 gt
@@ -127,20 +135,32 @@ push local 4
 push constant 0
 eq
 or
+push this 5
+or
 pop local 5
+push local 6
+push this 0
+call Collider.collidesWith 2
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+pop this 5
+label IF_FALSE0
 push pointer 0
 push local 0
 push local 1
 call Bullet.redraw 3
 pop temp 0
 push local 5
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push pointer 0
 call BattleCityGame.destroyBullet 1
 pop temp 0
-label IF_FALSE0
+label IF_FALSE1
 push constant 0
 return
 function Bullet.redraw 2
@@ -158,13 +178,13 @@ pop temp 0
 push argument 1
 push argument 2
 push argument 1
-push this 2
+push this 3
 call RectangleBody.width 1
 add
 push constant 1
 sub
 push argument 2
-push this 2
+push this 3
 call RectangleBody.height 1
 add
 push constant 1
@@ -177,13 +197,13 @@ pop temp 0
 push local 0
 push local 1
 push local 0
-push this 2
+push this 3
 call RectangleBody.width 1
 add
 push constant 1
 sub
 push local 1
-push this 2
+push this 3
 call RectangleBody.height 1
 add
 push constant 1
@@ -207,11 +227,11 @@ pop temp 0
 push local 0
 push local 1
 push local 0
-push this 2
+push this 3
 call RectangleBody.width 1
 add
 push local 1
-push this 2
+push this 3
 call RectangleBody.height 1
 add
 call Screen.drawRectangle 4
@@ -219,10 +239,10 @@ pop temp 0
 push constant 1
 call Screen.setColor 1
 pop temp 0
-push this 0
+push this 1
 call Vector.dispose 1
 pop temp 0
-push this 2
+push this 3
 call RectangleBody.dispose 1
 pop temp 0
 push pointer 0

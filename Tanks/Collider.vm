@@ -76,6 +76,41 @@ sub
 pop this 3
 push constant 0
 return
+function Collider.collidesWith 3
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+push this 2
+call List.size 1
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 2
+push local 1
+call List.at 2
+pop local 0
+push local 0
+call CollisionInfo.B 1
+pop local 2
+push local 2
+call Collider.type 1
+push argument 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+push local 1
+push constant 1
+add
+pop local 1
+label IF_FALSE0
+push constant 0
+return
 function Collider.intersects 0
 push argument 0
 pop pointer 0
@@ -248,6 +283,9 @@ return
 function Collider.dispose 0
 push argument 0
 pop pointer 0
+push constant 0
+call Output.printInt 1
+pop temp 0
 push pointer 0
 call Collider.reset 1
 pop temp 0

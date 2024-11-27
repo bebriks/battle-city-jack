@@ -26,6 +26,22 @@ class Collider {
     method void setSlot(int value) { let m_slot = value; return; }
     method void moveSlot() { let m_slot = m_slot - 1; return; }
 
+    method boolean collidesWith(int target) {
+        var CollisionInfo collision;
+        var int i;
+        var Collider b;
+        let i = 0;
+        if (m_collisions.size()) {
+            let collision = m_collisions.at(i);
+            let b = collision.B();
+            if (b.type() = target) {
+                return true;
+            }
+            let i = i + 1;
+        }
+        return false;
+    }
+
     method boolean intersects(Collider other) {
         if (~(m_metadata.isTargetType(other.type()))) {
             return false;
@@ -99,6 +115,7 @@ class Collider {
     }
 
     method void dispose() {
+        do Output.printInt(0);
         do reset();
         do m_collisions.dispose();
         do m_box.dispose();
