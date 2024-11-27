@@ -65,12 +65,12 @@ not
 not
 if-goto WHILE_END0
 call KeyboardExtension.keyDown 0
-push constant 81
+push constant 85
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push constant 1
+push constant 3
 call GameCore.setState 1
 pop temp 0
 call BattleCityGame.__clearResources 0
@@ -78,6 +78,34 @@ pop temp 0
 push constant 0
 return
 label IF_FALSE0
+call KeyboardExtension.keyDown 0
+push constant 74
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 4
+call GameCore.setState 1
+pop temp 0
+call BattleCityGame.__clearResources 0
+pop temp 0
+push constant 0
+return
+label IF_FALSE1
+call KeyboardExtension.keyDown 0
+push constant 81
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 1
+call GameCore.setState 1
+pop temp 0
+call BattleCityGame.__clearResources 0
+pop temp 0
+push constant 0
+return
+label IF_FALSE2
 call CollisionManager.update 0
 pop temp 0
 push static 0

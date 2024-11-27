@@ -34,6 +34,8 @@ class BattleCityGame {
 
         let player = Player.new(playerStartPosition.clone());
         while (true) {
+            if (KeyboardExtension.keyDown() = 85) {do GameCore.setState(3); do BattleCityGame.__clearResources(); return;} // U
+            if (KeyboardExtension.keyDown() = 74) {do GameCore.setState(4); do BattleCityGame.__clearResources(); return;} // J
             if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
 
             do CollisionManager.update();

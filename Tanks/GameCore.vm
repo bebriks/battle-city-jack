@@ -17,6 +17,8 @@ call ColliderFactory.init 0
 pop temp 0
 call WinScreen.init 0
 pop temp 0
+call GameOver.init 0
+pop temp 0
 push constant 0
 return
 function GameCore.exec 0
@@ -64,6 +66,15 @@ label IF_TRUE3
 call WinScreen.exec 0
 pop temp 0
 label IF_FALSE3
+push static 0
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+call GameOver.exec 0
+pop temp 0
+label IF_FALSE4
 goto WHILE_EXP0
 label WHILE_END0
 call Screen.clearScreen 0
