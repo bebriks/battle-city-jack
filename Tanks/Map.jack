@@ -110,13 +110,13 @@ class Map {
         do SpriteManager.loadBase();
         do SpriteManager.loadBrickBlock();
 
-        do SpriteManager.loadFullWall();
+        //do SpriteManager.loadFullWall();
         //do SpriteManager.loadLeavesWall();
 
         let base = SpriteManager.getBase();
         let brickBlock = SpriteManager.getBrickBlock();
 
-        let fullWall = SpriteManager.getFullWall();
+        //let fullWall = SpriteManager.getFullWall();
         //let leavesWall = SpriteManager.getLeavesWall();
         return;
     }
@@ -241,7 +241,7 @@ class Map {
 
     function void mapDraw() {
         do Map.initBase();
-        do Map.initBaseBorder();
+        //do Map.initBaseBorder();
 
         do Map.initBorderX128Y32();
         do Map.initBorderX128Y192();

@@ -5006,7 +5006,7 @@ class SpriteManager{
         return brickBlock;
     }
 
-    function void loadFullWall() {
+    /* function void loadFullWall() {
         var Array data, line; 
         
         let data = Array.new(32);
@@ -5183,7 +5183,7 @@ class SpriteManager{
     function Sprite getFullWall() {
         return fullWall;
     }
-
+ */
     /* function void loadLeavesWall() {
         var Array data, line; 
         
