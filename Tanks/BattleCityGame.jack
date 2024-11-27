@@ -11,7 +11,7 @@ class BattleCityGame {
         do SpriteManager.loadPlayerTankRight();
         do SpriteManager.loadEnemyTankUp();
         do SpriteManager.loadEnemyTankRight();
-        //do SpriteManager.loadBoom();
+        do SpriteManager.loadBoom();
         //let boom = SpriteManager.getBoom();
         let bullets = List.new();
         let playerStartPosition = Vector.new(32, 32);
