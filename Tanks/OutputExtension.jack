@@ -19,6 +19,7 @@ class OutputExtension
 		do SpriteManager.loadBigS();
 		do SpriteManager.loadBigT();
 		do SpriteManager.loadBigU();
+		do SpriteManager.loadBigV();
 		do SpriteManager.loadBigY();
         return;
     }
@@ -42,7 +43,8 @@ class OutputExtension
 		if (charCode = 83) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigS(), false, false); } //ASCII S
 		if (charCode = 84) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigT(), false, false); } //ASCII T
 		if (charCode = 85) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigU(), false, false); } //ASCII U
-		if (charCode = 87) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigM(), false, true); } //ASCII U
+		if (charCode = 86) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigV(), false, false); } //ASCII V
+		if (charCode = 87) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigM(), false, true); } //ASCII W
 		if (charCode = 89) { do Drawer.drawSprite(cursorPositionX, cursorPositionY, SpriteManager.getBigY(), false, false); } //ASCII Y
 		let cursorPositionX = cursorPositionX + 32;
 		return;
@@ -83,6 +85,7 @@ class OutputExtension
 		do SpriteManager.disposeBigS();
 		do SpriteManager.disposeBigT();
 		do SpriteManager.disposeBigU();
+		do SpriteManager.disposeBigV();
 		do SpriteManager.disposeBigY();
 		return;
 	}

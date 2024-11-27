@@ -31,6 +31,8 @@ call SpriteManager.loadBigT 0
 pop temp 0
 call SpriteManager.loadBigU 0
 pop temp 0
+call SpriteManager.loadBigV 0
+pop temp 0
 call SpriteManager.loadBigY 0
 pop temp 0
 push constant 0
@@ -283,11 +285,25 @@ call Drawer.drawSprite 5
 pop temp 0
 label IF_FALSE16
 push argument 0
-push constant 87
+push constant 86
 eq
 if-goto IF_TRUE17
 goto IF_FALSE17
 label IF_TRUE17
+push static 0
+push static 1
+call SpriteManager.getBigV 0
+push constant 0
+push constant 0
+call Drawer.drawSprite 5
+pop temp 0
+label IF_FALSE17
+push argument 0
+push constant 87
+eq
+if-goto IF_TRUE18
+goto IF_FALSE18
+label IF_TRUE18
 push static 0
 push static 1
 call SpriteManager.getBigM 0
@@ -296,13 +312,13 @@ push constant 0
 not
 call Drawer.drawSprite 5
 pop temp 0
-label IF_FALSE17
+label IF_FALSE18
 push argument 0
 push constant 89
 eq
-if-goto IF_TRUE18
-goto IF_FALSE18
-label IF_TRUE18
+if-goto IF_TRUE19
+goto IF_FALSE19
+label IF_TRUE19
 push static 0
 push static 1
 call SpriteManager.getBigY 0
@@ -310,7 +326,7 @@ push constant 0
 push constant 0
 call Drawer.drawSprite 5
 pop temp 0
-label IF_FALSE18
+label IF_FALSE19
 push static 0
 push constant 32
 add
@@ -381,6 +397,8 @@ pop temp 0
 call SpriteManager.disposeBigT 0
 pop temp 0
 call SpriteManager.disposeBigU 0
+pop temp 0
+call SpriteManager.disposeBigV 0
 pop temp 0
 call SpriteManager.disposeBigY 0
 pop temp 0

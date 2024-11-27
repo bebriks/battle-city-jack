@@ -29,14 +29,17 @@ class BattleCityGame {
 
 	function void exec() {
         var Bullet bulletBuf;
+        var int manageKey;
+
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
 
         let player = Player.new(playerStartPosition.clone());
         while (true) {
-            if (KeyboardExtension.keyDown() = 85) {do GameCore.setState(3); do BattleCityGame.__clearResources(); return;} // U
-            if (KeyboardExtension.keyDown() = 74) {do GameCore.setState(4); do BattleCityGame.__clearResources(); return;} // J
-            if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
+            let manageKey = KeyboardExtension.keyDown(); 
+            if (manageKey = 85) {do GameCore.setState(3); do BattleCityGame.__clearResources(); return;} // U
+            if (manageKey = 74) {do GameCore.setState(4); do BattleCityGame.__clearResources(); return;} // J
+            if (manageKey = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
 
             do CollisionManager.update();
             do player.update();
