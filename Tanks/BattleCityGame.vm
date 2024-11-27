@@ -3,6 +3,10 @@ call SpriteManager.loadPlayerTankUp 0
 pop temp 0
 call SpriteManager.loadPlayerTankRight 0
 pop temp 0
+call SpriteManager.loadEnemyTankUp 0
+pop temp 0
+call SpriteManager.loadEnemyTankRight 0
+pop temp 0
 call List.new 0
 pop static 2
 push constant 32
