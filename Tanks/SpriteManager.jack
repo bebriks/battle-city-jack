@@ -5540,7 +5540,7 @@ class SpriteManager{
         return base;
     }
     
-    /* function void loadBoom() {
+    function void loadBoom() {
         var Array data, line; 
         
         let data = Array.new(32);
@@ -5716,5 +5716,5 @@ class SpriteManager{
 
     function Sprite getBoom() {
         return boom;
-    } */
+    }
 }
