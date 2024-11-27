@@ -1,5 +1,5 @@
 function GameCore.init 0
-push constant 2
+push constant 3
 pop static 0
 call KeyboardExtension.init 0
 pop temp 0
@@ -14,6 +14,8 @@ pop temp 0
 call CollisionManager.init 0
 pop temp 0
 call ColliderFactory.init 0
+pop temp 0
+call WinScreen.init 0
 pop temp 0
 push constant 0
 return
@@ -53,6 +55,15 @@ label IF_TRUE2
 call BattleCityGame.exec 0
 pop temp 0
 label IF_FALSE2
+push static 0
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+call WinScreen.exec 0
+pop temp 0
+label IF_FALSE3
 goto WHILE_EXP0
 label WHILE_END0
 call Screen.clearScreen 0
