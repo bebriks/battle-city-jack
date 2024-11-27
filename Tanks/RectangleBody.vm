@@ -55,6 +55,11 @@ pop pointer 0
 push this 0
 call Collider.height 1
 return
+function RectangleBody.collider 0
+push argument 0
+pop pointer 0
+push this 0
+return
 function RectangleBody.moveDirection 0
 push argument 0
 pop pointer 0
@@ -229,6 +234,10 @@ push constant 0
 not
 return
 label IF_FALSE1
+push local 1
+push constant 1
+add
+pop local 1
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0
@@ -257,6 +266,10 @@ push constant 0
 not
 return
 label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0

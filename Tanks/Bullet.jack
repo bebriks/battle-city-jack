@@ -1,13 +1,17 @@
 class Bullet {
+    field int m_target;
     field Vector m_direction;
     field int m_moveSpeed; 
     field RectangleBody m_body;
     field int magic;
+    field boolean m_destroyOnNextUpdate;
 
-    constructor Bullet new(Vector position, Vector direction) {
+    constructor Bullet new(Vector position, Vector direction, int target) {
         var int newX, newY, width, height;
         let m_direction = direction;
         let m_moveSpeed = 1;
+        let m_destroyOnNextUpdate = false;
+        let m_target = target;
 
         if (direction.eq(Vector.up()) | direction.eq(Vector.down())) {
             let width = 3;
@@ -19,7 +23,7 @@ class Bullet {
             let height = 3;
         }
 
-        let m_body = RectangleBody.build(position.x(), position.y(), width, height, 1, List.oneElement(2), List.oneElement(2));
+        let m_body = RectangleBody.build(position.x(), position.y(), width, height, 1, List.twoElements(2, m_target), List.oneElement(2));
 
         let newX = position.x();
         let newY = position.y();
@@ -41,6 +45,7 @@ class Bullet {
     method void update() {
         var int oldX, oldY, newX, newY, delta;
         var boolean destroyFlag;
+        var Collider collider;
         let oldX = getX();
         let oldY = getY();
 
@@ -49,12 +54,18 @@ class Bullet {
         let newX = getX();
         let newY = getY();
 
+        let collider = m_body.collider();
+
         let destroyFlag = 
             (newX < 0) |
             (newX > (511 - m_body.width())) | 
             (newY < 0) | 
             (newY > (255 - m_body.height())) |
-            (delta = 0);
+            (delta = 0) | m_destroyOnNextUpdate;
+
+        if (collider.collidesWith(m_target)) {
+            let m_destroyOnNextUpdate = true;
+        }
 
         do redraw(oldX, oldY);
         if (destroyFlag) { do BattleCityGame.destroyBullet(this); }

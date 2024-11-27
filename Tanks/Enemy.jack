@@ -1,4 +1,5 @@
-class Player {
+class Enemy {
+    field int m_currentAction;
     field Vector m_currentOrientation;
     field int m_moveSpeed, m_reloadTime;
     field Sprite m_currentSprite;
@@ -6,27 +7,45 @@ class Player {
     field Timer m_reloadTimer;
     field RectangleBody m_body;
 
-    constructor Player new(Vector startPosition) {
-        let m_body = RectangleBody.build(startPosition.x(), startPosition.y(), 33, 33, 0, List.twoElements(2, 3), List.twoElements(2, 3));
+    constructor Enemy new(Vector startPosition) {
+        let m_body = RectangleBody.build(startPosition.x(), startPosition.y(), 30, 30, 3, List.threeElements(2, 1, 0), List.twoElements(2, 0));
         let m_moveSpeed = 1;
         let m_reloadTime = 20;
         let m_currentSprite = SpriteManager.getPlayerTankUp();
+        let m_currentAction = 3;
         let m_currentOrientation = Vector.up();
         let m_reloadTimer = Timer.new();
         do Drawer.drawSprite(getX(), getY(), m_currentSprite, false, false);
         return this;
     }
 
+    method void setAction(int value) {
+        let m_currentAction = value;
+        return;
+    }
+
+    method int action() {
+        return m_currentAction;
+    }
+
     method void update() {
         var int oldX, oldY;
         var boolean hasMoved;
+        var Collider collider;
 
         let oldX = m_body.x();
         let oldY = m_body.y();
 
         do m_reloadTimer.update();
-        if ((Keyboard.keyPressed() = 32) & m_reloadTimer.timeOut()) { do __shoot(); do m_reloadTimer.start(m_reloadTime); }
+        if ((m_currentAction = 0) & m_reloadTimer.timeOut()) { do __shoot(); do m_reloadTimer.start(m_reloadTime); }
         let hasMoved = __processMovement();
+
+        let collider = m_body.collider();
+        if (collider.collidesWith(1)) {
+            do BattleCityGame.destroyEnemy(this);
+            return;
+        }
+
         if (~hasMoved) { return; }
         do __updateSprite();
 
@@ -46,10 +65,10 @@ class Player {
     method boolean __processMovement() {
         var int key;
         let key = Keyboard.keyPressed();
-        if ((key = 130) | (key = 65)) { do m_body.moveX(-m_moveSpeed); let m_currentOrientation = Vector.left(); return true; } // Arrow left or A
-        if ((key = 131) | (key = 87)) { do m_body.moveY(-m_moveSpeed); let m_currentOrientation = Vector.up(); return true; } // Arrow up or W
-        if ((key = 132) | (key = 68)) { do m_body.moveX(m_moveSpeed); let m_currentOrientation = Vector.right(); return true; } // Arrow right or D
-        if ((key = 133) | (key = 83)) { do m_body.moveY(m_moveSpeed); let m_currentOrientation = Vector.down(); return true; } // Arrow down or S
+        if (m_currentAction = 1) { do m_body.moveX(-m_moveSpeed); let m_currentOrientation = Vector.left(); return true; } // Arrow left or A
+        if (m_currentAction = 2) { do m_body.moveY(-m_moveSpeed); let m_currentOrientation = Vector.up(); return true; } // Arrow up or W
+        if (m_currentAction = 3) { do m_body.moveX(m_moveSpeed); let m_currentOrientation = Vector.right(); return true; } // Arrow right or D
+        if (m_currentAction = 4) { do m_body.moveY(m_moveSpeed); let m_currentOrientation = Vector.down(); return true; } // Arrow down or S
         return false;
     }
 
@@ -73,7 +92,7 @@ class Player {
         if (m_currentOrientation = Vector.right()) { let bulletPosition = Vector.new(getX() + 30, getY() + 15); }
         if (m_currentOrientation = Vector.down()) { let bulletPosition = Vector.new(getX() + 15, getY() + 30); }
         if (m_currentOrientation = Vector.left()) { let bulletPosition = Vector.new(getX() - 3, getY() + 15); }
-        do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone(), 3);
+        do BattleCityGame.createBullet(bulletPosition, m_currentOrientation.clone(), 0);
         return;
     }
 

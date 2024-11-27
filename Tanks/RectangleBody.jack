@@ -23,6 +23,7 @@ class RectangleBody {
     method int y() { return m_collider.y(); }
     method int width() { return m_collider.width(); }
     method int height() { return m_collider.height(); }
+    method int collider() { return m_collider; }
 
     method int moveDirection(Vector direction, int speed) {
         if (direction.eq(Vector.up())) {
@@ -85,6 +86,7 @@ class RectangleBody {
             if (isSurfaceType(type)) {
                 return true;
             }
+            let i = i + 1;
         }
         return false;
     }
@@ -96,6 +98,7 @@ class RectangleBody {
             if (surfaceType = type) {
                 return true;
             }
+            let i = i + 1;
         }
         return false;
     }
