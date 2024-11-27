@@ -6,8 +6,8 @@ push argument 0
 call Vector.x 1
 push argument 0
 call Vector.y 1
-push constant 33
-push constant 33
+push constant 30
+push constant 30
 push constant 0
 push constant 2
 call List.oneElement 1
