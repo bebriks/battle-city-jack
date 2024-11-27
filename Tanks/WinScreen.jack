@@ -1,0 +1,75 @@
+class WinScreen {
+    static Array menu, statePositionsY;
+    static TextLine winMessage;
+    static int state;
+
+    function void init() {
+        let winMessage = TextLine.new("YOU WIN", 144, 70);
+
+        let menu = Array.new(3);
+        let menu[0] = "restart";
+        let menu[1] = "menu";
+        let menu[2] = "exit";
+
+        let statePositionsY = Array.new(3);
+        let statePositionsY[0] = 152;
+        let statePositionsY[1] = 174;
+        let statePositionsY[2] = 196;
+
+        let state = 0;
+        return;
+    }
+
+    function void exec() {
+        var int delta, key;
+
+        do Graphics.fillScreen(0);
+        do Screen.setColor(1);
+        do WinScreen.__drawMenu();
+        do SpriteManager.loadSelectTriangle();
+        do WinScreen.__updateState(delta);
+        while (true) {
+            let delta = 0;
+            let key = KeyboardExtension.keyDown();
+            if (key = 131) { let delta = -1; } // ArrowUp
+            if (key = 133) { let delta = 1; } // ArrowDown
+            if (key = 128) { do WinScreen.__processAction(); return; } // Enter
+            if (~(delta = 0)) { do WinScreen.__updateState(delta); } 
+        }
+        return;
+    }
+
+    function void __updateState(int delta) {
+        if (((state = 0) & (delta = -1)) | ((state = 2) & (delta = 1)))  { return; }
+        do Screen.setColor(0);
+        do Screen.drawRectangle(212, statePositionsY[state], 228, statePositionsY[state] + 16);
+        let state = state + delta;
+        do Screen.setColor(1);
+        do Drawer.drawSprite(212, statePositionsY[state], SpriteManager.getSelectTriangle(), false, false);
+        return;
+    }
+
+    function void __processAction() {
+        if (state = 0)  { do GameCore.setState(2); return; }
+        if (state = 1)  { do GameCore.setState(1); return; }
+        if (state = 2)  { do GameCore.setState(-1); return; }
+        return;
+    }
+
+    function void __drawMenu() {
+        var int i, menuStartY;
+        do OutputExtension.init();
+        let menuStartY = 14;
+        do OutputExtension.setCursorPosition(winMessage.x(), winMessage.y());
+        do OutputExtension.printString(winMessage.data());    
+        let i = 0;
+        while (i < 3) {
+            do Output.moveCursor(menuStartY, 29);
+            do Output.printString(menu[i]);
+            let i = i + 1;
+            let menuStartY = menuStartY + 2;
+        }
+        do OutputExtension.dispose();
+        return;
+    }
+}
