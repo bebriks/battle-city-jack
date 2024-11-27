@@ -7,6 +7,7 @@ class GameCore
         do KeyboardExtension.init();
         do Intro.init();
         do MainMenu.init();
+        do Map.init();
         do BattleCityGame.init();
         do Vector.init();
         do CollisionManager.init();

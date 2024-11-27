@@ -45,10 +45,10 @@ class RectangleBody {
         var Vector result;
         var int x;
         if (delta > 0) {
-            let result = __move(Vector.new(delta, 0), Vector.new(1, 0));
+            let result = __move(Vector.new(delta, 0), Vector.right());
         }
         else {
-            let result = __move(Vector.new(delta, 0), Vector.new(-1, 0));
+            let result = __move(Vector.new(delta, 0), Vector.left());
         }
         let x = result.x();
         do result.dispose();
@@ -59,10 +59,10 @@ class RectangleBody {
         var Vector result;
         var int y;
         if (delta > 0) {
-            let result = __move(Vector.new(0, delta), Vector.new(0, 1));
+            let result = __move(Vector.new(0, delta), Vector.down());
         }
         else {
-            let result = __move(Vector.new(0, delta), Vector.new(0, -1));
+            let result = __move(Vector.new(0, delta), Vector.up());
         }
         let y = result.y();
         do result.dispose();
@@ -110,6 +110,8 @@ class RectangleBody {
         let position = Vector.new(box.x(), box.y());
         let initial = position.clone();
         let destination = position.add(delta);
+        do destination.setX(MathExtension.clamp(destination.x(), 0, 511 - width()));
+        do destination.setY(MathExtension.clamp(destination.y(), 0, 255 - height()));
         while (~(position.eq(destination))) {
             let buf = position;
             let position = position.add(step);
@@ -120,13 +122,11 @@ class RectangleBody {
                 let position = position.sub(step);
                 do buf.dispose();
                 do m_collider.setPosition(position.x(), position.y());
-
                 let result = position.sub(initial);
                 do destination.dispose();
                 do initial.dispose();
                 do position.dispose();
                 do delta.dispose();
-                do step.dispose();
                 return result;
             }
         }
@@ -135,7 +135,6 @@ class RectangleBody {
         do initial.dispose();
         do position.dispose();
         do delta.dispose();
-        do step.dispose();
         return result;
     }
 

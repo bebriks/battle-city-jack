@@ -1,0 +1,314 @@
+function Map.init 0
+call SpriteManager.loadBase 0
+pop temp 0
+call SpriteManager.loadBrickBlock 0
+pop temp 0
+call SpriteManager.loadFullWall 0
+pop temp 0
+call SpriteManager.getBase 0
+pop static 3
+call SpriteManager.getBrickBlock 0
+pop static 0
+call SpriteManager.getFullWall 0
+pop static 1
+push constant 0
+return
+function Map.placeWallGroup 6
+push argument 4
+push constant 2
+call Math.multiply 2
+call Array.new 1
+pop local 5
+push argument 0
+pop local 0
+push argument 1
+pop local 1
+push constant 32
+pop local 3
+push constant 0
+pop local 4
+push constant 0
+pop local 2
+label WHILE_EXP0
+push local 2
+push argument 4
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 1
+push argument 5
+push constant 0
+push constant 0
+call Drawer.drawSprite 5
+pop temp 0
+push local 2
+push constant 2
+call Math.multiply 2
+push local 5
+add
+push local 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 2
+push constant 2
+call Math.multiply 2
+push constant 1
+add
+push local 5
+add
+push local 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push argument 2
+add
+pop local 0
+push local 1
+push argument 3
+add
+pop local 1
+push local 2
+push constant 1
+add
+pop local 2
+push local 3
+push argument 2
+add
+pop local 3
+push local 4
+push argument 3
+add
+pop local 4
+goto WHILE_EXP0
+label WHILE_END0
+push local 4
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 32
+pop local 4
+label IF_FALSE0
+push argument 0
+push argument 1
+push local 3
+push local 4
+call BoundingBox.new 4
+push constant 2
+call List.new 0
+call ColliderFactory.create 3
+pop temp 0
+push local 5
+call Array.dispose 1
+pop temp 0
+push constant 0
+return
+function Map.initBase 0
+push constant 32
+push constant 112
+push constant 32
+push constant 32
+call BoundingBox.new 4
+push constant 2
+call List.new 0
+call ColliderFactory.create 3
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push constant 32
+push constant 112
+push static 3
+push constant 0
+push constant 0
+call Drawer.drawSprite 5
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 0
+return
+function Map.initBaseBorder 0
+push constant 64
+push constant 96
+push constant 0
+push constant 32
+push constant 2
+push static 1
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBorderX128Y32 0
+push constant 128
+push constant 32
+push constant 0
+push constant 32
+push constant 1
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBorderX128Y192 0
+push constant 128
+push constant 192
+push constant 0
+push constant 32
+push constant 1
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBorderX256Y32 0
+push constant 256
+push constant 32
+push constant 0
+push constant 32
+push constant 2
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBordersXUp 0
+push constant 0
+push constant 0
+push constant 32
+push constant 0
+push constant 16
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBordersXDown 0
+push constant 0
+push constant 224
+push constant 32
+push constant 0
+push constant 16
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBordersYLeft 0
+push constant 0
+push constant 32
+push constant 0
+push constant 32
+push constant 6
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBordersYRight 0
+push constant 480
+push constant 32
+push constant 0
+push constant 32
+push constant 6
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initLeaves 0
+push constant 300
+push constant 32
+push constant 0
+push constant 32
+push constant 5
+push static 2
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initFullWall 0
+push constant 100
+push constant 32
+push constant 0
+push constant 32
+push constant 5
+push static 1
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBrickBlock22 0
+push constant 160
+push constant 96
+push constant 0
+push constant 32
+push constant 2
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 192
+push constant 128
+push constant 0
+push constant 32
+push constant 1
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBorderX320Y128 0
+push constant 320
+push constant 128
+push constant 0
+push constant 32
+push constant 1
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.initBorderX320Y192 0
+push constant 320
+push constant 192
+push constant 0
+push constant 32
+push constant 1
+push static 0
+call Map.placeWallGroup 6
+pop temp 0
+push constant 0
+return
+function Map.mapDraw 0
+call Map.initBase 0
+pop temp 0
+call Map.initBaseBorder 0
+pop temp 0
+call Map.initBorderX128Y32 0
+pop temp 0
+call Map.initBorderX128Y192 0
+pop temp 0
+call Map.initBrickBlock22 0
+pop temp 0
+call Map.initBorderX256Y32 0
+pop temp 0
+call Map.initBorderX320Y128 0
+pop temp 0
+call Map.initBorderX320Y192 0
+pop temp 0
+call Map.initBordersXUp 0
+pop temp 0
+call Map.initBordersXDown 0
+pop temp 0
+call Map.initBordersYLeft 0
+pop temp 0
+call Map.initBordersYRight 0
+pop temp 0
+push constant 0
+return

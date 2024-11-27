@@ -68,7 +68,10 @@ class Bullet {
         }
 
         do redraw(oldX, oldY);
-        if (destroyFlag) { do BattleCityGame.destroyBullet(this); }
+        if (destroyFlag) { 
+            //do BattleCityGame.drawBoom(this);
+            do BattleCityGame.destroyBullet(this); 
+        }
         return;
     }
 

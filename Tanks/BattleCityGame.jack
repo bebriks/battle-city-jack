@@ -4,12 +4,15 @@ class BattleCityGame {
     static List bullets;
     static List enemies;
     static int globalIndex;
+    //static Sprite boom;
 
     function void init() {
         do SpriteManager.loadPlayerTankUp();
         do SpriteManager.loadPlayerTankRight();
+        //do SpriteManager.loadBoom();
+        //let boom = SpriteManager.getBoom();
         let bullets = List.new();
-        let playerStartPosition = Vector.new(240, 140);
+        let playerStartPosition = Vector.new(32, 32);
         return;
     }
 
@@ -45,6 +48,8 @@ class BattleCityGame {
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
 
+        do Map.mapDraw();
+
         let player = Player.new(playerStartPosition.clone());
         let enemies = List.oneElement(Enemy.new(Vector.new(280, 140)));
 
@@ -79,6 +84,18 @@ class BattleCityGame {
             do bulletBuf.dispose();
             do bullets.removeAt(0);
         }
+        return;
+    }
+
+    function void drawBoom(Bullet bullet) {
+        var int x, y;
+        let x = bullet.getX();
+        let y = bullet.getY();
+        do Screen.setColor(1);
+        //do Drawer.drawSprite(x, y, boom, false, false);
+        do Screen.drawRectangle(x, y, 50, 50);
+        do Screen.setColor(0);
+        //do SpriteManager.disposeBoom();
         return;
     }
 }
