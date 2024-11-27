@@ -9,6 +9,8 @@ class BattleCityGame {
     function void init() {
         do SpriteManager.loadPlayerTankUp();
         do SpriteManager.loadPlayerTankRight();
+        do SpriteManager.loadEnemyTankUp();
+        do SpriteManager.loadEnemyTankRight();
         //do SpriteManager.loadBoom();
         //let boom = SpriteManager.getBoom();
         let bullets = List.new();

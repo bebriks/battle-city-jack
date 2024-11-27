@@ -13,7 +13,7 @@ class Enemy {
         let m_moveSpeed = 1;
         let m_reloadTime = 100;
         let m_actionDuration = 40;
-        let m_currentSprite = SpriteManager.getPlayerTankUp();
+        let m_currentSprite = SpriteManager.getEnemyTankUp();
         let m_currentAction = 3;
         let m_currentOrientation = Vector.up();
         let m_reloadTimer = Timer.new();
@@ -108,9 +108,9 @@ class Enemy {
 
     method void __updateSprite() {
         if (m_currentOrientation.eq(Vector.up()) | m_currentOrientation.eq(Vector.down())) {
-            let m_currentSprite = SpriteManager.getPlayerTankUp(); 
+            let m_currentSprite = SpriteManager.getEnemyTankUp(); 
         }
-        else { let m_currentSprite = SpriteManager.getPlayerTankRight(); }
+        else { let m_currentSprite = SpriteManager.getEnemyTankRight(); }
         return;
     }
 
