@@ -1,11 +1,16 @@
 function GameCore.init 0
-push constant 3
+push constant 2
 pop static 0
+push constant 42
+call LCGRandom.setSeed 1
+pop temp 0
 call KeyboardExtension.init 0
 pop temp 0
 call Intro.init 0
 pop temp 0
 call MainMenu.init 0
+pop temp 0
+call Map.init 0
 pop temp 0
 call BattleCityGame.init 0
 pop temp 0

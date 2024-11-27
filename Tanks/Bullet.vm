@@ -37,7 +37,7 @@ push argument 0
 call Vector.y 1
 push local 2
 push local 3
-push constant 1
+push argument 3
 push constant 2
 push this 0
 call List.twoElements 2

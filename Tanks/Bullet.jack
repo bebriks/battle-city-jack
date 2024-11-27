@@ -6,7 +6,7 @@ class Bullet {
     field int magic;
     field boolean m_destroyOnNextUpdate;
 
-    constructor Bullet new(Vector position, Vector direction, int target) {
+    constructor Bullet new(Vector position, Vector direction, int target, int type) {
         var int newX, newY, width, height;
         let m_direction = direction;
         let m_moveSpeed = 1;
@@ -23,7 +23,7 @@ class Bullet {
             let height = 3;
         }
 
-        let m_body = RectangleBody.build(position.x(), position.y(), width, height, 1, List.twoElements(2, m_target), List.oneElement(2));
+        let m_body = RectangleBody.build(position.x(), position.y(), width, height, type, List.twoElements(2, m_target), List.oneElement(2));
 
         let newX = position.x();
         let newY = position.y();
@@ -68,7 +68,10 @@ class Bullet {
         }
 
         do redraw(oldX, oldY);
-        if (destroyFlag) { do BattleCityGame.destroyBullet(this); }
+        if (destroyFlag) { 
+            //do BattleCityGame.drawBoom(this);
+            do BattleCityGame.destroyBullet(this); 
+        }
         return;
     }
 

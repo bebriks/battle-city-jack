@@ -111,6 +111,16 @@ return
 label IF_FALSE3
 push constant 0
 return
+function RectangleBody.setPosition 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+call Collider.setPosition 3
+pop temp 0
+push constant 0
+return
 function RectangleBody.moveX 2
 push argument 0
 pop pointer 0
@@ -124,9 +134,7 @@ push pointer 0
 push argument 1
 push constant 0
 call Vector.new 2
-push constant 1
-push constant 0
-call Vector.new 2
+call Vector.right 0
 call RectangleBody.__move 3
 pop local 0
 goto IF_END0
@@ -135,10 +143,7 @@ push pointer 0
 push argument 1
 push constant 0
 call Vector.new 2
-push constant 1
-neg
-push constant 0
-call Vector.new 2
+call Vector.left 0
 call RectangleBody.__move 3
 pop local 0
 label IF_END0
@@ -163,9 +168,7 @@ push pointer 0
 push constant 0
 push argument 1
 call Vector.new 2
-push constant 0
-push constant 1
-call Vector.new 2
+call Vector.down 0
 call RectangleBody.__move 3
 pop local 0
 goto IF_END0
@@ -174,10 +177,7 @@ push pointer 0
 push constant 0
 push argument 1
 call Vector.new 2
-push constant 0
-push constant 1
-neg
-call Vector.new 2
+call Vector.up 0
 call RectangleBody.__move 3
 pop local 0
 label IF_END0
@@ -293,6 +293,28 @@ push local 1
 push argument 1
 call Vector.add 2
 pop local 2
+push local 2
+push local 2
+call Vector.x 1
+push constant 0
+push constant 511
+push pointer 0
+call RectangleBody.width 1
+sub
+call MathExtension.clamp 3
+call Vector.setX 2
+pop temp 0
+push local 2
+push local 2
+call Vector.y 1
+push constant 0
+push constant 255
+push pointer 0
+call RectangleBody.height 1
+sub
+call MathExtension.clamp 3
+call Vector.setY 2
+pop temp 0
 label WHILE_EXP0
 push local 1
 push local 2
@@ -353,9 +375,6 @@ pop temp 0
 push argument 1
 call Vector.dispose 1
 pop temp 0
-push argument 2
-call Vector.dispose 1
-pop temp 0
 push local 5
 return
 label IF_FALSE0
@@ -375,9 +394,6 @@ push local 1
 call Vector.dispose 1
 pop temp 0
 push argument 1
-call Vector.dispose 1
-pop temp 0
-push argument 2
 call Vector.dispose 1
 pop temp 0
 push local 5

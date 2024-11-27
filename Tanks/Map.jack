@@ -1,0 +1,266 @@
+/* class Map {
+    static Sprite brickWall, fullWall, leavesWall;
+
+    function void init() {
+        do SpriteManager.loadBrickWall();
+        do SpriteManager.loadFullWall();
+        do SpriteManager.loadLeavesWall();
+        let brickWall = SpriteManager.getBrickWall();
+        let fullWall = SpriteManager.getFullWall();
+        let leavesWall = SpriteManager.getLeavesWall();
+        return;
+    }
+
+    function void placeWall(int x, int y, Sprite object) {
+        if(object = leavesWall) {
+            do Screen.setColor(1);
+            do Drawer.drawSprite(x, y, object, false, false);
+            do Screen.setColor(0);
+        } else {
+            do ColliderFactory.create(BoundingBox.new(x, y, 32, 32), 2, List.new());
+            do Screen.setColor(1);
+            do Drawer.drawSprite(x, y, object, false, false);
+            do Screen.setColor(0);
+        }
+        return;
+    }
+
+    function void initBordersXUp() {
+        var int x, y;
+        let x = 0;
+        let y = 0;
+        while(x < 200) {
+            do Map.placeWall(x, y, brickWall);
+            let x = x + 32;
+        }
+        return;
+    }
+
+    function void initBordersXDown() {
+        var int x, y;
+        let x = 0;
+        let y = 224;
+        while(x < 500) {
+            do Map.placeWall(x, y, brickWall);
+            let x = x + 32;
+        }
+        return;
+    }
+
+    function void initBordersYLeft() {
+        var int x, y;
+        let x = 0;
+        let y = 32;
+        while(y < 224) {
+            do Map.placeWall(x, y, brickWall);
+            let y = y + 32;
+        }
+        return;
+    }
+
+    function void initBordersYRight() {
+        var int x, y;
+        let x = 480;
+        let y = 32;
+        while(y < 224) {
+            do Map.placeWall(x, y, brickWall);
+            let y = y + 32;
+        }
+        return;
+    }
+
+    function void initBorder() {
+        var int x, y;
+        let x = 100;
+        let y = 32;
+        while(y < 224) {
+            do Map.placeWall(x, y, fullWall);
+            let y = y + 32;
+        }
+        return;
+    }
+    
+    function void initLeaves() {
+        var int x, y;
+        let x = 300;
+        let y = 32;
+        while(y < 200) {
+            do Map.placeWall(x, y, leavesWall);
+            let y = y + 32;
+        }
+        return;
+    }
+
+    function void mapDraw() {
+        do Map.initBordersXUp();
+        do Map.initBordersXDown();
+        do Map.initBordersYLeft();
+        do Map.initBordersYRight();
+        do Map.initBorder();
+        do Map.initLeaves();
+        return;
+    }
+} */
+
+class Map {
+    static Sprite brickBlock, fullWall, leavesWall;
+    static Sprite base;
+
+    function void init() {
+        do SpriteManager.loadBase();
+        do SpriteManager.loadBrickBlock();
+
+        //do SpriteManager.loadFullWall();
+        //do SpriteManager.loadLeavesWall();
+
+        let base = SpriteManager.getBase();
+        let brickBlock = SpriteManager.getBrickBlock();
+
+        //let fullWall = SpriteManager.getFullWall();
+        //let leavesWall = SpriteManager.getLeavesWall();
+        return;
+    }
+
+    function void placeWallGroup(int startX, int startY, int stepX, int stepY, int count, Sprite object) {
+        var int x, y, i, width, height;
+        var Array coords;
+
+        let coords = Array.new(count * 2);
+        let x = startX;
+        let y = startY;
+
+        let width = 32;
+        let height = 0;
+
+        let i = 0;
+        while (i < count) {
+            do Drawer.drawSprite(x, y, object, false, false);
+
+            let coords[i * 2] = x;
+            let coords[i * 2 + 1] = y;
+
+            let x = x + stepX;
+            let y = y + stepY;
+            let i = i + 1;
+
+            let width = width + stepX;
+            let height = height + stepY;
+        }
+        if(height = 0) {
+            let height = 32;
+        }
+
+        do ColliderFactory.create(BoundingBox.new(startX, startY, width, height), 2, List.new());
+        do coords.dispose();
+        return;
+    }
+
+    function void initBase() {
+        do ColliderFactory.create(BoundingBox.new(32, 112, 32, 32), 2, List.new());
+        do Screen.setColor(1);
+        do Drawer.drawSprite(32, 112, base, false, false);
+        do Screen.setColor(0);
+        return;
+    }
+
+    function void initBaseBorder() {
+        do Map.placeWallGroup(64, 96, 0, 32, 2, fullWall);
+        return;
+    }
+
+    function void initBorderX128Y32() {
+        do Map.placeWallGroup(128, 32, 0, 32, 1, brickBlock);
+        return;
+    }
+
+    function void initBorderX128Y192() {
+        do Map.placeWallGroup(128, 192, 0, 32, 1, brickBlock);
+        return;
+    }
+
+    function void initBorderX256Y32() {
+        do Map.placeWallGroup(256, 32, 0, 32, 2, brickBlock);
+        return;
+    }
+
+    /* function void initBorderX128Y192() {
+        do Map.placeWallGroup(128, 192, 0, 32, 1, brickWall);
+        return;
+    } */
+
+    function void initBordersXUp() {
+        do Map.placeWallGroup(0, 0, 32, 0, 16, brickBlock);
+        return;
+    }
+
+    function void initBordersXDown() {
+        do Map.placeWallGroup(0, 224, 32, 0, 16, brickBlock);
+        return;
+    }
+
+    function void initBordersYLeft() {
+        do Map.placeWallGroup(0, 32, 0, 32, 6, brickBlock);
+        return;
+    }
+
+    function void initBordersYRight() {
+        do Map.placeWallGroup(480, 32, 0, 32, 6, brickBlock);
+        return;
+    }
+
+    function void initLeaves() {
+        do Map.placeWallGroup(300, 32, 0, 32, 5, leavesWall);
+        return;
+    }
+
+    function void initFullWall() {
+        do Map.placeWallGroup(100, 32, 0, 32, 5, fullWall);
+        return;
+    }
+
+    function void initBrickBlock22() {
+        do Map.placeWallGroup(160, 96, 0, 32, 2, brickBlock);
+        do Map.placeWallGroup(192, 128, 0, 32, 1, brickBlock);
+        return;
+    }
+
+    /* function void initBrickBlockWall2() {
+        do Map.placeWallGroup(320, 128, 0, 32, 3, brickBlock);
+        return;
+    } */
+
+    function void initBorderX320Y128() {
+        do Map.placeWallGroup(320, 128, 0, 32, 1, brickBlock);
+        return;
+    }
+
+    function void initBorderX320Y192() {
+        do Map.placeWallGroup(320, 192, 0, 32, 1, brickBlock);
+        return;
+    }
+
+    function void mapDraw() {
+        do Map.initBase();
+        //do Map.initBaseBorder();
+
+        do Map.initBorderX128Y32();
+        do Map.initBorderX128Y192();
+
+        do Map.initBrickBlock22();
+        //do Map.initBrickBlockWall2();
+        do Map.initBorderX256Y32();
+
+        do Map.initBorderX320Y128();
+        do Map.initBorderX320Y192();
+
+        do Map.initBordersXUp();
+        do Map.initBordersXDown();
+        do Map.initBordersYLeft();
+        do Map.initBordersYRight();
+
+        //do Map.initLeaves();
+
+        //do Map.initFullWall();
+        return;
+    }
+}
