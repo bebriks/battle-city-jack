@@ -7,6 +7,8 @@ call Intro.init 0
 pop temp 0
 call MainMenu.init 0
 pop temp 0
+call Map.init 0
+pop temp 0
 call BattleCityGame.init 0
 pop temp 0
 call Vector.init 0
