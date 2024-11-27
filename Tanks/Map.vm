@@ -3,14 +3,10 @@ call SpriteManager.loadBase 0
 pop temp 0
 call SpriteManager.loadBrickBlock 0
 pop temp 0
-call SpriteManager.loadFullWall 0
-pop temp 0
 call SpriteManager.getBase 0
 pop static 3
 call SpriteManager.getBrickBlock 0
 pop static 0
-call SpriteManager.getFullWall 0
-pop static 1
 push constant 0
 return
 function Map.placeWallGroup 6
@@ -287,8 +283,6 @@ push constant 0
 return
 function Map.mapDraw 0
 call Map.initBase 0
-pop temp 0
-call Map.initBaseBorder 0
 pop temp 0
 call Map.initBorderX128Y32 0
 pop temp 0
