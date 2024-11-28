@@ -1,0 +1,255 @@
+function BattleCityGame.init 0
+call SpriteManager.loadPlayerTankUp 0
+pop temp 0
+call SpriteManager.loadPlayerTankRight 0
+pop temp 0
+call SpriteManager.loadEnemyTankUp 0
+pop temp 0
+call SpriteManager.loadEnemyTankRight 0
+pop temp 0
+call SpriteManager.loadBoom 0
+pop temp 0
+call List.new 0
+pop static 2
+push constant 32
+push constant 32
+call Vector.new 2
+pop static 1
+push constant 0
+return
+function BattleCityGame.createBullet 0
+push static 2
+push argument 0
+push argument 1
+push argument 2
+push argument 3
+call Bullet.new 4
+call List.add 2
+pop temp 0
+push constant 0
+return
+function BattleCityGame.destroyBullet 1
+push static 2
+push argument 0
+call List.indexOf 2
+pop local 0
+push local 0
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push static 2
+push local 0
+call List.removeAt 2
+pop temp 0
+push static 4
+push constant 1
+sub
+pop static 4
+push argument 0
+call Bullet.dispose 1
+pop temp 0
+push constant 0
+return
+function BattleCityGame.destroyEnemy 1
+push static 3
+push argument 0
+call List.indexOf 2
+pop local 0
+push local 0
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push static 3
+push local 0
+call List.removeAt 2
+pop temp 0
+push static 4
+push constant 1
+sub
+pop static 4
+push argument 0
+call Enemy.dispose 1
+pop temp 0
+push constant 0
+return
+function BattleCityGame.exec 3
+push constant 0
+call Graphics.fillScreen 1
+pop temp 0
+push constant 1
+call Screen.setColor 1
+pop temp 0
+call Map.mapDraw 0
+pop temp 0
+push static 1
+call Vector.clone 1
+call Player.new 1
+pop static 0
+push constant 280
+push constant 140
+call Vector.new 2
+call Enemy.new 1
+call List.oneElement 1
+pop static 3
+label WHILE_EXP0
+push constant 0
+not
+not
+if-goto WHILE_END0
+call KeyboardExtension.keyDown 0
+pop local 2
+push local 2
+push constant 85
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 3
+call GameCore.setState 1
+pop temp 0
+call BattleCityGame.__clearResources 0
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+push local 2
+push constant 74
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 4
+call GameCore.setState 1
+pop temp 0
+call BattleCityGame.__clearResources 0
+pop temp 0
+push constant 0
+return
+label IF_FALSE1
+push local 2
+push constant 81
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 1
+call GameCore.setState 1
+pop temp 0
+call BattleCityGame.__clearResources 0
+pop temp 0
+push constant 0
+return
+label IF_FALSE2
+call CollisionManager.update 0
+pop temp 0
+push constant 0
+pop static 4
+label WHILE_EXP1
+push static 4
+push static 2
+call List.size 1
+lt
+not
+if-goto WHILE_END1
+push static 2
+push static 4
+call List.at 2
+pop local 0
+push local 0
+call Bullet.update 1
+pop temp 0
+push static 4
+push constant 1
+add
+pop static 4
+goto WHILE_EXP1
+label WHILE_END1
+push static 0
+call Player.update 1
+pop temp 0
+push constant 0
+pop static 4
+label WHILE_EXP2
+push static 4
+push static 3
+call List.size 1
+lt
+not
+if-goto WHILE_END2
+push static 3
+push static 4
+call List.at 2
+pop local 1
+push local 1
+call Enemy.update 1
+pop temp 0
+push static 4
+push constant 1
+add
+pop static 4
+goto WHILE_EXP2
+label WHILE_END2
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function BattleCityGame.__clearResources 1
+push static 0
+call Player.dispose 1
+pop temp 0
+label WHILE_EXP0
+push static 2
+call List.size 1
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push static 2
+push constant 0
+call List.at 2
+pop local 0
+push local 0
+call Bullet.dispose 1
+pop temp 0
+push static 2
+push constant 0
+call List.removeAt 2
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function BattleCityGame.drawBoom 2
+push argument 0
+call Bullet.getX 1
+pop local 0
+push argument 0
+call Bullet.getY 1
+pop local 1
+push constant 1
+call Screen.setColor 1
+pop temp 0
+push local 0
+push local 1
+push constant 50
+push constant 50
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 0
+return
