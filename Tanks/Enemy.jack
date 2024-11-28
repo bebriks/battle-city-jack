@@ -11,9 +11,9 @@ class Enemy {
 
     constructor Enemy new(Vector startPosition) {
         let m_body = RectangleBody.build(startPosition.x(), startPosition.y(), 30, 30, 3, List.threeElements(2, 1, 0), List.twoElements(2, 0));
-        let m_moveSpeed = 1;
-        let m_reloadTime = 100;
-        let m_actionDuration = 40;
+        let m_moveSpeed = 3;
+        let m_reloadTime = 15;
+        let m_actionDuration = 5;
         let m_currentSprite = SpriteManager.getEnemyTankUp();
         let m_currentAction = 3;
         let m_currentOrientation = Vector.up();

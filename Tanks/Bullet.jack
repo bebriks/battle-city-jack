@@ -9,7 +9,7 @@ class Bullet {
     constructor Bullet new(Vector position, Vector direction, int target, int type) {
         var int newX, newY, width, height;
         let m_direction = direction;
-        let m_moveSpeed = 1;
+        let m_moveSpeed = 3;
         let m_destroyOnNextUpdate = false;
         let m_target = target;
 
