@@ -3,6 +3,7 @@ class BattleCityGame {
     static Vector playerStartPosition;
     static List bullets;
     static List enemies;
+    static List explodes;
     static int globalIndex;
     //static Sprite boom;
 
@@ -14,6 +15,7 @@ class BattleCityGame {
         do SpriteManager.loadBoom();
         //let boom = SpriteManager.getBoom();
         let bullets = List.new();
+        let explodes = List.new();
         let playerStartPosition = Vector.new(32, 32);
         return;
     }
@@ -35,11 +37,29 @@ class BattleCityGame {
 
     function void destroyEnemy(Enemy enemy) {
         var int index;
+        var Vector explodePosition;
         let index = enemies.indexOf(enemy);
         if (index = -1) { return; }
         do enemies.removeAt(index);
         let globalIndex = globalIndex - 1;
+        let explodePosition = Vector.new(enemy.getX(), enemy.getY());
         do enemy.dispose();
+        do BattleCityGame.createExplode(explodePosition);
+        return;
+    }
+
+    function void createExplode(Vector position) {
+        do explodes.add(Explode.new(position));
+        return;
+    }
+
+    function void destroyExplode(Explode explode) {
+        var int explodeIndex;
+        let explodeIndex = explodes.indexOf(explode);
+        if (explodeIndex = -1) { return; }
+        do explodes.removeAt(explodeIndex);
+        let globalIndex = globalIndex - 1;
+        do explode.dispose();
         return;
     }
 
@@ -47,6 +67,7 @@ class BattleCityGame {
 	function void exec() {
         var Bullet bulletBuf;
         var Enemy enemyBuf;
+        var Explode explodeBuf;
         do Graphics.fillScreen(0);
         do Screen.setColor(1);
 
@@ -58,19 +79,27 @@ class BattleCityGame {
 
         while (true) {
             if (KeyboardExtension.keyDown() = 81) {do GameCore.setState(1); do BattleCityGame.__clearResources(); return;} // Q
-
+            
             do CollisionManager.update();
+            do player.update();
             let globalIndex = 0;
             while (globalIndex < bullets.size()) {
                 let bulletBuf = bullets.at(globalIndex);
                 do bulletBuf.update();
                 let globalIndex = globalIndex + 1;
             }
-            do player.update();
+
             let globalIndex = 0;
             while (globalIndex < enemies.size()) {
                 let enemyBuf = enemies.at(globalIndex);
                 do enemyBuf.update();
+                let globalIndex = globalIndex + 1;
+            }
+
+            let globalIndex = 0;
+            while (globalIndex < explodes.size()) {
+                let explodeBuf = explodes.at(globalIndex);
+                do explodeBuf.update();
                 let globalIndex = globalIndex + 1;
             }
         }

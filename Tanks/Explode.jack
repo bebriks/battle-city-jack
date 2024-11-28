@@ -1,0 +1,32 @@
+class Explode
+{
+    field Timer liveTimer;
+    field Sprite explodeSprite;
+    field Vector m_position;
+    constructor Explode new(Vector position)
+    {
+        let liveTimer = Timer.new();
+        do liveTimer.start(50);
+        let explodeSprite = SpriteManager.getBoom();
+        let m_position = position;
+        do Drawer.drawSprite(position.x(), position.y(), explodeSprite, false, false);
+        return this;
+    }
+
+    method void update()
+    {
+        do liveTimer.update();
+        if (liveTimer.timeOut()) { do BattleCityGame.destroyExplode(this); }
+        return;
+    }
+
+    method void dispose()
+    {
+        do liveTimer.dispose();
+        do Screen.setColor(0);
+        do Screen.drawRectangle(m_position.x(), m_position.y(), m_position.x() + 32, m_position.y() + 32);
+        do Screen.setColor(1);
+        do m_position.dispose();
+        return;
+    }
+}
